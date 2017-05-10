@@ -1,3 +1,7 @@
 # TeamTeamPlatekProhphit
 
-Group Members: Reo Kimura (project manager), Vanna Mavromatis, Haley Zheng, Amy Xu (just members)
+## Group Members: 
+* Reo Kimura (project/aesthetic manager)
+* Vanna Mavromatis (javascript)
+* Haley Zheng (database management)
+* Amy Xu (flask wizard)
