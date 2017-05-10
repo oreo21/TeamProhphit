@@ -2,3 +2,6 @@ Team TeamPlatekProphit
 
 reoK -- 2017-05-09 13:52
 initialized devlog.txt
+
+reoK -- 2017-05-10 14:02
+emailed Mr. Cheng & started design document
