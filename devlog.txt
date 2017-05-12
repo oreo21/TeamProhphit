@@ -4,7 +4,15 @@ reoK -- 2017-05-09 13:52
 initialized devlog.txt
 
 reoK -- 2017-05-10 14:02
-emailed Mr. Cheng & started design document
+emailed Mr. Cheng and started design document
+
+vannaM -- 2017-05-11 10:15
+met with Mr. Cheng to discuss idea and work out specifics of what he wants
+
+reoK, vannaM, amyX, haleyZ -- 2017-05-11 14:05
+reviewed Mr. Cheng's requests
+figured out database structure and functionality needed
+began working on the design document
 
 reoK, vannaM, amyX, haleyZ -- 2017-05-12 00:29
 completed design document
