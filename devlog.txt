@@ -5,3 +5,6 @@ initialized devlog.txt
 
 reoK -- 2017-05-10 14:02
 emailed Mr. Cheng & started design document
+
+reoK, vannaM, amyX, haleyZ -- 2017-05-12 00:29
+completed design document
