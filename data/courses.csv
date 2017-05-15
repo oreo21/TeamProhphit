@@ -1,0 +1,952 @@
+Group Header1,Group Header,Department,CourseCode,CourseName,Credits,GAF,CourseLevel,StateCode,State Code Description
+ , ,Visual Arts,AHS11,Art appreciation,1,1,H,5152,Art history
+ , ,Visual Arts,AKS11QFV,Film and videotape,1,1,H,5168,Film/videotape
+ , ,Visual Arts,ANS11QAS,Studio art mixed media,1,1,H,5170,Art portfolio
+ , ,Visual Arts,APS11QAP,Oil acrylic painting,1,1,H,5157,Creative art—painting
+ , ,Visual Arts,APS11QWC,Water color painting,1,1,H,5157,Creative art—painting
+ , ,Visual Arts,APS21QAP,Oil acrylic painting 1,1,1,H,5157,Creative art—painting
+ , ,Visual Arts,APS22QAP,Oil acrylic painting 2,1,1,H,5157,Creative art—painting
+ , ,Visual Arts,AUS11QCG,Computer graphics,1,1,H,5169,Computer-assisted art
+ , ,Visual Arts,AUS11QPG,Portrait graphic design,1,1,H,5169,Computer-assisted art
+ , ,Visual Arts,AYS11QDJ,Jewelry design,1,1,H,5154,Creative art—comprehensive
+ , ,Theater,CJS21QDR,Drama 1,1,1,H,5055,Drama—acting/performance
+ , ,Theater,CJS22QDR,Drama 2,1,1,H,5055,Drama—acting/performance
+ , ,English/ESL,EES81,English 9 term 1,1,1,H,1001,English/language arts i (9th grade)
+ , ,English/ESL,EES81QFC,Fr composition 1,1,1,H,1001,English/language arts i (9th grade)
+ , ,English/ESL,EES82,English 9 term 2,1,1,H,1001,English/language arts i (9th grade)
+ , ,English/ESL,EES82QFC,Fr composition 2,1,1,H,1001,English/language arts i (9th grade)
+ , ,English/ESL,EES83,English 10 term 1,1,1,H,1002,English/language arts ii (10th grade)
+ , ,English/ESL,EES83QCL,Classical lit,1,1,H,1002,English/language arts ii (10th grade)
+ , ,English/ESL,EES83QEL,European lit 1,1,1,H,1002,English/language arts ii (10th grade)
+ , ,English/ESL,EES84,English 10 term 2,1,1,H,1002,English/language arts ii (10th grade)
+ , ,English/ESL,EES84QEL,European lit 2,1,1,H,1002,English/language arts ii (10th grade)
+ , ,English/ESL,EES84QME,Modern european,1,1,H,1002,English/language arts ii (10th grade)
+ , ,English/ESL,EES85,English 11 1 of 2,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QAC,Eng5 acting,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QAM,Eng 5 american lit 1,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QCN,Creative nonfict5,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QDF,Detective fict eng5,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QEA,Early american lit,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QGL,Gothic lit eng5,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QHA,Eng 5 asian american lit,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QPW,Poetry eng5,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QSW,Eng 5 science writing,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85QWW,Writers wksp eng5,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES85X,Eng 5 ap,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES85X1,Eng5ap amer lit hist,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES85X3,Eng5ap defining american voices,1,1,H,0,Not mapped
+ , ,English/ESL,EES85X5,Eng5ap amer studies,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES85X7,Eng5ap contemp clscs,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES85X9,Eng5ap metaphysics,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES85XA,Eng5ap amer places and perspectives,1,1,H,1005,Ap english language and composition
+ , ,English/ESL,EES86,English 11 2 of 2,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QAC,Eng6 acting,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QAL,Later american lit eng6,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QAM,Eng 6 american lit 2,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QCN,Creative nonfict6,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QDF,Detective fict eng6,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QGL,Gothic lit eng6,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QHA,Eng 6 asian american lit,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QPW,Poetry eng6,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QSW,Eng 6 science writing,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86QWW,Writers wksp eng6,1,1,H,01003CC,English/language arts iii (common core)
+ , ,English/ESL,EES86X,Eng 6 ap,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES86X2,Eng6ap amer lit hist,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES86X4,Eng6ap defining american voices,1,1,H,0,Not mapped
+ , ,English/ESL,EES86X6,Eng6ap amer studies,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES86X8,Eng6ap contemp clscs,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES86XA,Eng6ap metaphysics,1,1,H,1003,English/language arts iii (11th grade)
+ , ,English/ESL,EES86XB,Eng 6 ap american places and perspectv,1,1,H,1005,Ap english language and composition
+ , ,English/ESL,EES87,English 12 1 of 2,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87CEE,Existentialism eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QAC,Eng7 acting,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QBL,British literature 1 eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QCL,Eng7 comtemporary literature,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QCN,Creative nonfict7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QCT,Contemporary lit eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QEB,Early british eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QEE,Existentialism eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QHA,Eng 7 asian american lit,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QPW,Poetry eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QSF,Science fiction eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QSL,Shakespearean lit eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QSW,Eng 7 science writing,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QVL,Victorian lit eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QWV,Women voice lit eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87QWW,Writers wksp eng7,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES87X,Eng 7 ap,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES87X1,Eng7ap ancient&moderns,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES87X3,Eng7ap great books,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES87X3G,Eng7ap great books,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES87X5,Eng7ap society and self,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES87X9,Eng7ap metaphysics,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES88,English 12 2 of 2,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88CEE,Existentialism eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QAC,Eng8 acting,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QBL,British literature 2 eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QCL,Eng8 comtemporary literature,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QCN,Creative nonfict8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QCT,Contemporary lit eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QEE,Existentialism eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QPW,Poetry eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QSF,Science fiction eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QSL,Shakespearean lit eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QSW,Eng 8 science writing,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QVL,Victorian lit eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QWV,Women voice lit eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88QWW,Writers wksp eng8,1,1,H,1004,English/language arts iv (12th grade)
+ , ,English/ESL,EES88X,Eng 8 ap,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES88X2,Eng8ap ancient/moderns,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES88X4,Eng8ap great books,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES88X6,Eng8ap society and self,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EES88XA,Eng8ap metaphysics,1,1,H,1006,Ap english literature and composition
+ , ,English/ESL,EJS11,Adv journalism,1,1,H,11101,Journalism
+ , ,English/ESL,EJS11QS,Adv journalism indep study,1,1,H,11101,Journalism
+ , ,English/ESL,EQS11QDT,Debate team,0,1,H,1999,English language and literature—other
+ , ,English/ESL,EXCRE,Reading rct jun,0,1,H,0,Not mapped
+ , ,English/ESL,EXCRR,Reading rct jan,0,1,H,0,Not mapped
+ , ,English/ESL,EXCWE,Writing rct june,0,1,H,0,Not mapped
+ , ,English/ESL,EXCWR,Writing rct jan,0,1,H,0,Not mapped
+ , ,English/ESL,EXRCE,Cc ela reg jun,0,1,,0,Not mapped
+ , ,English/ESL,EXRCG,Cc ela reg aug,0,1,H,0,Not mapped
+ , ,English/ESL,EXRCR,Cc ela reg jan,0,1,H,0,Not mapped
+ , ,English/ESL,EXRLE,Ela reg june,0,1,H,0,Not mapped
+ , ,English/ESL,EXRLG,Ela reg august,0,1,H,0,Not mapped
+ , ,English/ESL,EXRLR,Ela reg jan,0,1,H,0,Not mapped
+ , ,LOTE,FES65,Greek iii 1 of 2,1,1,H,6283,Greek iii
+ , ,LOTE,FES66,Greek iii 2 of 2,1,1,H,6283,Greek iii
+ , ,LOTE,FFS61,French i  1 of 2,1,1,H,6121,French i
+ , ,LOTE,FFS61QE,French i  1 of 2 enriched,1,1,H,6121,French i
+ , ,LOTE,FFS62,French i  2 of 2,1,1,H,6121,French i
+ , ,LOTE,FFS62QE,French i  2 of 2 enriched,1,1,H,6121,French i
+ , ,LOTE,FFS63,French ii  1 of 2,1,1,H,6122,French ii
+ , ,LOTE,FFS63QS,French ii  1 of 2 indep study,1,1,H,6122,French ii
+ , ,LOTE,FFS64,French ii   2 of 2,1,1,H,6121,French i
+ , ,LOTE,FFS65,French iii  1 of 2,1,1,H,6123,French iii
+ , ,LOTE,FFS66,French iii  2 of 2,1,1,H,6123,French iii
+ , ,LOTE,FFS87,French iv 1 of 2,1,1,H,6124,French iv
+ , ,LOTE,FFS87X,Ap french iv 1 of 2,1,1,H,6132,Ap french language
+ , ,LOTE,FFS88,French iv 2 of 2,1,1,H,6124,French iv
+ , ,LOTE,FFS88X,Ap french iv 2 of 2,1,1,H,6132,Ap french language
+ , ,LOTE,FGS61,German i  1 of 2,1,1,H,6201,German i
+ , ,LOTE,FGS62,German i  2 of 2,1,1,H,6201,German i
+ , ,LOTE,FGS63,German ii  1 of 2,1,1,H,6202,German ii
+ , ,LOTE,FGS64,German ii  2 of 2,1,1,H,6202,German ii
+ , ,LOTE,FGS65,German iii  1 of 2,1,1,H,6203,German iii
+ , ,LOTE,FGS66,German iii  2 of 2,1,1,H,6203,German iii
+ , ,LOTE,FGS87,German iv 1 of 2,1,1,H,6204,German iv
+ , ,LOTE,FGS88,German iv 2 of 2,1,1,H,6204,German iv
+ , ,LOTE,FHS61,Hebrew i  1 of 2,1,1,H,6701,Hebrew i
+ , ,LOTE,FHS62,Hebrew i  2 of 2,1,1,H,6701,Hebrew i
+ , ,LOTE,FHS63,Hebrew ii  1 of 2,1,1,H,6702,Hebrew ii
+ , ,LOTE,FHS64,Hebrew ii  2 of 2,1,1,H,6702,Hebrew ii
+ , ,LOTE,FHS65,Hebrew iii  1 of 2,1,1,H,6703,Hebrew iii
+ , ,LOTE,FHS66,Hebrew iii  2 of 2,1,1,H,6703,Hebrew iii
+ , ,LOTE,FJS61,Japanese i 1 of 2,1,1,H,6421,Japanese i
+ , ,LOTE,FJS61QS,Japanese i 1 of 2 indep study,1,1,H,6421,Japanese i
+ , ,LOTE,FJS62,Japanese i 2 of 2,1,1,H,6421,Japanese i
+ , ,LOTE,FJS63,Japanese ii 1 of 2,1,1,H,6422,Japanese ii
+ , ,LOTE,FJS64,Japanese ii 2 of 2,1,1,H,6422,Japanese ii
+ , ,LOTE,FJS65,Japanese iii 1 of 2,1,1,H,6423,Japanese iii
+ , ,LOTE,FJS66,Japanese iii 2 of 2,1,1,H,6423,Japanese iii
+ , ,LOTE,FJS87,Japanese iv 1 of 2,1,1,H,6424,Japanese iv
+ , ,LOTE,FJS87X,Ap japanese iv 1 of 2,1,1,H,6424,Japanese iv
+ , ,LOTE,FJS88,Japanese iv 2 of 2,1,1,H,6424,Japanese iv
+ , ,LOTE,FJS88X,Ap japanese iv 2 of 2,1,1,H,6421,Japanese i
+ , ,LOTE,FKS63QN,Korean ii native 1 of 2,1,1,H,6441,Korean i
+ , ,LOTE,FKS64QN,Korean ii native 2 of 2,1,1,H,6442,Korean ii
+ , ,LOTE,FKS65QN,Korean iii native 1 of 2,1,1,H,6443,Korean iii
+ , ,LOTE,FKS66QN,Korean iii native 2 of 2,1,1,H,6443,Korean iii
+ , ,LOTE,FLS61,Latin i  1 of 2,1,1,H,6301,Latin i
+ , ,LOTE,FLS61QE,Latin i enriched 1 of 2,1,1,H,6301,Latin i
+ , ,LOTE,FLS62,Latin i  2 of 2,1,1,H,6301,Latin i
+ , ,LOTE,FLS62QE,Latin i enriched 2 of 2,1,1,H,6301,Latin i
+ , ,LOTE,FLS63,Latin ii  1 of 2,1,1,H,6301,Latin i
+ , ,LOTE,FLS64,Latin ii   2 of 2,1,1,H,6301,Latin i
+ , ,LOTE,FLS65,Latin iii  1 of 2,1,1,H,6303,Latin iii
+ , ,LOTE,FLS66,Latin iii  2 of 2,1,1,H,6303,Latin iii
+ , ,LOTE,FLS87,Latin iv 1 of 2,1,1,H,6304,Latin iv
+ , ,LOTE,FLS87X,Ap latin iv 1 of 2,1,1,H,6313,"Ap latin (virgil, catullus and horace)"
+ , ,LOTE,FLS87XS,Ap latin 7 indep study,1,1,H,6313,"Ap latin (virgil, catullus and horace)"
+ , ,LOTE,FLS88,Latin iv 2 of 2,1,1,H,6304,Latin iv
+ , ,LOTE,FLS88X,Ap latin iv 2 of 2,1,1,H,6313,"Ap latin (virgil, catullus and horace)"
+ , ,LOTE,FLS88XS,Ap latin iv 2 of 2 indep stud,1,1,H,6313,"Ap latin (virgil, catullus and horace)"
+ , ,LOTE,FMS61,Mandarin i 1 of 2,1,1,H,6401,Chinese i
+ , ,LOTE,FMS62,Mandarin i 2 of 2,1,1,H,6401,Chinese i
+ , ,LOTE,FMS63,Mandarin ii 1 of 2,1,1,H,6402,Chinese ii
+ , ,LOTE,FMS64,Mandarin ii 2 of 2,1,1,H,6402,Chinese ii
+ , ,LOTE,FMS65,Mandarin iii 1 of 2,1,1,H,6403,Chinese iii
+ , ,LOTE,FMS66,Mandarin iii 2 of 2,1,1,H,6403,Chinese iii
+ , ,LOTE,FMS87,Mandarin iv 1 of 2,1,1,H,6404,Chinese iv
+ , ,LOTE,FMS87X,Ap mandarin iv 1 of 2,1,1,H,6404,Chinese iv
+ , ,LOTE,FMS88,Mandarin iv 2 of 2,1,1,H,6404,Chinese iv
+ , ,LOTE,FMS88X,Ap mandarin iv 2 of 2,1,1,H,6404,Chinese iv
+ , ,LOTE,FSS61,Spanish i  1 of 2,1,1,H,6101,Spanish i
+ , ,LOTE,FSS61QE,Spanish i  1 of 2 enriched,1,1,H,6101,Spanish i
+ , ,LOTE,FSS62,Spanish i  2 of 2,1,1,H,6101,Spanish i
+ , ,LOTE,FSS62QE,Spanish i  2 of 2 enriched,1,1,H,6101,Spanish i
+ , ,LOTE,FSS63,Spanish ii  1 of 2,1,1,H,6101,Spanish i
+ , ,LOTE,FSS64,Spanish ii   2 of 2,1,1,H,6101,Spanish i
+ , ,LOTE,FSS65,Spanish iii  1 of 2,1,1,H,6103,Spanish iii
+ , ,LOTE,FSS66,Spanish iii   2 of 2,1,1,H,6101,Spanish i
+ , ,LOTE,FSS87,Spanish iv 1 of 2,1,1,H,6104,Spanish iv
+ , ,LOTE,FSS87QT,Spanish iv 1 of 2 hispanic themes,1,1,H,6104,Spanish iv
+ , ,LOTE,FSS87X,Ap spanish iv 1 of 2,1,1,H,6112,Ap spanish language
+ , ,LOTE,FSS88,Spanish iv 2 of 2,1,1,H,6104,Spanish iv
+ , ,LOTE,FSS88X,Ap spanish iv 2 of 2,1,1,H,6112,Ap spanish language
+ , ,LOTE,FSSA9X,Ap spanish v 1 of 2,1,1,H,6113,Ap spanish literature
+ , ,LOTE,FSSAAX,Ap spanish v 2 of 2,1,1,H,6113,Ap spanish literature
+ , ,LOTE,FTS61,Italian i  1 of 2,1,1,H,6141,Italian i
+ , ,LOTE,FTS61QE,Italian i  enriched 1 of 2,1,1,H,6141,Italian i
+ , ,LOTE,FTS62,Italian i  2 of 2,1,1,H,6141,Italian i
+ , ,LOTE,FTS62QE,Italian i  enriched 2 of 2,1,1,H,6141,Italian i
+ , ,LOTE,FTS63,Italian ii  1 of 2,1,1,H,6141,Italian i
+ , ,LOTE,FTS64,Italian ii  2 of 2,1,1,H,6141,Italian i
+ , ,LOTE,FTS65,Italian iii  1 of 2,1,1,H,6143,Italian iii
+ , ,LOTE,FTS66,Italian iii  2 of 2,1,1,H,6143,Italian iii
+ , ,LOTE,FTS87,Italian iv 1 of 2,1,1,H,6144,Italian iv
+ , ,LOTE,FTS87X,Ap italian iv 1 of 2,1,1,H,6144,Italian iv
+ , ,LOTE,FTS88,Italian iv 2 of 2,1,1,H,6144,Italian iv
+ , ,LOTE,FTS88X,Ap italian iv 2 of 2,1,1,H,6144,Italian iv
+ , ,LOTE,FXTAE,Arabic lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTBE,Haitian creole lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTCE,Chinese- simple lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTDE,Hindi lotee,0,1,H,0,Not mapped
+ , ,LOTE,FXTEE,Greek lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTFE,French lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTGE,German lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTHE,Hebrew lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTIE,Bengali lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTJE,Japanese lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTKE,Korean lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTLE,Latin lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTME,Chinese- trad lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTNE,Albanian lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTPE,Asl lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTRE,Russian lotee,0,1,H,0,Not mapped
+ , ,LOTE,FXTSE,Spanish lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTTE,Italian lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTUE,Urdu lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTVE,Vietnamese lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTWE,Punjabi lote,0,1,H,0,Not mapped
+ , ,LOTE,FXTZE,Polish lote,0,1,H,0,Not mapped
+ , ,Guidance,GAS11QJ,Science research mentoring,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQS11QDN,Deans lunch,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQS11QFA,Free period cycle a,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQS11QFB,Free period cycle b,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQS11QFN,Free period,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQS11QTN,Dnstxtbk delq,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQS11QTT,Txtbk delq,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQS11QWA,Lifeguard cycle a,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQS11QWB,Lifeguard cycle b,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQSAASNG,Sing participant,0,1,H,22999,Miscellaneous—other
+ , ,Guidance,GQSAASUS,Arista sing usher,0,1,H,22999,Miscellaneous—other
+ , ,Social Studies,HBS21X,Ap psychology 1 of 2,1,1,H,4256,Ap psychology
+ , ,Social Studies,HBS22X,Ap psychology 2 of 2,1,1,H,4256,Ap psychology
+ , ,Social Studies,HES11,Economics,1,1,H,4201,Economics
+ , ,Social Studies,HES11QWS,Wall street,1,1,H,4207,Particular topics in economics
+ , ,Social Studies,HES21X,Ap macroeconomics,1,1,H,4204,Ap macroeconomics
+ , ,Social Studies,HES22X,Ap microeconomics,1,1,H,4203,Ap microeconomics
+ , ,Social Studies,HGS41,Global studies 9 1 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS41QAT,Global studies 9 adv topics 1 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS42,Global studies 9 2 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS42QAT,Global studies 9 adv topics 2 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS43,Global studies 10 1 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS43XE,Ap european history 10 1 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS43XW,Ap world history 10 1 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS44,Global studies 10 2 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS44XE,Ap european history 10 2 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HGS44XW,Ap world history 10 2 of 2,1,1,H,4052,World history and geography
+ , ,Social Studies,HLS11QCR,Criminal law,1,1,H,4165,Legal system
+ , ,Social Studies,HLS11QCV,Civil law,1,1,H,4165,Legal system
+ , ,Social Studies,HLS11QTL,Topics in law,1,1,H,4166,Particular topics in law
+ , ,Social Studies,HLS21QLS,Law 1 of 2,0,1,H,4162,Law studies
+ , ,Social Studies,HLS21QQL,Law studies 1 of 2,1,1,H,4162,Law studies
+ , ,Social Studies,HLS22QLS,Law 2 of 2,0,1,H,4162,Law studies
+ , ,Social Studies,HLS22QQL,Law studies 2 of 2,1,1,H,4162,Law studies
+ , ,Social Studies,HPS21X,Ap geography 1 of 2,1,1,H,0,Not mapped
+ , ,Social Studies,HPS22X,Ap geography 2 of 2,1,1,H,0,Not mapped
+ , ,Social Studies,HQS11QEJ,Jewish experience,0,1,H,4064,Contemporary world issues
+ , ,Social Studies,HQS11QGP,Geopolitics,0,1,H,4064,Contemporary world issues
+ , ,Social Studies,HQS11QMC,Modern china,0,1,H,4064,Contemporary world issues
+ , ,Social Studies,HQS11QWS,Wall street,0,1,H,4106,Contemporary u.s. issues
+ , ,Social Studies,HQS21QPT,World political theory 1,0,1,H,4064,Contemporary world issues
+ , ,Social Studies,HQS22QPT,World political theory 2,0,1,H,4064,Contemporary world issues
+ , ,Social Studies,HRS11QEJ,Jewish history,1,1,H,4107,U.s. ethnic studies
+ , ,Social Studies,HRS11QGP,Geopolitics,1,1,H,4065,Particular topics in world history
+ , ,Social Studies,HRS11QHS,Hist security studies,1,1,H,4109,Particular topics in u.s. history
+ , ,Social Studies,HRS11QMC,Modern china,1,1,H,4065,Particular topics in world history
+ , ,Social Studies,HRS11QNY,New york city history,1,1,H,4109,Particular topics in u.s. history
+ , ,Social Studies,HRS11QTL,Topics in law,1,1,H,4109,Particular topics in u.s. history
+ , ,Social Studies,HRS21QPT,Western political theory 1,1,1,H,4065,Particular topics in world history
+ , ,Social Studies,HRS22QPT,Western political theory 2,1,1,H,4109,Particular topics in u.s. history
+ , ,Social Studies,HSS85QJI,Social science research 5,1,1,H,4062,World people studies
+ , ,Social Studies,HSS86QJI,Social science research 6,1,1,H,4062,World people studies
+ , ,Social Studies,HSS87QJI,Social science research 7,1,1,H,4062,World people studies
+ , ,Social Studies,HTS11X,Ap comparative govt&politics,1,1,H,4158,Ap comparative government and politics
+ , ,Social Studies,HUS21,Us history 1 of 2,1,1,H,4101,U.s. history—comprehensive
+ , ,Social Studies,HUS21X,Ap us history 1 of 2,1,1,H,4101,U.s. history—comprehensive
+ , ,Social Studies,HUS21XAS,Ap amer studies 1 of 2,1,1,H,4101,U.s. history—comprehensive
+ , ,Social Studies,HUS22,Us history 2 of 2,1,1,H,4101,U.s. history—comprehensive
+ , ,Social Studies,HUS22X,Ap us history 2 of 2,1,1,H,4101,U.s. history—comprehensive
+ , ,Social Studies,HUS22XAS,Ap amer studies 2 of 2,1,1,H,4101,U.s. history—comprehensive
+ , ,Social Studies,HVS11,Part in govt,1,1,H,4151,U.s. government—comprehensive
+ , ,Social Studies,HVS11X,Ap us government and politics,1,1,H,4157,Ap u.s. government and politics
+ , ,Social Studies,HVS11XG,Ap intergrated us govt and politics 1 of,1,1,H,4157,Ap u.s. government and politics
+ , ,Social Studies,HXCGE,Global rct jun,0,1,H,0,Not mapped
+ , ,Social Studies,HXCGR,Global rct jan,0,1,H,0,Not mapped
+ , ,Social Studies,HXCUE,Us history rct june,0,1,H,0,Not mapped
+ , ,Social Studies,HXCUR,Us his rct jan,0,1,H,0,Not mapped
+ , ,Social Studies,HXRGE,Glob hist reg jun,0,1,H,0,Not mapped
+ , ,Social Studies,HXRGG,Glob hist reg aug,0,1,H,0,Not mapped
+ , ,Social Studies,HXRGR,Glob hist reg jan,0,1,H,0,Not mapped
+ , ,Social Studies,HXRUE,Ushist reg june,0,1,H,0,Not mapped
+ , ,Social Studies,HXRUG,Us hist reg aug,0,1,H,0,Not mapped
+ , ,Social Studies,HXRUR,Ushist reg jan,0,1,H,0,Not mapped
+ , ,Human Services ,KLS11QCP,Cpr and first aid training,1,1,H,14249,Health support services—other
+ , ,Mathematics,MCS21,Calculus applications 1,1,1,H,2121,Calculus
+ , ,Mathematics,MCS21X,Ap calculus ab 1 of 2,1,1,H,2124,Ap calculus ab
+ , ,Mathematics,MCS22,Calculus applications 2,1,1,H,2121,Calculus
+ , ,Mathematics,MCS22X,Ap calculus ab 2 of 2,1,1,H,2124,Ap calculus ab
+ , ,Mathematics,MCS43X,Ap calculus bc 1 of 2,1,1,H,2125,Ap calculus bc
+ , ,Mathematics,MCS44X,Ap calculus bc 2 of 2,1,1,H,2125,Ap calculus bc
+ , ,Mathematics,MCS65C,Multivariate calculus,1,1,H,2121,Calculus
+ , ,Mathematics,MCS66C,Differential equations,1,1,H,2121,Calculus
+ , ,Mathematics,MES21,Integrated algebra 1 of 2,1,1,H,02052CC,Algebra i (common core) n
+ , ,Mathematics,MES22,Integrated algebra 2 of 2,1,1,H,02052CC,Algebra i (common core) n
+ , ,Mathematics,MES31,Integrated algebra 1 of 3,1,1,H,2052,Algebra i
+ , ,Mathematics,MES32,Integrated algebra 2 of 3,1,1,H,2052,Algebra i
+ , ,Mathematics,MES33,Integrated algebra 3 of 3,1,1,H,02052CC,Algebra i (common core) n
+ , ,Mathematics,MES41,Integrated algebra 1 of 4,1,1,H,2052,Algebra i
+ , ,Mathematics,MES42,Integrated algebra 2 of 4,1,1,H,2052,Algebra i
+ , ,Mathematics,MES43,Integrated algebra 3 of 4,1,1,H,02052CC,Algebra i (common core) n
+ , ,Mathematics,MES43S,Integrated algebra enriched 3 of 4,0,1,H,02052CC,Algebra i (common core) n
+ , ,Mathematics,MES44,Integrated algebra 4 of 4,1,1,H,02052CC,Algebra i (common core) n
+ , ,Mathematics,MES44S,Integrated algebra enriched 4 of 4,0,1,H,02052CC,Algebra i (common core) n
+ , ,Mathematics,MGS21,Geometry 1 of 2,1,1,H,02072CC,Geometry (common core)
+ , ,Mathematics,MGS22,Geometry 2 of 2,1,1,H,02072CC,Geometry (common core)
+ , ,Mathematics,MGS31,Geometry 1 of 3,1,1,H,2072,Geometry
+ , ,Mathematics,MGS32,Geometry 2 of 3,1,1,H,2072,Geometry
+ , ,Mathematics,MGS33,Geometry 3 of 3,1,1,H,02072CC,Geometry (common core)
+ , ,Mathematics,MGS41,Geometry 1 of 4,1,1,H,2072,Geometry
+ , ,Mathematics,MGS42,Geometry 2 of 4,1,1,H,2072,Geometry
+ , ,Mathematics,MGS43,Euclidean geometry,1,1,H,02072CC,Geometry (common core)
+ , ,Mathematics,MGS43QE,Euclidean geometry enhanced,1,1,H,02072CC,Geometry (common core)
+ , ,Mathematics,MGS43QH,Euclidean geometry enhanced,1,1,H,02072CC,Geometry (common core)
+ , ,Mathematics,MGS44,Analytic geometry,1,1,H,02072CC,Geometry (common core)
+ , ,Mathematics,MGS44H,Analytic geometry honors,1,1,H,02072CC,Geometry (common core)
+ , ,Mathematics,MKS11UA,Computer system organization,1,1,H,2153,Technical math
+ , ,Mathematics,MKS11UFA,Fundamental algorithms,1,1,H,2153,Technical math
+ , ,Mathematics,MKS21,Intro comp sci 1 of 2,1,1,H,2153,Technical math
+ , ,Mathematics,MKS21QJI,Software development 1 of 2,1,1,H,2153,Technical math
+ , ,Mathematics,MKS21X,Ap comp sci a 1 of 2,1,1,H,10157,Ap computer science a
+ , ,Mathematics,MKS22,Intro comp sci 2 of 2,1,1,H,2153,Technical math
+ , ,Mathematics,MKS22QJI,Software development 2 of 2,1,1,H,2153,Technical math
+ , ,Mathematics,MKS22X,Ap comp sci a 2 of 2,1,1,H,10157,Ap computer science a
+ , ,Mathematics,MKS65,Computer science 5,1,1,H,2153,Technical math
+ , ,Mathematics,MKS65C,System level programming,1,1,H,2153,Technical math
+ , ,Mathematics,MKS66,Computer science 6,1,1,H,2153,Technical math
+ , ,Mathematics,MKS66C,Computer graphics,1,1,H,2153,Technical math
+ , ,Mathematics,MKS85QJI,Comp sci intel research 5,1,1,H,2153,Technical math
+ , ,Mathematics,MKS86QJI,Comp sci intel research 6,1,1,H,2153,Technical math
+ , ,Mathematics,MKS87QJI,Comp sci intel research 7,1,1,H,2153,Technical math
+ , ,Mathematics,MPS21,Pre-calculus 1 of 2,1,1,H,2110,Pre-calculus
+ , ,Mathematics,MPS21H,Pre-calculus honors 1 of 2,1,1,H,2110,Pre-calculus
+ , ,Mathematics,MPS22,Pre-calculus 2 of 2,1,1,H,2110,Pre-calculus
+ , ,Mathematics,MPS22H,Pre-calculus honors 2 of 2,1,1,H,2110,Pre-calculus
+ , ,Mathematics,MQS11QAL,Linear algebra,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS11QAM,Actuarial mathematics,1,1,H,2154,Business math
+ , ,Mathematics,MQS11QAS,Intro to actuarial science,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS11QFM,Mathematics of financial markets,1,1,H,2154,Business math
+ , ,Mathematics,MQS11QHR,Human reasoning,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS11QME,Math explorations,1,1,H,2991,History of math
+ , ,Mathematics,MQS11QQM,Math of quantum mechanics,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS11QQS,Statistics,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS11UAL,University linear algebra,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS11UAR,Real analysis,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS11UBP,University basic probability,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS11UCM,Combinatorics,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS21,Adv alg with precalculus 1 of 2,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS22,Adv alg with precalculus 2 of 2,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS22QHR,Topics in human reasoning,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS22QME,Discoveries in math,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS41QPS,Problem solving 1,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS42QPS,Problem solving 2,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS43QPS,Problem solving 3,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS44QPS,Problem solving 4,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS65QPS,Problem solving 5,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS66QPS,Problem solving 6,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS81QJ,Math research 1,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS81QPS,Problem solving 1,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS82QJ,Math research 2,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS82QPS,Problem solving 2,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS83QPS,Problem solving 3,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS84QPS,Problem solving 4,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS85QJI,Math intel research 5,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS85QPS,Problem solving 5,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS86QJI,Math intel research 6,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS86QPS,Problem solving 6,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS87QJI,Math intel research 7,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS87QPS,Problem solving 7,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MQS88QPS,Problem solving 8,1,1,H,2999,Mathematics—other
+ , ,Mathematics,MRS21,Algebra 2 / trig 1 of 2,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS21H,Algebra 2 / trig honors 1 of 2,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS22,Algebra 2 / trig 2 of 2,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS22H,Algebra 2 / trig honors 2 of 2,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS31,Algebra 2 / trig 1 of 3,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS32,Algebra 2 / trig 2 of 3,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS33,Algebra 2 / trig 3 of 3,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS41,Algebra 2 / trig 1 of 4,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS42,Algebra 2 / trig 2 of 4,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS43,Algebra 2 / trig 3 of 4,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS43H,Algebra 2 / trig honors 3 of 4,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS44,Algebra 2 / trig 4 of 4,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MRS44H,Algebra 2 / trig honors 4 of 4,1,1,H,2106,Trigonometry/algebra
+ , ,Mathematics,MSS11QQS,Statistics,1,1,H,2201,Probability and statistics
+ , ,Mathematics,MSS11UMS,University math statistics,1,1,H,2201,Probability and statistics
+ , ,Mathematics,MSS21X,Ap statistics 1 of 2,1,1,H,2203,Ap statistics
+ , ,Mathematics,MSS22X,Ap statistics 2 of 2,1,1,H,2203,Ap statistics
+ , ,Mathematics,MXCME,Math rct jun,0,1,H,0,Not mapped
+ , ,Mathematics,MXCMR,Math rct jan,0,1,H,0,Not mapped
+ , ,Mathematics,MXRCE,Cc algebra i reg jun,0,1,,0,Not mapped
+ , ,Mathematics,MXRCG,Cc algebra i reg aug ,0,1,H,0,Not mapped
+ , ,Mathematics,MXRCR,Cc algebra i reg jan,0,1,H,0,Not mapped
+ , ,Mathematics,MXRGE,Geometry reg jun,0,1,H,0,Not mapped
+ , ,Mathematics,MXRGG,Geometry reg aug,0,1,H,0,Not mapped
+ , ,Mathematics,MXRGR,Geometry reg jan,0,1,H,0,Not mapped
+ , ,Mathematics,MXRKE,Cc geometry reg jun,0,1,H,0,Not mapped
+ , ,Mathematics,MXRKG,Cc geometry reg aug,0,1,H,0,Not mapped
+ , ,Mathematics,MXRKR,Cc geometry reg jan,0,1,H,0,Not mapped
+ , ,Mathematics,MXRTE,Trig reg june,0,1,H,0,Not mapped
+ , ,Mathematics,MXRTR,Trig reg jan,0,1,H,0,Not mapped
+ , ,PE and Health,PES11QCP,Cpr and first aid training,1,1,H,8055,Safety and first aid
+ , ,PE and Health,PES85QKA,Rollerblade 11 cycle 1,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES85QKB,Rollerblade 11 cycle 2,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES86QKA,Rollerblade 11 cycle 1,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES86QKB,Rollerblade 11 cycle 2,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES87QCA,Stuybox 12 cycle 1,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES87QCB,Stuybox 12 cycle 2,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES87QDA,Ballroom 12 cycle 1,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES87QDB,Ballroom 12 cycle 2,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES87QKA,Rollerblade 12 cycle 1,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES87QKB,Rollerblade 12 cycle 2,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES88QCA,Stuybox 12 cycle 1,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES88QCB,Stuybox 12 cycle 2,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES88QDA,Ballroom 12 cycle 1,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES88QDB,Ballroom 12 cycle 2,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES88QKA,Rollerblade 12 cycle 1,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PES88QKB,Rollerblade 12 cycle 2,0.5,1,H,8049,Physical education—other
+ , ,PE and Health,PFS85QAA,Aerobics 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QAB,Aerobics 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QCA,Indoor cycling 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QCB,Indoor cycling 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QGA,Yoga 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QGB,Yoga 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QPA,Polar bear 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QPB,Polar bear 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QWA,Weighttraining 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS85QWB,Weighttraining 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QAA,Aerobics 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QAB,Aerobics 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QCA,Indoor cycling 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QCB,Indoor cycling 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QGA,Yoga 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QGB,Yoga 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QPA,Polar bear 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QPB,Polar bear 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QWA,Weighttraining 11 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS86QWB,Weighttraining 11 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS87QAA,Aerobics 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS87QAB,Aerobics 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS87QGA,Yoga 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS87QGB,Yoga 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS87QPA,Polar bear 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS87QPB,Polar bear 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS87QWA,Weighttraining 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS87QWB,Weighttraining 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QAA,Aerobics 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QAB,Aerobics 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QCA,Indoor cycling 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QCB,Indoor cycling 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QGA,Yoga 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QGB,Yoga 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QPA,Polar bear 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QPB,Polar bear 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QWA,Weighttraining 12 cycle 1,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PFS88QWB,Weighttraining 12 cycle 2,0.5,1,H,8005,Fitness/conditioning activities
+ , ,PE and Health,PHS11,Health,1,1,H,8051,Health education
+ , ,PE and Health,PPS71,Phys ed,0.58,1,H,8001,Physical education
+ , ,PE and Health,PPS72,Phys ed,0.58,1,H,8001,Physical education
+ , ,PE and Health,PPS73,Phys ed,0.58,1,H,8001,Physical education
+ , ,PE and Health,PPS74,Phys ed,0.58,1,H,8001,Physical education
+ , ,PE and Health,PPS75,Phys ed,0.58,1,H,8001,Physical education
+ , ,PE and Health,PPS76,Phys ed,0.58,1,H,8001,Physical education
+ , ,PE and Health,PPS77,Phys ed,0.58,1,H,8001,Physical education
+ , ,PE and Health,PPS81,Phys ed,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS81QA,Phys ed 9 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS81QB,Phys ed 9 cycle 2,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS82,Phys ed,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS82QA,Phys ed 9 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS82QB,Phys ed 9 cycle 2,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS83,Phys ed,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS83QA,Phys ed 10 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS83QB,Phys ed 10 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS84,Phys ed,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS84QA,Phys ed 10 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS84QB,Phys ed 10 cycle 2,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS85,Phys ed,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS85QA,Phys ed 11 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS85QB,Phys ed 11 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS86,Phys ed,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS86QA,Phys ed 11 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS86QB,Phys ed 11 cycle 2,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS87,Phys ed,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS87QA,Phys ed 12 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS87QB,Phys ed 12 cycle 2,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS88,Phys ed,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS88QA,Phys ed 12 cycle 1,0.5,1,H,8001,Physical education
+ , ,PE and Health,PPS88QB,Phys ed 12 cycle 2,0.5,1,H,8001,Physical education
+ , ,PE and Health,PTS85QBA,Basketball 11 cycle 1,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS85QBB,Basketball 11 cycle 2,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS85QVA,Volleyball 11 cycle 1,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS85QVB,Volleyball 11 cycle 2,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS86QBA,Basketball 11 cycle 1,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS86QBB,Basketball 11 cycle 2,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS86QVA,Volleyball 11 cycle 1,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS86QVB,Volleyball 11 cycle 2,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS88QVA,Volleyball 12 cycle 1,0.5,1,H,8002,Team sports
+ , ,PE and Health,PTS88QVB,Volleyball 12 cycle 2,0.5,1,H,8002,Team sports
+ , ,PE and Health,PWS81,Swim,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS81QA,Swimming 9 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS81QB,Swimming 9 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS82QA,Swimming 9 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS82QB,Swimming 9 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS83QA,Swimming 10 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS83QB,Swimming 10 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS84QA,Swimming 10 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS84QB,Swimming 10 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS85QA,Swimming 11 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS85QB,Swimming 11 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS85QGA,Lifeguarding 11 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS85QGB,Lifeguarding 11 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS86QA,Swimming 11 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS86QB,Swimming 11 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS86QGA,Lifeguarding 11 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS86QGB,Lifeguarding 11 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS87QA,Swimming 12 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS87QB,Swimming 12 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS87QGA,Lifeguarding 12 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS87QGB,Lifeguarding 12 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS88QA,Swimming 12 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS88QB,Swimming 12 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS88QGA,Lifeguarding 12 cycle 1,0.5,1,H,8010,Aquatics/water sports
+ , ,PE and Health,PWS88QGB,Lifeguarding 12 cycle 2,0.5,1,H,8010,Aquatics/water sports
+ , ,Career Development,RVS21QEN,Principles of engineering 1 of 2,1,1,H,21005,Engineering—comprehensive
+ , ,Career Development,RVS22QEN,Principles of engineering 2 of 2,1,1,H,21005,Engineering—comprehensive
+ , ,Science,SBS11QAS,Anthropology,1,1,H,3099,Biology—other
+ , ,Science,SBS11QBT,Bio lab techniques,1,1,H,0,Not mapped
+ , ,Science,SBS11QGR,Genetics research,1,1,H,3099,Biology—other
+ , ,Science,SBS11QHD,Human diseases,1,1,H,3099,Biology—other
+ , ,Science,SBS11QHG,Medical human genetics,1,1,H,3099,Biology—other
+ , ,Science,SBS11QHI,Hospital internship,1,1,H,3099,Biology—other
+ , ,Science,SBS11QLT,Bio lab techniques,0,1,H,3099,Biology—other
+ , ,Science,SBS11QMD,Human pathophysiology,1,1,H,3099,Biology—other
+ , ,Science,SBS11QME,Bio medical ethics,1,1,H,3099,Biology—other
+ , ,Science,SBS11QMG,Molecular genetics,1,1,H,3060,Microbiology
+ , ,Science,SBS11QMS,Molecular science,1,1,H,3060,Microbiology
+ , ,Science,SBS11QNB,Neurobiology,1,1,H,3099,Biology—other
+ , ,Science,SBS11QNS,Nutritional science,1,1,H,3099,Biology—other
+ , ,Science,SBS21HJ,Honors biology research 1 of 2,1,1,H,3051,Biology
+ , ,Science,SBS21QT,Topics in biology 1 of 2,1,1,H,3051,Biology
+ , ,Science,SBS22HJ,Honors biology research 2 of 2,1,1,H,3051,Biology
+ , ,Science,SBS22QT,Topics in biology 2 of 2,1,1,H,3051,Biology
+ , ,Science,SBS43X,Ap biology 3,1,1,H,3056,Ap biology
+ , ,Science,SBS44X,Ap biology 4,1,1,H,3056,Ap biology
+ , ,Science,SBS84QJI,Bio intel research 4,1,1,H,3099,Biology—other
+ , ,Science,SBS85QJI,Bio intel research 5,1,1,H,3099,Biology—other
+ , ,Science,SBS86QJI,Bio intel research 6,1,1,H,3051,Biology
+ , ,Science,SBS87QJI,Bio intel research 7,1,1,H,3051,Biology
+ , ,Science,SCS11CPC,Physical chemistry,1,1,H,3101,Chemistry
+ , ,Science,SCS11QAC,Analytical chemistry,1,1,H,3149,Chemistry—other
+ , ,Science,SCS11QCA,Chemical applications,1,1,H,3149,Chemistry—other
+ , ,Science,SCS21,Chemistry 1 of 2,1,1,H,3101,Chemistry
+ , ,Science,SCS21HJ,Honors chemistry research 1 of 2,1,1,H,3101,Chemistry
+ , ,Science,SCS21HJA,Adv hnrs research chem 1,1,1,H,3101,Chemistry
+ , ,Science,SCS21QGC,Organic chemistry,1,1,H,3101,Chemistry
+ , ,Science,SCS21QL,Chemistry lab 1 of 2,0,1,H,3101,Chemistry
+ , ,Science,SCS21QZ,Chemistry topics 1 of 2,1,1,H,3101,Chemistry
+ , ,Science,SCS22,Chemistry 2 of 2,1,1,H,3101,Chemistry
+ , ,Science,SCS22HJ,Honors chemistry research 2 of 2,1,1,H,3101,Chemistry
+ , ,Science,SCS22HJA,Adv hnrs research chem 2,1,1,H,3101,Chemistry
+ , ,Science,SCS22QGC,Adv organic chemisttry,1,1,H,3101,Chemistry
+ , ,Science,SCS22QL,Chemistry lab 2 of 2,0,1,H,3101,Chemistry
+ , ,Science,SCS31,Chemistry 1 of 3,1,1,H,3101,Chemistry
+ , ,Science,SCS31QL,Chemistry lab  1 of 3,0,1,H,0,Not mapped
+ , ,Science,SCS32,Chemistry 2 of 3,1,1,H,3101,Chemistry
+ , ,Science,SCS32QL,Chemistry lab 2 of 3,0,1,H,0,Not mapped
+ , ,Science,SCS33,Chemistry 3 of 3,1,1,H,3101,Chemistry
+ , ,Science,SCS33QL,Chemistry lab 3 of 3,0,1,H,3101,Chemistry
+ , ,Science,SCS41,Chemistry 1 of 4,1,1,H,3101,Chemistry
+ , ,Science,SCS41QL,Chemistry lab 1 of 4,0,1,H,0,Not mapped
+ , ,Science,SCS42,Chemistry 2 of 4,1,1,H,3101,Chemistry
+ , ,Science,SCS42QL,Chemistry lab 2 of 4,0,1,H,0,Not mapped
+ , ,Science,SCS43,Chemistry 3 of 4,1,1,H,3101,Chemistry
+ , ,Science,SCS43QL,Chemistry lab 3 of 4,0,1,H,0,Not mapped
+ , ,Science,SCS43X,Ap chemistry 3,1,1,H,3106,Ap chemistry
+ , ,Science,SCS44,Chemistry 4 of 4,1,1,H,3101,Chemistry
+ , ,Science,SCS44QL,Chemistry lab 4 of 4,0,1,H,0,Not mapped
+ , ,Science,SCS44X,Ap chemistry 4,1,1,H,3106,Ap chemistry
+ , ,Science,SCS84QJI,Chem intel research 4,1,1,H,3149,Chemistry—other
+ , ,Science,SCS85QJI,Chem intel research 5,1,1,H,3149,Chemistry—other
+ , ,Science,SCS86QJI,Chem intel research 6,1,1,H,3149,Chemistry—other
+ , ,Science,SCS87QJI,Chem intel research 7,1,1,H,3149,Chemistry—other
+ , ,Science,SES11QES,Environmental study,1,1,H,3003,Environmental science
+ , ,Science,SES11QGE,Geology,1,1,H,3002,Geology
+ , ,Science,SES11QUE,Urban ecology,1,1,H,3003,Environmental science
+ , ,Science,SES21,Earth science 1 of 2,1,1,H,3001,Earth science
+ , ,Science,SES21QL,Earth science lab 1 of 2,0,1,H,0,Not mapped
+ , ,Science,SES22,Earth science 2 of 2,1,1,H,3001,Earth science
+ , ,Science,SES22QL,Earth science lab 2 of 2,0,1,H,0,Not mapped
+ , ,Science,SES31,Earth science 1 of 3,1,1,H,3001,Earth science
+ , ,Science,SES31QL,Earth science lab 1 of 3,0,1,H,0,Not mapped
+ , ,Science,SES32,Earth science  2 of 3,1,1,H,3001,Earth science
+ , ,Science,SES32QL,Earth science  lab 2 of 3,0,1,H,0,Not mapped
+ , ,Science,SES33,Earth science 3 of 3,1,1,H,3001,Earth science
+ , ,Science,SES33QL,Earth science  lab 3 of 3,0,1,H,0,Not mapped
+ , ,Science,SES41,Earth science 1 of 4,1,1,H,3001,Earth science
+ , ,Science,SES41QL,Earth science  lab 1 of 4,0,1,H,0,Not mapped
+ , ,Science,SES42,Earth science 2 of 4,1,1,H,3001,Earth science
+ , ,Science,SES42QL,Earth science lab 2 of 4,0,1,H,0,Not mapped
+ , ,Science,SES43,Earth science 3 of 4,1,1,H,3001,Earth science
+ , ,Science,SES43QL,Earth science lab 3 of 4,0,1,H,0,Not mapped
+ , ,Science,SES44,Earth science  4 of 4,1,1,H,3001,Earth science
+ , ,Science,SES44QL,Earth science  lab 4 of 4,0,1,H,0,Not mapped
+ , ,Science,SFS11QFS,Forensic science,1,1,H,3203,Applied biology/chemistry
+ , ,Science,SKS11QAE,Analog electronics,1,1,H,3211,Technical science
+ , ,Science,SKS11QDE,Digital electronics,1,1,H,3211,Technical science
+ , ,Science,SKS21QDE,Digital electronics,1,1,H,3211,Technical science
+ , ,Science,SLS21,Living env 1 of 2,1,1,H,3051,Biology
+ , ,Science,SLS21QL,Living env 1 lab 1 of 2,0,1,H,0,Not mapped
+ , ,Science,SLS22,Living env 2 of 2,1,1,H,3051,Biology
+ , ,Science,SLS22QL,Living env lab 2 of 2,0,1,H,0,Not mapped
+ , ,Science,SLS31,Living env 1 of 3,1,1,H,3051,Biology
+ , ,Science,SLS31QL,Living env lab 1 of 3,0,1,H,3051,Biology
+ , ,Science,SLS32,Living env  2 of 3,1,1,H,3051,Biology
+ , ,Science,SLS32QL,Living env  lab 2 of 3,0,1,H,0,Not mapped
+ , ,Science,SLS33,Living env 3 of 3,1,1,H,3051,Biology
+ , ,Science,SLS33QL,Living env lab 3 of 3,0,1,H,0,Not mapped
+ , ,Science,SLS41,Living env 1 of 4,1,1,H,3051,Biology
+ , ,Science,SLS41QL,Living env lab 1 of 4,0,1,H,0,Not mapped
+ , ,Science,SLS42,Living env 2 of 4,1,1,H,3051,Biology
+ , ,Science,SLS42QL,Living env lab 2 of4,0,1,H,0,Not mapped
+ , ,Science,SLS43,Modern biology 3,1,1,H,3051,Biology
+ , ,Science,SLS43QL,Living env lab 3 of 4,0,1,H,3051,Biology
+ , ,Science,SLS43QM,Molecular biology 1 of 2,1,1,H,3051,Biology
+ , ,Science,SLS44,Modern biology 4,1,1,H,3051,Biology
+ , ,Science,SLS44QL,Living env lab 4 of 4,0,1,H,3051,Biology
+ , ,Science,SLS44QM,Molecular biology 2 of 2,1,1,H,3051,Biology
+ , ,Science,SPS11QAE,Applied science and engineering,1,1,H,3151,Physics
+ , ,Science,SPS11QAP,Applied physics,1,1,H,3151,Physics
+ , ,Science,SPS11QAS,Applied science,1,1,H,3151,Physics
+ , ,Science,SPS11QEP,Experimental physics,1,1,H,3151,Physics
+ , ,Science,SPS11QMU,Physics of music,1,1,H,3151,Physics
+ , ,Science,SPS11QPP,Intro to plasma physics,1,1,H,3151,Physics
+ , ,Science,SPS21,Physics  1 of 2,1,1,H,3151,Physics
+ , ,Science,SPS21HJ,Honors physics research 1 of 2,1,1,H,3151,Physics
+ , ,Science,SPS21QL,Physics  lab 1 of 2,0,1,H,3151,Physics
+ , ,Science,SPS21QMP,Modern physics 1 of 2,1,1,H,3151,Physics
+ , ,Science,SPS21X,Ap physics b 1 of 2,1,1,H,3155,Ap physics b
+ , ,Science,SPS21X1,Ap physics b 1 of 2,1,1,H,3155,Ap physics b
+ , ,Science,SPS21XJ,Ap rsch physics b 1 of 2,1,1,H,3155,Ap physics b
+ , ,Science,SPS22,Physics  2 of 2,1,1,H,3151,Physics
+ , ,Science,SPS22HJ,Honors physics research 2 of 2,1,1,H,3151,Physics
+ , ,Science,SPS22QL,Physics lab 2 of 2,0,1,H,3151,Physics
+ , ,Science,SPS22QMP,Modern physics 2 of 2,1,1,H,3151,Physics
+ , ,Science,SPS22X,Ap physics b 2 of 2,1,1,H,3155,Ap physics b
+ , ,Science,SPS22X2,Ap physics b 2 of 2,1,1,H,3155,Ap physics b
+ , ,Science,SPS22XJ,Ap rsch physics b 2 of 2,1,1,H,3155,Ap physics b
+ , ,Science,SPS31,Physics 1 of 3,1,1,H,3151,Physics
+ , ,Science,SPS31QL,Physics  lab 1 of 3,0,1,H,0,Not mapped
+ , ,Science,SPS32,Physics 2 of 3,1,1,H,3151,Physics
+ , ,Science,SPS32QL,Physics lab 2 of 3,0,1,H,0,Not mapped
+ , ,Science,SPS33,Physics 3 of 3,1,1,H,3151,Physics
+ , ,Science,SPS33QL,Physics lab 3 of 3,0,1,H,0,Not mapped
+ , ,Science,SPS41,Physics 1 of 4,1,1,H,3151,Physics
+ , ,Science,SPS41QL,Physics lab 1 of 4,0,1,H,0,Not mapped
+ , ,Science,SPS42,Physics 2 of 4,1,1,H,3151,Physics
+ , ,Science,SPS42QL,Physics lab 2 of 4,0,1,H,0,Not mapped
+ , ,Science,SPS43,Physics 3 of 4,1,1,H,3151,Physics
+ , ,Science,SPS43QL,Physics lab 3 of 4,0,1,H,0,Not mapped
+ , ,Science,SPS43X,Ap physics c 1 of 2,1,1,H,3156,Ap physics c
+ , ,Science,SPS44,Physics 4 of 4,1,1,H,3151,Physics
+ , ,Science,SPS44QL,Physics lab 4 of 4,0,1,H,0,Not mapped
+ , ,Science,SPS44X,Ap physics c 2 of 2,1,1,H,3156,Ap physics c
+ , ,Science,SPS84QJI,Physics intel research 4,1,1,H,3151,Physics
+ , ,Science,SPS85QJI,Physics intel research 5,1,1,H,3151,Physics
+ , ,Science,SPS86QJI,Physics intel research 6,1,1,H,3151,Physics
+ , ,Science,SPS87QDY,Engineering dynamics,1,1,H,3151,Physics
+ , ,Science,SPS87QJI,Physics intel research 7,1,1,H,3151,Physics
+ , ,Science,SPS87QMS,Engineering mechanism statics,1,1,H,3151,Physics
+ , ,Science,SPS87QPP,Plasma physics 1 of 2,1,1,H,3151,Physics
+ , ,Science,SPS88QPP,Plasma physics 2 of 2,1,1,H,3151,Physics
+ , ,Science,SQS21X,Ap psychology 1 of 2,1,1,H,0,Not mapped
+ , ,Science,SQS22X,Ap psychology 2 of 2,1,1,H,0,Not mapped
+ , ,Science,SQS84QJ5,Science intel research 4,1,1,H,0,Not mapped
+ , ,Science,SQS85QJ5,Bio intel research 5,1,1,H,0,Not mapped
+ , ,Science,SQS86QJ5,Science intel research,1,1,H,0,Not mapped
+ , ,Science,SQS87QJ5,Intel science research 5pds,1,1,H,0,Not mapped
+ , ,Science,SQS87QJA,Intel science research ten pds,1,1,H,0,Not mapped
+ , ,Science,SRS11,Astronomy,1,1,H,3004,Astronomy
+ , ,Science,SWS11QC,Oceanography,1,1,H,3005,Marine science
+ , ,Science,SWS11QLZ,Vertebrate zoology lab,0,1,H,3061,Zoology
+ , ,Science,SWS11QMT,Meteorology,1,1,H,3006,Meteorology
+ , ,Science,SWS11QOC,Oceanography,1,1,H,3005,Marine science
+ , ,Science,SWS11QOG,Oceanography,1,1,H,3005,Marine science
+ , ,Science,SWS11QZL,Vertebrate zoology,1,1,H,3061,Zoology
+ , ,Science,SWS21X,Ap environmental sci 1 of 2,1,1,H,3207,Ap environmental science
+ , ,Science,SWS22X,Ap environmental sci 2 of 2,1,1,H,3207,Ap environmental science
+ , ,Science,SXCSE,Science rct jun,0,1,H,0,Not mapped
+ , ,Science,SXCSR,Science rct jan,0,1,H,0,Not mapped
+ , ,Science,SXRKE,Livenvir r june,0,1,H,0,Not mapped
+ , ,Science,SXRKG,Living env reg aug,0,1,H,0,Not mapped
+ , ,Science,SXRKR,Livenvir r jan,0,1,H,0,Not mapped
+ , ,Science,SXRPE,Physics reg jun,0,1,H,0,Not mapped
+ , ,Science,SXRPR,Physics reg jan,0,1,H,0,Not mapped
+ , ,Science,SXRUE,Phset es r jun,0,1,H,0,Not mapped
+ , ,Science,SXRUG,Phset es reg aug,0,1,H,0,Not mapped
+ , ,Science,SXRUR,Phset es r jan,0,1,H,0,Not mapped
+ , ,Science,SXRXE,Chemistry r june,0,1,H,0,Not mapped
+ , ,Science,SXRXR,Chemistry r jan,0,1,H,0,Not mapped
+ , ,Technology,TAS11QP5,Digital photography,1,1,H,11051,Audio/visual production
+ , ,Technology,TAS11QPA,Photography,1,1,H,11051,Audio/visual production
+ , ,Technology,TAS21QPA,Photography 1 of 2,1,1,H,11051,Audio/visual production
+ , ,Technology,TAS22QPA,Photography 2 of 2,1,1,H,11051,Audio/visual production
+ , ,Technology,TCS11Q15,Cad design,1,1,H,21107,Cad design and software
+ , ,Technology,TCS11QT5,Technical illustration,1,1,H,21107,Cad design and software
+ , ,Technology,TDS11,Technical graphic communications,1,1,H,21102,Drafting—general
+ , ,Technology,TDS11QA5,Intro to architecture,1,1,H,21102,Drafting—general
+ , ,Technology,TDS11QAA,Architecture,1,1,H,21102,Drafting—general
+ , ,Technology,TDS11QD5,Interior design,1,1,H,21102,Drafting—general
+ , ,Technology,TDS21QAA,Architecture 1 of 2,1,1,H,21102,Drafting—general
+ , ,Technology,TDS22QAA,Architecture 2 of 2,1,1,H,21102,Drafting—general
+ , ,Technology,TES21QCA,Cisco networking 1 of 2,1,1,H,10255,Cisco—the panduit network infrastructure essentials (pnie)
+ , ,Technology,TES22QCA,Cisco networking 2 of 2,1,1,H,10255,Cisco—the panduit network infrastructure essentials (pnie)
+ , ,Technology,TMS11QCA,Ceramics,1,1,H,13203,Machining
+ , ,Technology,TMS11QD5,Jewelry design,1,1,H,13203,Machining
+ , ,Technology,TMS11QW5,Prin tech mechsm,1,1,H,13203,Machining
+ , ,Technology,TMS11QWA,Woodworking,1,1,H,13203,Machining
+ , ,Technology,TMS21QCA,Ceramics 1 of 2,1,1,H,13203,Machining
+ , ,Technology,TMS21QWA,Woodworking 1 of 2,1,1,H,13203,Machining
+ , ,Technology,TMS22QCA,Ceramics 2 of 2,1,1,H,13203,Machining
+ , ,Technology,TMS22QWA,Woodworking 2 of 2,1,1,H,13203,Machining
+ , ,Technology,TQS11QB5,Robotic principals,1,1,H,21099,Technology—other
+ , ,Technology,TQS11QBA,Robotic engineering,1,1,H,21009,Robotics
+ , ,Technology,TQS11QV5,Video production,1,1,H,21099,Technology—other
+ , ,Technology,TQS11QW5,Web design beginner,1,1,H,21099,Technology—other
+ , ,Technology,TQS21QBA,Robotic engineering 1 of 2,1,1,H,21009,Robotics
+ , ,Technology,TQS21QVA,Video journalism 1 of 2,1,1,H,21099,Technology—other
+ , ,Technology,TQS21QWD,Web design advance,1,1,H,21099,Technology—other
+ , ,Technology,TQS22QBA,Robotic engineering 2 of 2,1,1,H,21009,Robotics
+ , ,Technology,TQS22QVA,Video journalism 2 of 2,1,1,H,21099,Technology—other
+ , ,Technology,TYS11QT5,Computer technology,1,1,H,10251,Computer technology
+ , ,Technology,TZS11QG5,Graphic arts,1,1,H,11151,Digital media technology
+ , ,Music,UAS11,Music appreciation,1,1,H,5118,Music appreciation
+ , ,Music,UCS11,Chamber choir,1,1,H,5149,Music—other
+ , ,Music,UDS11Q2,Concert band,1,1,H,5102,Concert band
+ , ,Music,UDS11Q3,Symphonic band,1,1,H,5102,Concert band
+ , ,Music,UDS11Q4,Concert band,1,1,H,5102,Concert band
+ , ,Music,UDS11Q8,Beginning band,1,1,H,5102,Concert band
+ , ,Music,UJS11,Jazz band,1,1,H,5106,Instrumental ensembles
+ , ,Music,UUS21X,Ap music theory 1,1,1,H,5114,Ap music theory
+ , ,Music,UUS22X,Ap music theory 2,1,1,H,5114,Ap music theory
+ , ,Music,UVS11,Chorus,1,1,H,5110,Chorus
+ , ,Music,UYS11,Symphonic orchestra,1,1,H,5104,Orchestra
+ , ,Music,UZS32,Intermediate strings,1,1,H,5104,Orchestra
+ , ,Music,UZS33,Adv strings,1,1,H,5104,Orchestra
+ , ,Functional Codes,ZATA,Lta,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLG5,Guidance lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLK4,Music lunch 4,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLK5,Music lunch 5,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLK5UVS,Chorus,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLK6,Music lunch 6,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLK7,Music lunch 7,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLK8,Music lunch 8,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLM4,Medical lunch 4,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLM5,Medical lunch 5,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLM6,Medical lunch 6,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLM7,Medical lunch 7,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLM8,Medical lunch 8,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLN4,Lunch 4 pd,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLN5,Lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLN6,Lunch period 6,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLN7,Lunch period 7,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLN8,Lunch period 8,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLR6,Rel lunch 6,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLR7,Rel lunch 7,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLR8,Rel lunch 8,0,1,H,0,Not mapped
+ , ,Functional Codes,ZLUN,Lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMDX4,Deans lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMDX5,Deans lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMDX6,Deans lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMDX7,Deans lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMDX8,Deans lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMDXN,Deans lunch,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMFIRST,Free first,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMHIST,Require hist,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMLANG,Require lang,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMMATH,Require math,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMREQW,Require work,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMSCEL,Require science elective,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMSING,Sing cast,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMSREL,Require senior elective,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMTEAM,Math team,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMTX4,Textbk delinq,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMTX5,Textbk delinq,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMTX6,Textbk delinq,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMTX7,Textbk delinq,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMTX8,Textbk delinq,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMTXN,Dnstxbk delq,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMTXT,Textbk delinq,0,1,H,0,Not mapped
+ , ,Functional Codes,ZMUNI,Missing uniform,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ01,No period 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ02,No period 2,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ03,No period 3,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ04,No period 4,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ05,No period 5,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ06,No period 6,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ07,No period 7,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ08,No period 8,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ09,No period 9,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ10,No period 10,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQ236,Guidance,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQBIOADD,Add bio pe,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQBIOBB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQBIOPB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQBIOREG,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQBIOSW,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQBIOWB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQCHGIRL,Chem dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQCHREG,Chem dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQCHSW,Chem dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQCMXE,Common core alg wed june 17 12.30 pm,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQCMXG,Common core geom tues june 2 11.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQDANCE7,Dance dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEAH1,Art final tues jan 26 10.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEAH1C,Art final confl thurs june 18 9.00 pm,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEFS2,Spanish 2 final,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEFS4,Spanish 4 final,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEFSX,Ap spanish final wed jan 27 10.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEHEX1,Ap macro final tue jan 26 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEHG1,Global 1 final tue jan 26 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEHG2,Global 2 final,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEHG3,Global 3 final tues jan 26 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEMG3,Geometry final wed jan 27 10.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEMK1,Intro compsci final thur jan 28 12.30 pm,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEMKX,Ap compsci final thur jan 28 12.30 pm,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEMP1,Precalc final thur jan 28 10.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEMPH1,Precalc honors final thur jan 28 10.30 a,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEMR1,Trig final thur jan 28 10.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEPH1,Health final,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQESB1,Biology final wed jan 27 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQESB2,Biology final,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQETD1,Drafting final tues jan 26 10.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQETD1C,Draft final confl thurs june 18 9.00 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEUA1,Music app final tues jan 26 10.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEUA1C,Music final confl thurs june 18 9.00 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEXMD1,Conf rm mon jan 26 10.00 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQEXMD2,Conf rm tues jan 27 10.00 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQFA,Free period cycle a,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQFB,Free period cycle b,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQFN,Free period,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQGROSS3,Eng dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQGROSS7,Eng dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQHOGIRL,Chem dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQHOREG,Chem dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQHOSW,Chem dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPB7,Polar bear dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPE5,Pe dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPE7,Pe dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHADD,Add physics,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHBB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHCY,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHLG,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHOADD,Add honor physics,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHOBB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHOCY,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHORB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHOREG,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHOVB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHOWB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHPB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHRB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHREG,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHSW,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHVB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPHWB,Physics dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSA1,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSA2,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSA3,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSA4,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSA5,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSA6,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSA7,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSA8,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSB1,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSB2,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSB3,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSB4,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSB5,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSB6,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSB7,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPPSB8,Pe1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSA1,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSA2,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSA3,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSA4,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSA5,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSB1,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSB2,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSB3,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSB4,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQPWSB5,Swim 1,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQQTREG,Bio dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQQTSW,Bio dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQREGREG,Bio dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQREGSW,Bio dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQREXL,English regents mon jan 26 12.00 pm,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRFXC,Mandarin lote mon june 22 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRFXF,French lote mon june 22 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRFXJ,Japanese lote mon june 22 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRFXL,Latin lote mon june 22 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRFXR,Russian lote mon june 22 8.30 am at si t,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRFXS,Spanish lote mon june 22 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRFXT,Italian lote mon june 22 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRHXG,Global regents tues jan 27 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRHXU,Us hist regents wed jan 28 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRMXE,Algebra regents tues jan 27 12.00 pm,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRMXG,Geometry regents wed jan 28 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRMXT,Trig regents thurs jan 29 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQROLL7,Roller blade dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRSXK,Liv environ regents mon jan 26 8.30 am,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRSXP,Physics regents mon jan 26 12.00 pm,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQRSXX,Chemistry regents wed jan 28 12.00 pm,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQSLS,Modern bio w swim,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQSTEP,Step,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQSWIM,Swim class,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQSWIM7,Swim dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQT10,Sport team,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQUCS,Chamber choir,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQUDSQ4,Concert band,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQUDSQ8,Beginning band,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQUVS,Chorus,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQUYS,Symphonic orchestra,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQUZS32,Intermediate strings,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQUZS33,Adv strings,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQW7,Weight dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZQYOGA7,Yoga dummy,0,1,H,0,Not mapped
+ , ,Functional Codes,ZT01,Resource,0,1,H,0,Not mapped
+ , ,Functional Codes,ZT10,Resource 10,0,1,H,0,Not mapped
+ , ,Functional Codes,ZXPSATT,Fall psat,0,1,H,1001,English/language arts i (9th grade)
+ , ,Functional Codes,ZXSATT,Fall sat,0,1,H,1001,English/language arts i (9th grade)
+ , ,Functional Codes,ZYESL,Resource esl,0,1,H,0,Not mapped
+ , ,Functional Codes,ZYR01,Setss resource,0,1,H,0,Not mapped

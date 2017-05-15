@@ -16,3 +16,7 @@ began working on the design document
 
 reoK, vannaM, amyX, haleyZ -- 2017-05-12 00:29
 completed design document
+
+haleyZ -- 2017-05-15 14:04
+reviewed sample data files sent by client
+began db initializer
