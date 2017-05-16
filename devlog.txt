@@ -7,7 +7,11 @@ reoK -- 2017-05-10 14:02
 emailed Mr. Cheng and started design document
 
 vannaM -- 2017-05-11 10:15
-met with Mr. Cheng to discuss idea and work out specifics of what he wants
+met with Mr. Cheng to discuss idea and work out specifics of what he wants. main takeaways:
+
+-data will likely be given in csv format; sample files to be sent soon.
+-AP signups based on pre-requisites and offered courses desired (basic functionality).
+-must allow for administrative oversight.
 
 reoK, vannaM, amyX, haleyZ -- 2017-05-11 14:05
 reviewed Mr. Cheng's requests
