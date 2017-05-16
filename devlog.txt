@@ -24,3 +24,11 @@ completed design document
 haleyZ -- 2017-05-15 14:04
 reviewed sample data files sent by client
 began db initializer
+
+reoK, vannaM, amyX, haleyZ -- 2017-05-16  13:50
+met with Mr. Cheng to clarify some questions
+AP selection is imperative, elective selection if time permits
+impartial with regards to visuals
+export will produce a single file with info for multiple students
+course pre-reqs should be flexible/customizable for admins
+admin override feature is needed
