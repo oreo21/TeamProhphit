@@ -38,3 +38,6 @@ added files for basic SQLite based Flask login app
 
 vannaM -- 2017-05-16 22:25
 added dummy html files into templates folder
+
+reoK -- 2017-05-17 14:04
+converted Flask app's login functionality from SQLite to MongoDB
