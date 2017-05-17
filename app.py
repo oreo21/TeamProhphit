@@ -6,7 +6,9 @@ app = Flask(__name__)
 @app.route("/", methods = ['GET', 'POST'])
 def home():
   if "username" in session:
-    usertype = #function for getting user type
+    #usertype = #function for getting user type
+    #hard coding for now
+    usertype = 0
     if usertype == 0: #change 0 to whatever boolean we set to differentiate
       #blah
     elif usertype == 1:
