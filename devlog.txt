@@ -32,3 +32,6 @@ impartial with regards to visuals
 export will produce a single file with info for multiple students
 course pre-reqs should be flexible/customizable for admins
 admin override feature is needed
+
+reoK -- 2017-05-16 22:23
+added files for basic SQLite based Flask login app
