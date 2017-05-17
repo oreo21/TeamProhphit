@@ -1,0 +1,12 @@
+{% extends "parent.html" %}
+
+{% block title %}
+  Home Page
+{% endblock %}
+
+{% block content %}
+    <h1> Welcome {{ user }}!</h1>
+    <form action = "/logout/">
+      <input type = "submit" name = "action" value = "Logout">
+    </form>
+{% endblock %}

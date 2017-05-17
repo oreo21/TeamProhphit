@@ -1,22 +1,41 @@
-from flask import Flask, render_template, session, request, redirect, url_for, flash
-
+import os, sys, random
+from flask import Flask, render_template, url_for, request, redirect, session
+from utils import auth
 
 app = Flask(__name__)
+app.secret_key = os.urandom(32)
 
-@app.route("/", methods = ['GET', 'POST'])
+@app.route('/')
+@app.route('/login/')
+def login():
+    if 'user' in session:
+        return redirect(url_for('home'))
+    return render_template('login.html')
+
+@app.route('/home/')
 def home():
-    #using students for both rn
-    if "username" in session:
-        #usertype = #function for getting user type
-        #hard coding for now
-        usertype = 0
-        #if usertype == 0: #change 0 to whatever boolean we set to differentiate
-        #blah
+    if 'user' in session:
+        return render_template('home.html', user = session['user'])
+    else:
+        return redirect(url_for('login'))
 
-        #elif usertype == 1:
-        #not the other usertype
-        return render_template("stuHome.html", user_type = usertype)
-    return render_template("stuLogin.html")
+@app.route('/authenticate/', methods = ['POST'])
+def authenticate():
+    u = request.form['username']
+    p = request.form['password']
+    a = request.form['action']
+    data = auth.authenticate([u, p, a])
+    if data[1]:
+        session['user'] = u
+        return redirect(url_for('home'))
+    else:
+        return render_template('login.html', messageLogin = data[0])
+
+@app.route('/logout/')
+def logout():
+    if 'user' in session:
+        session.pop('user')
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.debug = True
