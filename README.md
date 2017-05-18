@@ -1,7 +1,9 @@
 # TeamTeamPlatekProhphit
 
+Our goal is to create a website that students can use to select electives and AP courses, and is heavily modifiable on the administrative end.
+
 ## Group Members: 
-* Reo Kimura (project/aesthetic manager)
-* Vanna Mavromatis (javascript)
-* Haley Zheng (database management)
-* Amy Xu (flask wizard)
+* Reo Kimura 
+* Vanna Mavromatis
+* Haley Zheng
+* Amy Xu
