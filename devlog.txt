@@ -45,3 +45,6 @@ converted Flask app's login functionality from SQLite to MongoDB
 vannaM -- 2017-05-18 21:43
 more dummy files
 example of uploading file
+
+haleyZ -- 2017-05-19 13:50
+finished fixing db_builder.py so that it can initialize records for students in the db based on input file formats
