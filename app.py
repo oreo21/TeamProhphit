@@ -1,4 +1,4 @@
-import os, sys, random
+import os, sys, random, csv
 from flask import Flask, render_template, url_for, request, redirect, session
 from utils import auth
 
@@ -36,6 +36,37 @@ def logout():
     if 'user' in session:
         session.pop('user')
     return redirect(url_for('login'))
+
+@app.route('/studentHome')
+def studentHome():
+    return render_template('stuHome.html')
+
+#NOTE: should allow students to sign up for class
+@app.route('/signup/')
+def signup():
+    return redirect(url_for('home'))
+
+@app.route('/adHome')
+def adHome():
+    return render_template('adHome')
+
+#example of how to deal w/file
+@app.route('/testForm/', methods=['POST'])
+def testForm():
+    #if there's a file uploaded
+    if 'upload' in request.files:
+        #get the file
+        filedata  = request.files['upload']
+        #read the file
+        csvreader = csv.reader(filedata)
+        #print the file
+        for row in csvreader:
+            print row
+        #go to student home
+        return redirect(url_for("adminHome"))
+    #if the file is missing
+    else:
+        return redirect(url_for("add"))
 
 if __name__ == '__main__':
     app.debug = True

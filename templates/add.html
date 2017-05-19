@@ -1,1 +1,13 @@
 {%extends "base.html"%}
+
+{%block title%}
+  Add
+{%endblock%}
+
+{%block body%}
+<center><h3>Upload Student Transcript</h3></center>
+<form action="/testForm/" method="POST" enctype="multipart/form-data">
+  <center><input type="file" name="upload"/></center>
+  <center><input type="submit" class="btn btn-default" value="Upload"/></center>
+</form>
+{%endblock%}

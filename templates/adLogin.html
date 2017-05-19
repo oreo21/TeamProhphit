@@ -1,1 +1,15 @@
 {%extends "base.html"%}
+
+{% block title %}
+  Login Page
+{% endblock %}
+
+{% block body %}
+  <h1> Login or Register </h1>
+  <p> {{ messageLogin }} </p>
+  <form action="/authenticate/" method="POST">
+    <p> Username: <input type = "text" name = "username"></p>
+    <p> Password: <input type = "password" name = "password"></p>
+    <input type="submit" name = "action" value = "Login">
+  </form>
+{% endblock %}

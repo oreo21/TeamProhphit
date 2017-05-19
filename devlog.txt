@@ -41,3 +41,7 @@ added dummy html files into templates folder
 
 reoK -- 2017-05-17 14:04
 converted Flask app's login functionality from SQLite to MongoDB
+
+vannaM -- 2017-05-18 21:43
+more dummy files
+example of uploading file
