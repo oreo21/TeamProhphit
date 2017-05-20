@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Course Sign-Up
+{% endblock %}
+
+{% block body %}
+    <h1>Welcome {{ user }}!</h1>
+    <form action="signup" method="POST">
+      <!--NOTE: pass variable called 'numAps' that is number of aps student can take-->
+      {%for i in range numAps%}
+        <select name="APS">
+          <!--NOTE: pass variable called 'aps' that is a list of all aps student can take-->
+          {%for class in aps%}
+            <option value="{{class}}">{{class}}</option>
+          {%endfor%}
+        </select>
+
+        <input type="submit">
+      {%endfor%}
+    </form>
+
+{%endblock%}

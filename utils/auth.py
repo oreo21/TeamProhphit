@@ -5,26 +5,33 @@ server = MongoClient()
 # c = MongoClient('lisa.stuy.edu')
 ourDB = server['database'] 
 
+
+# data[0] = username, data[1] = password, data[2] = action, data[3] = account_type
 def authenticate(data):
-    if data[2] == 'Register':
-        return register(data[0], data[1])
+    if data[2] == 'register':
+        return register(data[0], data[1], data[3])
     else:
-        return login(data[0], data[1])
+        return login(data[0], data[1], data[3])
 
 def hashPass(password):
     return hashlib.sha512(password).hexdigest()
 
-def userExists(username):
-    #return bool(ourDB.users.find_one({"username": username}))
-    cursor = ourDB.users.find()
-    for user in cursor:
-        if username == user['username']:
-            return True
-    return False
+def userExists(username, account_type):
+    if account_type == 'student':
+        return bool(ourDB.students.find_one({"username": username}))
+    elif account_type == 'admin':
+        return bool(ourDB.admins.find_one({"username": username}))
 
-def register(user, password):
+def getPassword(username, account_type):
+    if account_type == 'student':
+        return ourDB.students.find_one({"username": username})['password']
+    elif account_type == 'admin':
+        return ourDB.admins.find_one({"username": username})['password']
+    
+# will fix later
+def register(user, password, account_type):
     result = []
-    if (userExists(user)):
+    if userExists(user, account_type):
         result = ['User already exists.', False]
     elif not user.isalnum() or not password.isalnum():
         result = ['Username and password may only consist of alphanumeric characters.', False]
@@ -33,55 +40,16 @@ def register(user, password):
         entry['username'] = user
         entry['password'] = hashPass(password)
         ourDB.users.insert_one(entry)
-        result =['Registration successful.', False]
+        result =['Registration successful.', True]
     return result
 
-def login(user, password):
+def login(user, password, account_type):
     result = []
-    if not userExists(user):
+    if not userExists(user, account_type):
         result = ['User does not exist.', False]
-    else:
-        p = ourDB.users.find_one({"username": user})['password']
-        if (p != hashPass(password)):
-            result = ['Incorrect password.', False]
-        else:
-            result = ['Login successful.', True]
-    return result
-
-
-def userExistsSQL(username, c):
-    s = c.execute("SELECT name FROM users")
-    for r in s:
-        name = r[0]
-        if username == name:
-            return True
-    return False
-
-def registerSQL(user, password):
-    result = []
-    bd = sqlite3.connect('data/bd.db')
-    c = bd.cursor()
-    if (userExistsSQL(user, c)):
-        result = ['User already exists.', False]
-    elif not user.isalnum() or not password.isalnum():
-        result = ['Username and password may only consist of alphanumeric characters.', False]
-    else:
-        p = hashPass(password)
-        c.execute("INSERT INTO users VALUES ('%s', '%s')"%(user, p))
-        bd.commit()
-        bd.close()
-        result = ['Registration successful.', False]
-    return result
-
-def loginSQL(user, password):
-    result = []
-    bd = sqlite3.connect('data/bd.db')
-    c = bd.cursor()
-    if (userExistsSQL(user, c) == False):
-        result = ['User does not exist.', False]
-    else:
-        s = c.execute("SELECT password FROM users WHERE name = '%s'"%(user))
-        p = s.fetchone()[0]
+        return result
+    else:         
+        p = getPassword(user, account_type)
         if (p != hashPass(password)):
             result = ['Incorrect password.', False]
         else:
