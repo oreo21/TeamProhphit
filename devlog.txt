@@ -48,3 +48,6 @@ example of uploading file
 
 haleyZ -- 2017-05-19 13:50
 finished fixing db_builder.py so that it can initialize records for students in the db based on input file formats
+
+reoK -- 2017-05-20 19:05
+worked on logins for different account types
