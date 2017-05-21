@@ -9,11 +9,7 @@ app.secret_key = os.urandom(32)
 @app.route('/login/')
 def login():
     if 'user' in session:
-        t = session['acct_type']
-        if t == 'student':
-            return redirect(url_for('student_home'))
-        elif t == 'admin':
-            return redirect(url_for('admin_home'))
+        return redirect(url_for('home'))
     return render_template('login.html')
 
 @app.route('/home/')
@@ -23,34 +19,17 @@ def home():
     else:
         return redirect(url_for('login'))
 
-# for logging in, handles all account types 
 @app.route('/authenticate/', methods = ['POST'])
 def authenticate():
     u = request.form['username']
     p = request.form['password']
-    t = request.form['acct_type']
-    data = auth.login(u, p, t)
-    if data[1]: # login successful
+    a = request.form['action']
+    data = auth.authenticate([u, p, a])
+    if data[1]:
         session['user'] = u
-        session['acct_type'] = t
-        if t == 'student':
-            return redirect(url_for('student_home'))
-        elif t == 'admin':
-            return redirect(url_for('admin_home'))
+        return redirect(url_for('home'))
     else:
-        if t == 'student':
-            return render_template('student_login.html', messageLogin = data[0])
-        elif t == 'admin':
-            return render_template('admin_login.html', messageLogin = data[0])
-
-# in progress
-@app.route('/register/', methods = ['POST'])
-def register():
-    u = request.form['username']
-    p = request.form['password']
-    t = request.form['acct_type']
-    data = auth.register(u, p, t)
-    return None
+        return render_template('login.html', messageLogin = data[0])
 
 @app.route('/logout/')
 def logout():
@@ -58,20 +37,54 @@ def logout():
         session.pop('user')
     return redirect(url_for('login'))
 
-@app.route('/student_home')
-def student_home():
-    u = session['user']
-    return render_template('student_home.html', user = u)
+@app.route('/studentHome')
+def studentHome():
+    #NOTE: dummy variables for now
+    numAps = 3
+    aps = ['HGS44XE','HGS44XW','HPS21X']
+    return render_template('student_home.html')
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/')
 def signup():
     return redirect(url_for('home'))
 
-@app.route('/admin_home')
-def admin_home():
-    u = session['user']
-    return render_template('admin_home.html', user = u)
+@app.route('/adHome')
+def adHome():
+    return render_template('admin_home.html')
+
+@app.route('/add/')
+def add():
+    return render_template('add.html')
+
+@app.route('/remove/')
+def remove():
+    #NOTE: dummy courses
+    courses = ['HGS44XE','HGS44XW','HPS21X']
+    return render_template('remove.html')
+
+@app.route('/rm/')
+def rm():
+    course = request.form['course']
+    #NOTE: function to remove course
+    return redirect(url_for('home'))
+
+@app.route('/modifyChoose/')
+def modifyCourse():
+    #NOTE: will eventually be list of actual available courses
+    courses = ['HGS44XE','HGS44XW','HPS21X']
+    return render_template('modifyChoose.html',courses=courses)
+
+@app.route('/modify/<str:course>')
+def mod(course):
+    #NOTE: will eventually be list of courses in same dep't that can be prereqs
+    courses = ['HGS44XE','HGS44XW','HPS21X']
+    return render_template('modify.html',course=course,courses=courses)
+
+@app.route('/modifyCourse/')
+def modifyCourse():
+    #NOTE: deal w/adding prereqs later
+    return redirect(url_for('adHome'))
 
 #example of how to deal w/file
 @app.route('/testForm/', methods=['POST'])

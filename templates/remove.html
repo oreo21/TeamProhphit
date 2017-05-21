@@ -1,1 +1,9 @@
 {%extends "base.html"%}
+
+<form action="/rm/" method="POST">
+  {%for course in courses%}
+    <!--pass course name into remove function-->
+    <input type="submit" name = "course" value = "{{course}}">
+
+  {%endfor%}
+</form>

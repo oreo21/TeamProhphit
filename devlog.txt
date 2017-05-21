@@ -51,3 +51,6 @@ finished fixing db_builder.py so that it can initialize records for students in 
 
 reoK -- 2017-05-20 19:05
 worked on logins for different account types
+
+vannaM -- 2017-05-21 18:34
+modified forms in all relevant HTML files using hard-coded variables and dummy functions

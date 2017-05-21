@@ -1,0 +1,22 @@
+{%extends base.html%}
+
+{{course}}
+
+<form action='/modifyCourse/'>
+  Department <input type="text" name="dept">
+  Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100">
+  Minimum Departmental Average <input type="number" name="minDept" min="0" max="100">
+  Cohort Requirement <input type="number" name="cohort">
+  Prerequisite Courses: <select name="prereqs">
+
+    {%for course in courses%}
+
+      <option value="{{course}}">{{course}}</option>
+
+    {%endfor%}
+
+  </select>
+
+  <input type="hidden" name="course" value="{{course}}">
+  <input type="submit" value="Submit">
+</form>
