@@ -54,3 +54,6 @@ worked on logins for different account types
 
 vannaM -- 2017-05-21 18:34
 modified forms in all relevant HTML files using hard-coded variables and dummy functions
+
+reoK -- 2017-05-21 22:37
+reverted some necessary login code in app.py
