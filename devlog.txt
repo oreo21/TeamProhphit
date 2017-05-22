@@ -72,3 +72,8 @@ implemented tabs navigation for students
 	the tabs consist of ap course selection and course guide
 added content for student home; including explanation for why x student got y slots
 fiddled with the nav bar in base.html
+
+amyX -- 2017-05-22 00:40
+implemented tabs nav for admin
+	the tabs consist of add students, remove, modify courses
+consolidtated unnecessary templates (add.html, remove.html, modifyChoose.html) into one page as design doc has recorded down
