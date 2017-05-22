@@ -5,12 +5,28 @@
 {% endblock %}
 
 {% block body %}
-  <h1>Login Page for Students</h1>
   <p> {{ messageLogin }} </p>
-  <form action="/authenticate/" method="POST">
-    <p>Username: <input type="text" name="username"></p>
-    <p>Password: <input type="password" name="password"></p>
-    <input type="submit" name="action" value="Login">
-    <input type="hidden" name="acct_type" value="student">
-  </form>
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Student's Login</h1>
+      <form class="form-horizontal" action="/authenticate/" method="POST">
+        <p>Username: <input type="text" name="username"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <input class="btn btn-info" type="submit" name="action" value="Login">
+        <input class="btn btn-info" type="submit" name="action" value="Register">
+        <input type="hidden" name="acct_type" value="student">
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <h1>Admin's Login</h1>
+      <form class="form-horizontal" action="/authenticate/" method="POST">
+        <p>Username: <input type="text" name="username"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <input class="btn btn-info" type="submit" name="action" value="Login">
+        <input class="btn btn-info" type="submit" name="action" value="Register">
+        <input type="hidden" name="acct_type" value="admin">
+      </form>
+    </div>
+  </div>
 {% endblock %}

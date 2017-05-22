@@ -17,11 +17,11 @@ def login():
     else:
         return render_template('student_login.html')
 
-@app.route("/admin")
-def admin_login():
-    return render_template('admin_login.html')
+# @app.route("/admin")
+# def admin_login():
+#     return render_template('admin_login.html')
 
-'''            
+'''
 @app.route('/home/')
 def home():
     if 'user' in session:
