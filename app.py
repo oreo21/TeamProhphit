@@ -72,28 +72,12 @@ def signup():
 def admin_home():
     courses = ['HGS44XE','HGS44XW','HPS21X']
     return render_template('admin_home.html', courses= courses)
-#
-# @app.route('/add/')
-# def add():
-#     return render_template('add.html')
-#
-# @app.route('/remove/')
-# def remove():
-#     #NOTE: dummy courses
-#     courses = ['HGS44XE','HGS44XW','HPS21X']
-#     return render_template('remove.html')
 
 @app.route('/rm/')
 def rm():
     course = request.form['course']
     #NOTE: function to remove course
     return redirect(url_for('home'))
-
-# @app.route('/modifyChoose/')
-# def modifyChoose():
-#     #NOTE: will eventually be list of actual available courses
-#     courses = ['HGS44XE','HGS44XW','HPS21X']
-#     return render_template('modifyChoose.html',courses=courses)
 
 @app.route('/mod/<course>/')
 def mod(course):
