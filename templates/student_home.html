@@ -7,16 +7,16 @@
 {% block body %}
 <!--NOTE: take APs out of list when selected-->
     <h1>Welcome {{ user }}!</h1>
-    <form action="signup" method="POST">
-      {%for i in range numAps%}
-        <select name="APS">
+    <form action="/signup/" method="POST">
+      {%for i in range(numAps)%}
+        <p><select name="APS">
           {%for class in aps%}
             <option value="{{class}}">{{class}}</option>
           {%endfor%}
-        </select>
+        </select></p>
 
-        <input type="submit">
       {%endfor%}
+      <input type="submit">
     </form>
 
 {%endblock%}

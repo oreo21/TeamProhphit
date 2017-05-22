@@ -1,9 +1,13 @@
 {%extends "base.html"%}
-
+{%block title%}
+  Modify Courses
+{%endblock%}
+{%block body%}
 <!--NOTE: pass variable called 'courses' that is a list of strings of names of modifiable courses-->
 {%for course in courses%}
 
   <!--modify opens new html page w/variable path-->
-  <a href="/mod/{{course}}/">{{course}}</a>
+  <p><a href="/mod/{{course}}/">{{course}}</a></p>
 
 {%endfor%}
+{%endblock%}

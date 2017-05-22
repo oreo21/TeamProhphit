@@ -37,19 +37,19 @@ def logout():
         session.pop('user')
     return redirect(url_for('login'))
 
-@app.route('/studentHome')
+@app.route('/studentHome/')
 def studentHome():
     #NOTE: dummy variables for now
     numAps = 3
     aps = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('student_home.html')
+    return render_template('student_home.html', numAps = numAps, aps=aps)
 
 #NOTE: should allow students to sign up for class
-@app.route('/signup/')
+@app.route('/signup/', methods=['POST'])
 def signup():
     return redirect(url_for('home'))
 
-@app.route('/adHome')
+@app.route('/adHome/')
 def adHome():
     return render_template('admin_home.html')
 
@@ -70,16 +70,16 @@ def rm():
     return redirect(url_for('home'))
 
 @app.route('/modifyChoose/')
-def modifyCourse():
+def modifyChoose():
     #NOTE: will eventually be list of actual available courses
     courses = ['HGS44XE','HGS44XW','HPS21X']
     return render_template('modifyChoose.html',courses=courses)
 
-@app.route('/modify/<str:course>')
+@app.route('/mod/<course>/')
 def mod(course):
     #NOTE: will eventually be list of courses in same dep't that can be prereqs
     courses = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('modify.html',course=course,courses=courses)
+    return render_template('modify.html',course=str(course),courses=courses)
 
 @app.route('/modifyCourse/')
 def modifyCourse():
