@@ -3,7 +3,7 @@ import hashlib, sqlite3
 
 server = MongoClient()
 # c = MongoClient('lisa.stuy.edu')
-ourDB = server['database'] 
+ourDB = server['ttpp'] 
 
 
 # data[0] = username, data[1] = password, data[2] = action, data[3] = account_type
