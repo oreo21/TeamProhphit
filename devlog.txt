@@ -62,3 +62,9 @@ amyX -- 2017-05-21 23:46
 added static folder and incorporated bootstrap
 implemented lumen theme for bootstrap 
 added register options for admin and student
+
+amyX -- 2017-05-22 00:26
+implemented tabs navigation for students
+	the tabs consist of ap course selection and course guide
+added content for student home; including explanation for why x student got y slots
+fiddled with the nav bar in base.html
