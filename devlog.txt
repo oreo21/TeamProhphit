@@ -85,3 +85,6 @@ set up our database on lisa to prepare for demo
 
 amyX -- 2017-05-22 10:43
 hard coded the guide for student home (subject to change); perhaps temporary
+
+amyX -- 2017-05-22 14:06
+fixed lumen theme font not showing problem
