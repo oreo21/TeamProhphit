@@ -5,9 +5,39 @@
 {%endblock%}
 
 {%block body%}
-	<h1>Welcome {{ user }}!</h1>
+	<!-- <h1>Welcome {{ user }}!</h1>
 	<p><a href="/add/">Add</a></p>
 	<p><a href="/remove/">Remove</a></p>
-	<p><a href="/modifyChoose/">Modify Course</a></p>
+	<p><a href="/modifyChoose/">Modify Course</a></p> -->
 
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#add" data-toggle="tab">Add Students</a></li>
+    <li><a href="#rmv" data-toggle="tab">Remove Students</a></li>
+    <li><a href="#mod" data-toggle="tab">Modify Courses</a></li>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="add">
+          <br><br><br>
+          <h4>Upload Student Transcript</h4>
+          <form action="/testForm/" method="POST" enctype="multipart/form-data">
+            <input type="file" name="upload"/>
+            <input type="submit" class="btn btn-info" value="Upload"/>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="rmv">
+          <br><br><br>
+          <p>Remove code to be added</p>
+        </div>
+
+        <div class="tab-pane fade" id="mod">
+          <br><br><br>
+          {%for course in courses%}
+
+            <!--modify opens new html page w/variable path-->
+            <p><a href="/mod/{{course}}/">{{course}}</a></p>
+
+          {%endfor%}
+        </div>
+    </div>
+  </ul>
 {%endblock%}

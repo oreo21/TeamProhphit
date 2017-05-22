@@ -17,11 +17,11 @@ def login():
     else:
         return render_template('student_login.html')
 
-@app.route("/admin")
-def admin_login():
-    return render_template('admin_login.html')
+# @app.route("/admin")
+# def admin_login():
+#     return render_template('admin_login.html')
 
-'''            
+'''
 @app.route('/home/')
 def home():
     if 'user' in session:
@@ -60,7 +60,7 @@ def student_home():
     #NOTE: dummy variables for now
     numAps = 3
     aps = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('student_home.html', user = session['user'], numAps = numAps, aps=aps)
+    return render_template('student_home.html', numAps = numAps, aps=aps)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])
@@ -69,17 +69,18 @@ def signup():
 
 @app.route('/admin_home/')
 def admin_home():
-    return render_template('admin_home.html', user = session['user'])
-
-@app.route('/add/')
-def add():
-    return render_template('add.html')
-
-@app.route('/remove/')
-def remove():
-    #NOTE: dummy courses
     courses = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('remove.html')
+    return render_template('admin_home.html', courses= courses)
+#
+# @app.route('/add/')
+# def add():
+#     return render_template('add.html')
+#
+# @app.route('/remove/')
+# def remove():
+#     #NOTE: dummy courses
+#     courses = ['HGS44XE','HGS44XW','HPS21X']
+#     return render_template('remove.html')
 
 @app.route('/rm/')
 def rm():
@@ -87,11 +88,11 @@ def rm():
     #NOTE: function to remove course
     return redirect(url_for('home'))
 
-@app.route('/modifyChoose/')
-def modifyChoose():
-    #NOTE: will eventually be list of actual available courses
-    courses = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('modifyChoose.html',courses=courses)
+# @app.route('/modifyChoose/')
+# def modifyChoose():
+#     #NOTE: will eventually be list of actual available courses
+#     courses = ['HGS44XE','HGS44XW','HPS21X']
+#     return render_template('modifyChoose.html',courses=courses)
 
 @app.route('/mod/<course>/')
 def mod(course):
