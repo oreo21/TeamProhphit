@@ -2,8 +2,8 @@ from pymongo import MongoClient
 import csv
 import hashlib
 
-server = MongoClient()
-#server = MongoClient("lisa.stuy.edu")
+#server = MongoClient()
+server = MongoClient("lisa.stuy.edu")
 db = server['ttpp']
 
 def list_departments():

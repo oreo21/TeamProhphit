@@ -78,6 +78,10 @@ implemented tabs nav for admin
 	the tabs consist of add students, remove, modify courses
 consolidtated unnecessary templates (add.html, remove.html, modifyChoose.html) into one page as design doc has recorded down
 
+haleyZ -- 2017-05-22 01:00
+finished creating admin functionality for uploading student transcripts to initialize student collection
+(new database schema) departments collection that stores all the course codes belonging to the department
+set up our database on lisa to prepare for demo
+
 amyX -- 2017-05-22 10:43
 hard coded the guide for student home (subject to change); perhaps temporary
-
