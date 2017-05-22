@@ -1,6 +1,7 @@
 import os, sys, random, csv
 from flask import Flask, render_template, url_for, request, redirect, session
 from utils import auth
+from utils import db_manager
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -112,13 +113,9 @@ def testForm():
     if 'upload' in request.files:
         #get the file
         filedata  = request.files['upload']
-        #read the file
-        csvreader = csv.reader(filedata)
-        #print the file
-        for row in csvreader:
-            print row
+        db_manager.init_students(filedata)
         #go to student home
-        return redirect(url_for("adminHome"))
+        return redirect(url_for("admin_home"))
     #if the file is missing
     else:
         return redirect(url_for("add"))
