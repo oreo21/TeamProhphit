@@ -15,10 +15,11 @@ def login():
         elif t == 'admin':
             return redirect(url_for('admin_home'))
     else:
-        if t == 'student':
-            return render_template('student_login.html')
-        elif t == 'admin':
-            return render_template('admin_login.html')
+        return render_template('student_login.html')
+
+@app.route("/admin")
+def admin_login():
+    return render_template('admin_login.html')
 
 '''            
 @app.route('/home/')
