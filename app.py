@@ -60,7 +60,7 @@ def student_home():
     #NOTE: dummy variables for now
     numAps = 3
     aps = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('student_home.html', user = session['user'], numAps = numAps, aps=aps)
+    return render_template('student_home.html', numAps = numAps, aps=aps)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])

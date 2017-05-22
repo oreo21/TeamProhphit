@@ -5,18 +5,75 @@
 {% endblock %}
 
 {% block body %}
-<!--NOTE: take APs out of list when selected-->
-    <h1>Welcome {{ user }}!</h1>
-    <form action="/signup/" method="POST">
-      {%for i in range(numAps)%}
-        <p><select name="APS">
-          {%for class in aps%}
-            <option value="{{class}}">{{class}}</option>
-          {%endfor%}
-        </select></p>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#home" data-toggle="tab">Course Selections</a></li>
+  <li><a href="#key" data-toggle="tab">AP Course Guide</a></li>
+  <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade active in" id="home">
+        <br><br><br>
+        <!--NOTE: take APs out of list when selected-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title">Students may apply for as many Advanced Placement courses as they are eligible for, as determined by the following criteria:<br></p></h3>
+              </div>
+              <div class="panel-body">
+                <ol>
+                  <li>Any student who meets the departmental requirements for an individual Advanced Placement course will be eligible for that course regardless of the student's overall average.</li>
+                  <li>Students who wish to take two Advanced Placement classes must have a MINIMUM overall average of 88%.</li>
+                  <li>Students who wish to take three Advanced Placement classes must have a MINIMUM overall average of 93%.</li>
+                  <li>Students who wish to take four Advanced Placement classes must have a MINIMUM overall average of 95%.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
 
-      {%endfor%}
-      <input type="submit">
-    </form>
+            <div class=class="col-md-6">
+              <p>Please make your AP selections below. </p>
+              <form action="/signup/" method="POST">
+                {%for i in range(numAps)%}
+                  <p><select name="APS">
+                    {%for class in aps%}
+                      <option value="{{class}}">{{class}}</option>
+                    {%endfor%}
+                  </select></p>
+
+                {%endfor%}
+                <input class="btn btn-info" type="submit">
+              </form>
+            </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="key">
+      <br><br><br>
+      <table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Course Title</th>
+      <th>Course Code</th>
+      <th>Prereqs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+</div>
+
+
 
 {%endblock%}
