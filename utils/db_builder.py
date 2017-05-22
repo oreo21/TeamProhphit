@@ -36,10 +36,14 @@ def init_courses(filename):
 #need a list of all the students
 def init_students(filename):
     f = open(filename)
+    seen = []
     student_list = csv.DictReader(f)
     for elem in student_list:
+        if elem["StudentID"] in seen:
+            continue
         student = {}
         student['id'] = elem["StudentID"]
+        seen.append(elem["StudentID"])
         student['first_name'] = elem["FirstName"]
         student['last_name'] = elem["LastName"]
         student['cohort'] = elem["Year"]
@@ -55,5 +59,6 @@ def init_students(filename):
         student['selections'] = []
         print student
         db.students.insert_one(student)
+        
         
 initialize()
