@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["mrgrumpy@stuy.edu"]
+adminlist = ["mrgrumpy@stuy.edu", "jxu9@stuy.edu"]
 
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
@@ -106,13 +106,17 @@ def home():
 
 @app.route('/logout/')
 def logout():
-    if 'user' in session:
-        session.pop('user')
-    return redirect(url_for('login'))
+    if 'admin' in session:
+        session.pop('admin')
+    if 'student' in session:
+        session.pop('student')
+    return redirect(url_for('home'))
 
 @app.route('/student_home/')
 def student_home():
     #NOTE: dummy variables for now
+    if 'student' not in session:
+        return redirect(url_for('oauth_testing'))
     numAps = 3
     aps = ['HGS44XE','HGS44XW','HPS21X']
     return render_template('student_home.html', numAps = numAps, aps=aps)
@@ -124,8 +128,10 @@ def signup():
 
 @app.route('/admin_home/')
 def admin_home():
+    if 'admin' not in session:
+        return redirect(url_for('oauth_testing'))
     courses = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('admin_home.html', courses= courses)
+    return render_template('admin_home.html', courses= courses, login=True)
 
 @app.route('/rm/')
 def rm():

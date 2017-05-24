@@ -88,3 +88,14 @@ hard coded the guide for student home (subject to change); perhaps temporary
 
 amyX -- 2017-05-22 14:06
 fixed lumen theme font not showing problem
+
+amyX -- 2017-05-23 21:47
+set up oauth logins for the website
+wrote code to check if user logging in via gmail is a stuy.edu user
+fixed routes for student/admin home to accommodate oauth login
+
+amyX -- 2017-05-23 22:07
+tested admin list to see if oauth would correctly link to student/admin homes
+added search bar for admin home page
+added additional {% if x%} statements into html to make navbar portray login/logout tabs properly
+
