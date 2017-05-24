@@ -33,14 +33,13 @@
               <p>Please make your AP selections below. </p>
               <form action="/signup/" method="POST">
                 {%for i in range(numAps)%}
-                  <p><select name="APS">
+                  <p><select name="APS" class="ap">
+                    <option disabled selected value> -- select an option -- </option>
                     {%for class in aps%}
                       <option value="{{class}}">{{class}}</option>
-                    {%endfor%}
-                  </select></p>
-
+                    {%endfor%}</select></p>
                 {%endfor%}
-                <input class="btn btn-info" type="submit">
+              <input class="btn btn-info" type="submit">
               </form>
             </div>
       </div>
@@ -170,6 +169,46 @@
     </div>
 </div>
 
+<script>
+
+var ap = document.getElementsByClassName('ap');
+
+var clicked = function(event){
+
+  //go through all ap options
+  for (var i = 0; i < ap.length; i++){
+    //if not the one you just clicked
+    if (ap[i] != event.target){
+
+      //find the matching AP and remove it (can't pick twice)
+      for (var j = 0; j < ap[i].options.length; j++){
+        if (ap[i].options[j].value == event.target.value){
+          ap[i].remove(ap[i].options[j]);
+          //only one will match
+          break;
+        }
+      }
+
+      //if old exists (we need to add it back in as an option)
+      if(event.target.old){
+        var opt = document.createElement("option");
+        opt.text = event.target.old;
+        ap[i].add(opt);
+      }
+
+    }
+  }
+  event.target.old = event.target.value;
+}
+
+window.onload = function(){
+  for (var i = 0; i < ap.length; i++){
+    ap[i].addEventListener("change",clicked);
+  };
+};
+
+
+</script>
 
 
 {%endblock%}

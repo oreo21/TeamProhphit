@@ -4,7 +4,7 @@ from utils import auth
 from utils import db_manager
 
 #oauth imports and stuff
-from oauth2client.client import flow_from_clientsecrets, OAuth2Credentials # OAuth library, import the function and class that this uses
+#from oauth2client.client import flow_from_clientsecrets, OAuth2Credentials # OAuth library, import the function and class that this uses
 from httplib2 import Http # The http library to issue REST calls to the oauth api
 
 import json # Json library to handle replies
@@ -115,10 +115,10 @@ def logout():
 @app.route('/student_home/')
 def student_home():
     #NOTE: dummy variables for now
-    if 'student' not in session:
-        return redirect(url_for('oauth_testing'))
+    #if 'student' not in session:
+    #    return redirect(url_for('oauth_testing'))
     numAps = 3
-    aps = ['HGS44XE','HGS44XW','HPS21X']
+    aps = ['first','second','third','fourth','fifth']
     return render_template('student_home.html', numAps = numAps, aps=aps)
 
 #NOTE: should allow students to sign up for class
