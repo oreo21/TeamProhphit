@@ -99,3 +99,6 @@ tested admin list to see if oauth would correctly link to student/admin homes
 added search bar for admin home page
 added additional {% if x%} statements into html to make navbar portray login/logout tabs properly
 
+amyX -- 2017-05-23 22:51
+Redid home.html and removed student_login.html as the template for "/" route
+Added styling and interface updates to home.html

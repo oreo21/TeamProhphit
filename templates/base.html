@@ -15,23 +15,10 @@
     <script src="../static/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../static/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/style.css">
     <title>{% block title %} {% endblock %}</title>
   </head>
 <body>
-
-  <!-- <div class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Reviewed by Rick</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Sample Page</a></li>
-          <li><a href="#">Sample Page</a></li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
 
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -55,8 +42,9 @@
       </form>
     {%endif%}
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/login/">Login</a></li>
-        {% if session["student"]%}<li><a href="/logout/">Logout</a></li>{%endif%}
+        {% if session["student"] or session["admin"]%}<li><a href="/logout/">Logout</a></li>
+        {%else%} <li><a href="/login/">Login</a></li>
+        {%endif%}
       </ul>
     </div>
   </div>

@@ -70,7 +70,7 @@ def home():
     elif 'student' in session:
         return redirect(url_for('student_home'))
     else:
-        return render_template('student_login.html')
+        return render_template('home.html')
 
 # @app.route("/admin")
 # def admin_login():
