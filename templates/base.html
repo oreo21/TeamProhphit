@@ -11,24 +11,14 @@
     <link rel="stylesheet/less" type="text/css" href="variables.less"/>
     <link rel="stylesheet/less" type="text/css" href="bootswatch.less"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../static/jquery.min.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/style.css">
     <title>{% block title %} {% endblock %}</title>
   </head>
 <body>
-
-  <!-- <div class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Reviewed by Rick</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Sample Page</a></li>
-          <li><a href="#">Sample Page</a></li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
 
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -43,9 +33,18 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    {% if login %}
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    {%endif%}
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li><a href="/logout/">Logout</a></li>
+        {% if session["student"] or session["admin"]%}<li><a href="/logout/">Logout</a></li>
+        {%else%} <li><a href="/login/">Login</a></li>
+        {%endif%}
       </ul>
     </div>
   </div>
