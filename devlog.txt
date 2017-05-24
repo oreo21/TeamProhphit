@@ -102,3 +102,7 @@ added additional {% if x%} statements into html to make navbar portray login/log
 amyX -- 2017-05-23 22:51
 Redid home.html and removed student_login.html as the template for "/" route
 Added styling and interface updates to home.html
+
+haleyZ -- 2017-05-23 23:33
+finished backend to input the courses & grades students have taken based on uploaded transcript
+reworked database schema of student data. The courses_taken dictionary now has keys as department names but values as lists of dictionaries. Each inner dict holds the code of the course and the mark. Also added a list for unknown course codes for admin to later correct via frontend.
