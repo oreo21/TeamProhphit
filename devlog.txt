@@ -106,3 +106,11 @@ Added styling and interface updates to home.html
 haleyZ -- 2017-05-23 23:33
 finished backend to input the courses & grades students have taken based on uploaded transcript
 reworked database schema of student data. The courses_taken dictionary now has keys as department names but values as lists of dictionaries. Each inner dict holds the code of the course and the mark. Also added a list for unknown course codes for admin to later correct via frontend.
+
+haleyZ -- 2017-05-24 14:00
+wrote functions to calculate the department averages and overall average
+
+haleyZ -- 2017-05-24 23:29
+added db functions to get course by code, get student by id, edit course, edit student, get list of all AP courses
+wrote up a list to let front-end/Flask team members know what functions I wrote and when they should be utilized
+commented my functions to explain what they do
