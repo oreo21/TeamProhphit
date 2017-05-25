@@ -7,6 +7,8 @@ server = MongoClient()
 #server = MongoClient("lisa.stuy.edu")
 db = server['ttpp']
 
+# args: none
+# return: a list of the names of all the departments
 def list_departments():
     ret = []
     depts = db.departments.find({})
@@ -15,14 +17,31 @@ def list_departments():
         ret.append( dept["name"].encode("ascii") )
     return ret
 
-def init_students(f):
-    seen = {} #will store dictionaries to hold student data
+# args: fileObject f
+#       f is a file object of a CSV ofstudents' transcripts
+#       each row in the CSV file correlates to one class
+#         e.g. one student took 7 classes in his Stuy career so far,
+#              so the first 7 lines correspond to those classes
+#         the CSV contains the following columns:
+#             * StudentID
+#             * FirstName
+#             * LastName
+#             * Grade (9, 10, 11, 12)
+#             * Course (Course code)
+#             * Mark (Grade in the course)
+# return: none
+def add_students(f):
+    transcripts = csv.DictReader(f)
     
-    transcript = csv.DictReader(f)
-    for class_record in transcript:
+    for class_record in transcripts:
+        course_code = class_record["Course"]
+        course_info = db.courses.find_one( {"code": course_code } )
+        course_dept = course_info["department"] if course_info != None else "Unknown"
+        course_mark = class_record["Mark"]
 
-        #if student not in database, set up ALL info
-        if class_record["StudentID"] not in seen:
+        student = db.students.find_one( {"id" : class_record["StudentID"]} )
+        #if student not in database, set up a dictionary for all student info
+        if student == None:
             student = {}
             student['id'] = class_record["StudentID"]
             student['first_name'] = class_record["FirstName"]
@@ -39,50 +58,59 @@ def init_students(f):
         
             student['overall_average'] = 0
             student['selections'] = []
-            seen[class_record["StudentID"]] = student
+            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
 
-        #otherwise, retrieve the student data we collected already
+            db.students.insert_one(student)
+        #if student is in db, update classes_taken field
         else:
-            student = seen[class_record["StudentID"]]
+            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
+            db.students.update_one( {"id" : student["id"]},
+                                    {"$set" :
+                                     {"classes_taken" : student["classes_taken"]}
+                                    }
+                                    )
 
-        course_code = class_record["Course"]
-        course_info = db.courses.find_one( {"code": course_code } )
-        course_dept = course_info["department"] if course_info != None else "Unknown"
-        course_mark = class_record["Mark"]
-
-        student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
-
-    #convert seen (dictionary) into a list to send to mongo db
-    data = []
-    for entry in seen:
-        data.append( seen[entry] )
-    print data
-        
-    db.students.insert_many(data)
-
+# args: string student OSIS number
+# return: student document as a dictionary
 def get_student(student_id):
     return db.students.find_one( {"id" : student_id} )
 
+# args: string student OSIS number, string department name
+# return: departmental average of student as a float
 def get_department_average(student_id, department):
     student = get_student(student_id)
     return student["department_averages"][department]
 
+# args: string student OSIS number
+# return: average of student as a float
 def get_overall_average(student_id):
     student = get_student(student_id)
     return student["overall_average"]
-    
-def update_department_average(student_id, department):
+
+# args: string student OSIS number, string department name
+# return: none
+# recalculates the departmental average
+# used when new classes are added to the student's data
+#   or if a grade was changed
+def recalculate_department_average(student_id, department):
     student = get_student(student_id)
     if student == None:
         print "ERROR: no student with that ID"
         return
     courses = student["classes_taken"][department]
+    print courses
     total = count = 0
     for course in courses:
         if course["weight"]: #not 0
-            total += course["mark"]
-            count += 1
-    avg = total / count
+            try:
+                total += int(course["mark"])
+                count += 1
+            except:
+                pass
+            print total
+            print count
+    avg = total * 1.0 / count if count != 0 else 0
+    print "avg: ", avg
     student["department_averages"][department]["average"] = avg
     student["department_averages"][department]["count"] = count
     db.students.update_one( {"id" : student_id},
@@ -90,18 +118,65 @@ def update_department_average(student_id, department):
                                 {"department_averages" : student["department_averages"] }
                             }
                           )
-    
-def update_overall_average(student_id):
+
+# args: string student OSIS number
+# return: none
+# recalculates the overall average
+# used when new classes are added to the student's data
+#   or if a grade was changed
+def recalculate_overall_average(student_id):
     student = get_student(student_id)
     dept_avgs = student["department_averages"]
+    print dept_avgs
     summ = 0
     count = 0
     for dept in dept_avgs:
-        summ += dept["average"] * dept["count"]
-        count += dept["count"]
-    avg = summ / count
+        summ += dept_avgs[dept]["average"] * dept_avgs[dept]["count"]
+        count += dept_avgs[dept]["count"]
+    avg = summ * 1.0 / count
     db.students.update_one( {"id" : student_id},
                             {"$set" :
                              {"overall_average" : avg}
                             }
                           )
+# args: string course code
+# return: course document
+def get_course(code):
+    return db.courses.find_one({"code" : code})
+
+# args: string course code, string field, string/list/number value
+# return: none
+# updates field with new value
+# possible fields to be updated:
+#     * code
+#     * name
+#     * department
+#     * is_AP
+#     * prereq_courses
+#     * prereq_overall_average
+#     * prereq_department_average
+def edit_course(code, field, value):
+    db.courses.update_one( {"code" : code},
+                           {"$set" : {field : value}}
+                           )
+# args: string student OSIS number, string field, string/list/number value
+# return: none
+# updates field with new value
+# possible fields to be updated:
+#     * first_name
+#     * last_name
+#     * cohort
+#     * id
+#     * selections
+def edit_student(student_id, field, value):
+    db.students.update_one( {"id" : student_id},
+                            {"$set" : {field : value}}
+                           )
+# args: none
+# return: list of course codes of all AP courses
+def get_APs():
+    docs = db.courses.find({"is_AP" : 1})
+    ret = []
+    for doc in docs:
+        ret.append( doc["code"].encode("ascii") )
+    return ret

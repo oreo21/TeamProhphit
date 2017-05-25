@@ -2,8 +2,8 @@ from pymongo import MongoClient
 import csv
 import hashlib
 
-#server = MongoClient()
-server = MongoClient("lisa.stuy.edu")
+server = MongoClient()
+#server = MongoClient("lisa.stuy.edu")
 db = server['ttpp']
 
 course_file = "data/courses.csv"
@@ -21,6 +21,7 @@ def init_courses(filename):
         course["code"] = elem["CourseCode"]
         course["name"] = elem["CourseName"]
         course["department"] = elem["Department"]
+        course["is_AP"] = 1 if course["code"][-1] == "X" else 0
         course["prereq_courses"] = []
         course["prereq_overall_average"] = 0
         course["prereq_department_average"] = 0
