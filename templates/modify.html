@@ -7,9 +7,15 @@
 {{course}}
 
 <form action='/modifyCourse/'>
-  Department <input type="text" name="dept"><br>
-  Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100"><br>
-  Minimum Departmental Average <input type="number" name="minDept" min="0" max="100"><br>
+  Name: <input type="text" name="name" value="{{course_info['name']}}"><br>
+  Department: <select name="dept">
+    <option selected value="{{course_info['department']}}">{{course_info['department']}}</option>
+    {%for d in depts%}
+      <option value="{{d}}">{{d}}</option>
+    {%endfor%}
+      </select><br>
+  Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100" value={{course_info['prereq_overall_average']}}><br>
+  Minimum Departmental Average <input type="number" name="minDept" min="0" max="100" value={{course_info['prereq_department_average']}}><br>
   Cohort Requirement <input type="number" name="cohort"><br>
   Prerequisite Courses:<br>
 
@@ -22,4 +28,11 @@
   <input type="hidden" name="course" value="{{course}}">
   <input type="submit" value="Submit">
 </form>
+
+Current Prerequisite Courses:
+{%for i in course_info['prereq_courses']%}
+<p>{{i}}</p>
+{%endfor%}
+
+
 {%endblock%}

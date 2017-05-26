@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["mrgrumpy@stuy.edu", "jxu9@stuy.edu"]
+adminlist = ["mrgrumpy@stuy.edu", "jxu9@stuy.edu", "vmavromatis@stuy.edu"]
 
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
@@ -104,9 +104,9 @@ def admin_home():
 
 @app.route("/search/")
 def search():
-    query = request.form["search"]
-    #results = db_manager.get_student(query)
-    return render_template("search.html" ''',student=results''')
+    query = request.query_string[7:]
+    results = db_manager.get_student(query)
+    return render_template("search.html",student=results)
     """
 {u'cohort': u'2017',
 u'first_name': u'Moe',
@@ -167,15 +167,18 @@ def rm():
     #NOTE: function to remove course
     return redirect(url_for('home'))
 
+#options for editing course
 @app.route('/mod/<course>/')
 def mod(course):
     #NOTE: will eventually be list of courses in same dep't that can be prereqs
     courses = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('modify.html',course=str(course),courses=courses)
+    depts = db_manager.list_departments()
+    course_info = db_manager.get_course(course)
+    return render_template('modify.html',course=str(course),courses=courses,depts=depts,course_info = course_info)
 
+#does actual editing of course
 @app.route('/modifyCourse/')
 def modifyCourse():
-    #NOTE: deal w/adding prereqs later
     return redirect(url_for('adHome'))
 
 #example of how to deal w/file

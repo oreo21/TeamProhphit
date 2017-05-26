@@ -7,7 +7,7 @@ server = MongoClient()
 db = server['ttpp']
 
 course_file = "data/courses.csv"
-    
+
 def initialize():
     init_courses(course_file)
     init_departments(course_file)
@@ -44,11 +44,11 @@ def init_departments(filename):
     for dept in depts:
         data.append(depts[dept])
     db.departments.insert_many(data)
-        
+
 def init_admin():
     admin = {}
     admin['username'] = "admin"
     admin['password'] = hashlib.sha512("password").hexdigest()
     db.admins.insert_one(admin)
-    
+
 initialize()
