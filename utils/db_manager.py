@@ -180,3 +180,7 @@ def get_APs():
     for doc in docs:
         ret.append( doc["code"].encode("ascii") )
     return ret
+
+def get_department_courses(department):
+    dept = db.departments.find_one({"name" : department})
+    return dept["courses"]
