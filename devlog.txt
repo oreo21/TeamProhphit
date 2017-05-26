@@ -133,3 +133,7 @@ remove is less theoretical
 navbar has correct links
 search works in theory
 mod uses real information
+
+amyX -- 2017-05-25 23:37
+changed the grid structure of modify.html to make the page more readable so that the user doesn't have to scroll
+added the flask code to get the current course's requirements and display them
