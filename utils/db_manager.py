@@ -58,6 +58,9 @@ def add_students(f):
 
             student['overall_average'] = 0
             student['selections'] = []
+            student['exceptions'] = []
+            student["amount"] = 0
+            
             student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
 
             db.students.insert_one(student)
@@ -144,21 +147,6 @@ def recalculate_overall_average(student_id):
 def get_course(code):
     return db.courses.find_one({"code" : code})
 
-# args: string course code, string field, string/list/number value
-# return: none
-# updates field with new value
-# possible fields to be updated:
-#     * code
-#     * name
-#     * department
-#     * is_AP
-#     * prereq_courses
-#     * prereq_overall_average
-#     * prereq_department_average
-def edit_course(code, field, value):
-    db.courses.update_one( {"code" : code},
-                           {"$set" : {field : value}}
-                           )
 # args: string student OSIS number, string field, string/list/number value
 # return: none
 # updates field with new value
@@ -184,3 +172,27 @@ def get_APs():
 def get_department_courses(department):
     dept = db.departments.find_one({"name" : department})
     return dept["courses"]
+
+# args: string course code, string field, list/number value
+# return: none
+# updates field with new value
+# possible fields to be updated:
+#     * prereq_courses
+#     * prereq_overall_average
+#     * prereq_department_average
+def edit_course(code, field, value):
+    db.courses.update_one( {"code" : code},
+                           {"$set" : {field : value}}
+                           )
+
+
+
+# PE courses: PE---A or PE---B
+# Science courses:
+#  physics SP---
+#  chemistry SC---
+#  biology SB--- or SL---
+#    admin inputs for every other combo
+#    lab courses: S---L
+# Math courses:
+#  compsci MK---

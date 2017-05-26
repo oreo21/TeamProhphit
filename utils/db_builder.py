@@ -24,7 +24,7 @@ def init_courses(filename):
         course["is_AP"] = 1 if course["code"][-1] == "X" else 0
         course["prereq_courses"] = []
         course["prereq_overall_average"] = 0
-        course["prereq_department_average"] = 0
+        course["prereq_department_averages"] = []
         db.courses.insert_one(course)
 
 def init_departments(filename):
