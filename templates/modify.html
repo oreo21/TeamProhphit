@@ -4,32 +4,35 @@
 {%endblock%}
 
 {%block body%}
-{{course}}
+<h2>{{course}}</h2>
+<div class="row">
+  <div class="col-md-12">
+    <form action='/modifyCourse/' class="form-horizontal">
+      <p>Name: <input type="text" name="name" value="{{course_info['name']}}"></p>
+      <p>Department: <select name="dept">
+        <option selected value="{{course_info['department']}}">{{course_info['department']}}</option>
+        {%for d in depts%}
+        <option value="{{d}}">{{d}}</option>
+        {%endfor%}
+      </select></p>
+      <p>Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100" value={{course_info['prereq_overall_average']}}></p>
+      <p>Minimum Departmental Average <input type="number" name="minDept" min="0" max="100" value={{course_info['prereq_department_average']}}></p>
+      <p>Cohort Requirement <input type="number" name="cohort"></p>
+      <h4>Prerequisite Courses:</h4>
 
-<form action='/modifyCourse/'>
-  Name: <input type="text" name="name" value="{{course_info['name']}}"><br>
-  Department: <select name="dept">
-    <option selected value="{{course_info['department']}}">{{course_info['department']}}</option>
-    {%for d in depts%}
-      <option value="{{d}}">{{d}}</option>
-    {%endfor%}
-      </select><br>
-  Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100" value={{course_info['prereq_overall_average']}}><br>
-  Minimum Departmental Average <input type="number" name="minDept" min="0" max="100" value={{course_info['prereq_department_average']}}><br>
-  Cohort Requirement <input type="number" name="cohort"><br>
-  Prerequisite Courses:<br>
-
-    {%for course in courses%}
+      {%for course in courses%}
 
       <input type="checkbox" name="prereq" value="{{course}}"> {{course}}<br>
 
-    {%endfor%}
+      {%endfor%}
 
-  <input type="hidden" name="course" value="{{course}}">
-  <input type="submit" value="Submit">
-</form>
+      <input type="hidden" name="course" value="{{course}}">
+      <input type="submit" value="Submit" class="btn btn-info">
+    </form>
+  </div>
+</div>
 
-Current Prerequisite Courses:
+<h3>Current Prerequisite Courses:</h3>
 {%for i in course_info['prereq_courses']%}
 <p>{{i}}</p>
 {%endfor%}
