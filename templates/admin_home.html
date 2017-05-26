@@ -37,6 +37,26 @@
             <p><a href="/mod/{{course}}/">{{course}}</a></p>
 
           {%endfor%}
+
+          {% for dept in dept%}
+          <div class="container">
+            <h2>{dept}</h2>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1">Click to reveal</a>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                  <div class="panel-body">courses</div>
+                  <div class="panel-footer">Panel Footer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
         </div>
     </div>
   </ul>

@@ -4,7 +4,7 @@ from utils import auth
 from utils import db_manager
 
 #oauth imports and stuff
-#from oauth2client.client import flow_from_clientsecrets, OAuth2Credentials # OAuth library, import the function and class that this uses
+from oauth2client.client import flow_from_clientsecrets, OAuth2Credentials # OAuth library, import the function and class that this uses
 from httplib2 import Http # The http library to issue REST calls to the oauth api
 
 import json # Json library to handle replies
@@ -72,38 +72,6 @@ def home():
     else:
         return render_template('home.html')
 
-# @app.route("/admin")
-# def admin_login():
-#     return render_template('admin_login.html')
-
-'''
-@app.route('/home/')
-def home():
-    if 'user' in session:
-        return render_template('home.html', user = session['user'])
-    else:
-        return redirect(url_for('login'))
-'''
-
-# @app.route('/authenticate/', methods = ['POST'])
-# def authenticate():
-#     u = request.form['username']
-#     p = request.form['password']
-#     t = request.form['acct_type']
-#     data = auth.login(u, p, t)
-#     if data[1]: # login successful
-#         session['user'] = u
-#         session['acct_type'] = t
-#         if t == 'student':
-#             return redirect(url_for('student_home'))
-#         elif t == 'admin':
-#             return redirect(url_for('admin_home'))
-#     else:
-#         if t == 'student':
-#             return render_template('student_login.html', messageLogin = data[0])
-#         elif t == 'admin':
-#             return render_template('admin_login.html', messageLogin = data[0])
-
 @app.route('/logout/')
 def logout():
     if 'admin' in session:
@@ -128,11 +96,71 @@ def signup():
 
 @app.route('/admin_home/')
 def admin_home():
+    # getdept = db_manager.list_departments()
     if 'admin' not in session:
         return redirect(url_for('oauth_testing'))
     courses = ['HGS44XE','HGS44XW','HPS21X']
     return render_template('admin_home.html', courses= courses, login=True)
 
+@app.route("/search/")
+def search():
+    query = request.form["search"]
+    #results = db_manager.get_student(query)
+    return render_template("search.html" ''',student=results''')
+    """
+{u'cohort': u'2017',
+u'first_name': u'Moe',
+u'last_name': u'Szyslak',
+u'selections': [],
+u'department_averages': {
+u'Visual Arts': {u'count': 0, u'average': 0},
+u'Theater': {u'count': 0, u'average': 0},
+u'Science': {u'count': 0, u'average': 0},
+u'Guidance': {u'count': 0, u'average': 0},
+u'Functional Codes': {u'count': 0, u'average': 0},
+u'PE and Health': {u'count': 0, u'average': 0},
+u'Human Services ': {u'count': 0, u'average': 0},
+u'Music': {u'count': 0, u'average': 0},
+u'English/ESL': {u'count': 0, u'average': 0},
+u'Social Studies': {u'count': 0, u'average': 0},
+u'Mathematics': {u'count': 0, u'average': 0},
+u'Technology': {u'count': 0, u'average': 0},
+u'LOTE': {u'count': 0, u'average': 0},
+u'Career Development': {u'count': 0, u'average': 0}
+},
+u'classes_taken': {
+u'Visual Arts': [],
+u'Theater': [],
+u'Science': [],
+u'Guidance': [],
+u'Functional Codes': [],
+u'PE and Health': [],
+u'Social Studies': [],
+u'Music': [],
+u'English/ESL': [],
+u'Unknown': [
+{
+u'code': u'SLN11A',
+u'weight': 1,
+u'mark': u'98'
+},
+{
+u'code': u'MEN11A',
+u'weight': 1,
+u'mark': u'100'
+}
+],
+u'Human Services ': [],
+u'Mathematics': [],
+u'Technology': [],
+u'LOTE': [],
+u'Career Development': []
+},
+u'_id': ObjectId('592649559478151726b3c26d'),
+u'overall_average': 0,
+u'id': u'111111128'}
+
+    """
 @app.route('/rm/')
 def rm():
     course = request.form['course']

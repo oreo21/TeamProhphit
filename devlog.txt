@@ -114,3 +114,8 @@ haleyZ -- 2017-05-24 23:29
 added db functions to get course by code, get student by id, edit course, edit student, get list of all AP courses
 wrote up a list to let front-end/Flask team members know what functions I wrote and when they should be utilized
 commented my functions to explain what they do
+
+amyX -- 2017-05-25
+started adding the code for modifying courses on the front end and flask side
+created search.html template and created search route in app.py + added flask loops in search.html
+debugged oauth problems
