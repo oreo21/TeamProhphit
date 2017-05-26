@@ -105,63 +105,66 @@ def admin_home():
 
 @app.route("/search/")
 def search():
-    query = request.form["search"]
-    #results = db_manager.get_student(query)
-    return render_template("search.html" ''',student=results''')
-    """
-{u'cohort': u'2017',
-u'first_name': u'Moe',
-u'last_name': u'Szyslak',
-u'selections': [],
-u'department_averages': {
-u'Visual Arts': {u'count': 0, u'average': 0},
-u'Theater': {u'count': 0, u'average': 0},
-u'Science': {u'count': 0, u'average': 0},
-u'Guidance': {u'count': 0, u'average': 0},
-u'Functional Codes': {u'count': 0, u'average': 0},
-u'PE and Health': {u'count': 0, u'average': 0},
-u'Human Services ': {u'count': 0, u'average': 0},
-u'Music': {u'count': 0, u'average': 0},
-u'English/ESL': {u'count': 0, u'average': 0},
-u'Social Studies': {u'count': 0, u'average': 0},
-u'Mathematics': {u'count': 0, u'average': 0},
-u'Technology': {u'count': 0, u'average': 0},
-u'LOTE': {u'count': 0, u'average': 0},
-u'Career Development': {u'count': 0, u'average': 0}
-},
-u'classes_taken': {
-u'Visual Arts': [],
-u'Theater': [],
-u'Science': [],
-u'Guidance': [],
-u'Functional Codes': [],
-u'PE and Health': [],
-u'Social Studies': [],
-u'Music': [],
-u'English/ESL': [],
-u'Unknown': [
-{
-u'code': u'SLN11A',
-u'weight': 1,
-u'mark': u'98'
-},
-{
-u'code': u'MEN11A',
-u'weight': 1,
-u'mark': u'100'
-}
-],
-u'Human Services ': [],
-u'Mathematics': [],
-u'Technology': [],
-u'LOTE': [],
-u'Career Development': []
-},
-u'_id': ObjectId('592649559478151726b3c26d'),
-u'overall_average': 0,
-u'id': u'111111128'}
+    query = request.query_string[7:]
+    results = db_manager.get_student(query)
+    return render_template("search.html",student=results)
 
-    """
+"""
+what each student looks like:
+    {
+    u'cohort': u'2017',
+    u'first_name': u'Moe',
+    u'last_name': u'Szyslak',
+    u'selections': [],
+    u'department_averages': {
+        u'Visual Arts': {u'count': 0, u'average': 0},
+        u'Theater': {u'count': 0, u'average': 0},
+        u'Science': {u'count': 0, u'average': 0},
+        u'Guidance': {u'count': 0, u'average': 0},
+        u'Functional Codes': {u'count': 0, u'average': 0},
+        u'PE and Health': {u'count': 0, u'average': 0},
+        u'Human Services ': {u'count': 0, u'average': 0},
+        u'Music': {u'count': 0, u'average': 0},
+        u'English/ESL': {u'count': 0, u'average': 0},
+        u'Social Studies': {u'count': 0, u'average': 0},
+        u'Mathematics': {u'count': 0, u'average': 0},
+        u'Technology': {u'count': 0, u'average': 0},
+        u'LOTE': {u'count': 0, u'average': 0},
+        u'Career Development': {u'count': 0, u'average': 0}
+    },
+    u'classes_taken': {
+        u'Visual Arts': [],
+        u'Theater': [],
+        u'Science': [],
+        u'Guidance': [],
+        u'Functional Codes': [],
+        u'PE and Health': [],
+        u'Social Studies': [],
+        u'Music': [],
+        u'English/ESL': [],
+        u'Unknown': [
+            {
+            u'code': u'SLN11A',
+            u'weight': 1,
+            u'mark': u'98'
+            },
+            {
+            u'code': u'MEN11A',
+            u'weight': 1,
+            u'mark': u'100'
+            }
+        ],
+        u'Human Services ': [],
+        u'Mathematics': [],
+        u'Technology': [],
+        u'LOTE': [],
+        u'Career Development': []
+    },
+    u'_id': ObjectId('592649559478151726b3c26d'),
+    u'overall_average': 0,
+    u'id': u'111111128'}
+
+"""
 @app.route('/rm/')
 def rm():
     course = request.form['course']
@@ -172,7 +175,9 @@ def rm():
 def mod(course):
     #NOTE: will eventually be list of courses in same dep't that can be prereqs
     courses = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('modify.html',course=str(course),courses=courses)
+    depts = db_manager.list_departments()
+    course_info = db_manager.get_course(course)
+    return render_template('modify.html',course=str(course),courses=courses,depts=depts,course_info = course_info)
 
 @app.route('/modifyCourse/')
 def modifyCourse():
