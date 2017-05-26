@@ -177,7 +177,7 @@ def mod(course):
     courses = ['HGS44XE','HGS44XW','HPS21X']
     depts = db_manager.list_departments()
     course_info = db_manager.get_course(course)
-    return render_template('modify.html',course=str(course),courses=courses,depts=depts,course_info = course_info)
+    return render_template('modify.html',course=str(course),courses=courses,depts=depts,course_info = course_info, special=True)
 
 @app.route('/modifyCourse/')
 def modifyCourse():
