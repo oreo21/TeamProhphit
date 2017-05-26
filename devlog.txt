@@ -118,6 +118,28 @@ added db functions to get course by code, get student by id, edit course, edit s
 wrote up a list to let front-end/Flask team members know what functions I wrote and when they should be utilized
 commented my functions to explain what they do
 
+reoK, vannaM, amyX, haleyZ -- 2017-05-25 14:00
+pow wow with Mr. Cheng:
+
+-there must be 2 separate login pages (admins vs. students) as an added safety measure
+-OAuth will be used for ALL accounts, super-admin included
+-method of encryption is up to us
+-types of prereqs (for APs):
+    -overall average
+    -dept. average for math (excluding CS, which includes a K in code) and sciences (split by dept.)
+    -having a certain grade in specified course
+    -courses taken  (pass || taking), pass in file 1.04 & taking in file 1.01
+-update and check in more often!
+-PE and labs (7 chars, ends with 'L') have a weight of 0, included in file 1.14 (transcript)
+-project needs proper documentation, so that next year's students can pick up where we leave off
+-output file will contain rows of students in the format: name | OSIS | requests
+-purpose of super-admin is to make admins, otherwise "goes to sleep" and serves only as fail safe
+-admin override features:
+       -change # of APs a student can take
+       -make certain APs eligible/ineligible for students
+       -set up weird classes before turning on the system
+-when admins setup course requirements, implent OR and AND abilities to combine reqs
+
 amyX -- 2017-05-25 21:07
 started adding the code for modifying courses on the front end and flask side
 created search.html template and created search route in app.py + added flask loops in search.html
