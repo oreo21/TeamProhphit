@@ -4,9 +4,19 @@
 {%endblock%}
 
 {%block body%}
+<!-- content bar-->
+
+<ul class="pager">
+  <li><a href="/admin_home/">Return to home</a></li>
+</ul>
+
+
+<!--content-->
+
 <h2>{{course}}</h2>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
+    <h3>Modify Requirements:</h3>
     <form action='/modifyCourse/' class="form-horizontal">
       <p>Name: <input type="text" name="name" value="{{course_info['name']}}"></p>
       <p>Department: <select name="dept">
@@ -30,12 +40,18 @@
       <input type="submit" value="Submit" class="btn btn-info">
     </form>
   </div>
+  <div class="col-md-6">
+    <h3>Current Prerequisite Requirements:</h3>
+    <p>
+      Prerequisites: <br/><ol>
+        {%for data in course_info["prereq_courses"]%}
+          <li>{{data}}</li>
+        {%endfor%}</ol>
+      <br/>
+      Needed Overall Average: {{course_info["prereq_overall_average"]}}<br/>
+      Needed Department Average: {{course_info["prereq_department_average"]}}<br/>
+    </p>
+  </div>
 </div>
-
-<h3>Current Prerequisite Courses:</h3>
-{%for i in course_info['prereq_courses']%}
-<p>{{i}}</p>
-{%endfor%}
-
 
 {%endblock%}
