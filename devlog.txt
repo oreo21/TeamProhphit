@@ -119,3 +119,4 @@ amyX -- 2017-05-25
 started adding the code for modifying courses on the front end and flask side
 created search.html template and created search route in app.py + added flask loops in search.html
 debugged oauth problems
+added some display fxnality to front end
