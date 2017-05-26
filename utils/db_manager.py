@@ -32,7 +32,7 @@ def list_departments():
 # return: none
 def add_students(f):
     transcripts = csv.DictReader(f)
-    
+
     for class_record in transcripts:
         course_code = class_record["Course"]
         course_info = db.courses.find_one( {"code": course_code } )
@@ -47,7 +47,7 @@ def add_students(f):
             student['first_name'] = class_record["FirstName"]
             student['last_name'] = class_record["LastName"]
             student['cohort'] = str(datetime.datetime.now().year - (int(class_record["Grade"]) - 9))
-            
+
             student['classes_taken'] = {}
             student['department_averages'] = {}
             depts = list_departments()
@@ -55,7 +55,7 @@ def add_students(f):
                 student['classes_taken'][dept] = []
                 student['department_averages'][dept] = {"average": 0, "count": 0}
             student['classes_taken']["Unknown"] = [] #stores unrecognized codes
-        
+
             student['overall_average'] = 0
             student['selections'] = []
             student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
