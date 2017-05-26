@@ -160,7 +160,13 @@ amyX -- 2017-05-25 23:37
 changed the grid structure of modify.html to make the page more readable so that the user doesn't have to scroll
 added the flask code to get the current course's requirements and display them
 
-amyX -- 2017-05-26 24:08
+amyX -- 2017-05-26 00:08
 updated from tabs to pills on admin home
 changed the arrangement of the now-pills
 added return to previous button on modify/<course> pages
+
+haleyZ -- 2017-05-26 00:29
+finished designing the db schema for storing prereq courses to allow for admins to input a variety of requirement structures (for example, "courseX AND (courseY OR courseZ)" )
+added a function to return all the courses in a department
+figured out special cases for classes that I will need to address
+made a to-do list for upcoming days
