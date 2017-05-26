@@ -137,3 +137,8 @@ mod uses real information
 amyX -- 2017-05-25 23:37
 changed the grid structure of modify.html to make the page more readable so that the user doesn't have to scroll
 added the flask code to get the current course's requirements and display them
+
+amyX -- 2017-05-26 24:08
+updated from tabs to pills on admin home
+changed the arrangement of the now-pills
+added return to previous button on modify/<course> pages
