@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["mrgrumpy@stuy.edu", "jxu9@stuy.edu"]
+adminlist = ["mrgrumpy@stuy.edu", "jxu9@stuy.edu", "vmavromatis@stuy.edu"]
 
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
@@ -108,69 +108,67 @@ def search():
     query = request.query_string[7:]
     results = db_manager.get_student(query)
     return render_template("search.html",student=results)
+    """
+{u'cohort': u'2017',
+u'first_name': u'Moe',
+u'last_name': u'Szyslak',
+u'selections': [],
+u'department_averages': {
+u'Visual Arts': {u'count': 0, u'average': 0},
+u'Theater': {u'count': 0, u'average': 0},
+u'Science': {u'count': 0, u'average': 0},
+u'Guidance': {u'count': 0, u'average': 0},
+u'Functional Codes': {u'count': 0, u'average': 0},
+u'PE and Health': {u'count': 0, u'average': 0},
+u'Human Services ': {u'count': 0, u'average': 0},
+u'Music': {u'count': 0, u'average': 0},
+u'English/ESL': {u'count': 0, u'average': 0},
+u'Social Studies': {u'count': 0, u'average': 0},
+u'Mathematics': {u'count': 0, u'average': 0},
+u'Technology': {u'count': 0, u'average': 0},
+u'LOTE': {u'count': 0, u'average': 0},
+u'Career Development': {u'count': 0, u'average': 0}
+},
+u'classes_taken': {
+u'Visual Arts': [],
+u'Theater': [],
+u'Science': [],
+u'Guidance': [],
+u'Functional Codes': [],
+u'PE and Health': [],
+u'Social Studies': [],
+u'Music': [],
+u'English/ESL': [],
+u'Unknown': [
+{
+u'code': u'SLN11A',
+u'weight': 1,
+u'mark': u'98'
+},
+{
+u'code': u'MEN11A',
+u'weight': 1,
+u'mark': u'100'
+}
+],
+u'Human Services ': [],
+u'Mathematics': [],
+u'Technology': [],
+u'LOTE': [],
+u'Career Development': []
+},
+u'_id': ObjectId('592649559478151726b3c26d'),
+u'overall_average': 0,
+u'id': u'111111128'}
 
-"""
-what each student looks like:
-    {
-    u'cohort': u'2017',
-    u'first_name': u'Moe',
-    u'last_name': u'Szyslak',
-    u'selections': [],
-    u'department_averages': {
-        u'Visual Arts': {u'count': 0, u'average': 0},
-        u'Theater': {u'count': 0, u'average': 0},
-        u'Science': {u'count': 0, u'average': 0},
-        u'Guidance': {u'count': 0, u'average': 0},
-        u'Functional Codes': {u'count': 0, u'average': 0},
-        u'PE and Health': {u'count': 0, u'average': 0},
-        u'Human Services ': {u'count': 0, u'average': 0},
-        u'Music': {u'count': 0, u'average': 0},
-        u'English/ESL': {u'count': 0, u'average': 0},
-        u'Social Studies': {u'count': 0, u'average': 0},
-        u'Mathematics': {u'count': 0, u'average': 0},
-        u'Technology': {u'count': 0, u'average': 0},
-        u'LOTE': {u'count': 0, u'average': 0},
-        u'Career Development': {u'count': 0, u'average': 0}
-    },
-    u'classes_taken': {
-        u'Visual Arts': [],
-        u'Theater': [],
-        u'Science': [],
-        u'Guidance': [],
-        u'Functional Codes': [],
-        u'PE and Health': [],
-        u'Social Studies': [],
-        u'Music': [],
-        u'English/ESL': [],
-        u'Unknown': [
-            {
-            u'code': u'SLN11A',
-            u'weight': 1,
-            u'mark': u'98'
-            },
-            {
-            u'code': u'MEN11A',
-            u'weight': 1,
-            u'mark': u'100'
-            }
-        ],
-        u'Human Services ': [],
-        u'Mathematics': [],
-        u'Technology': [],
-        u'LOTE': [],
-        u'Career Development': []
-    },
-    u'_id': ObjectId('592649559478151726b3c26d'),
-    u'overall_average': 0,
-    u'id': u'111111128'}
-
-"""
+    """
 @app.route('/rm/')
 def rm():
     course = request.form['course']
     #NOTE: function to remove course
     return redirect(url_for('home'))
 
+#options for editing course
 @app.route('/mod/<course>/')
 def mod(course):
     #NOTE: will eventually be list of courses in same dep't that can be prereqs
@@ -179,9 +177,9 @@ def mod(course):
     course_info = db_manager.get_course(course)
     return render_template('modify.html',course=str(course),courses=courses,depts=depts,course_info = course_info, special=True)
 
+#does actual editing of course
 @app.route('/modifyCourse/')
 def modifyCourse():
-    #NOTE: deal w/adding prereqs later
     return redirect(url_for('adHome'))
 
 #example of how to deal w/file

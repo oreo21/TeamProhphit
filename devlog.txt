@@ -89,6 +89,9 @@ hard coded the guide for student home (subject to change); perhaps temporary
 amyX -- 2017-05-22 14:06
 fixed lumen theme font not showing problem
 
+vannaM -- 2017-05-23 20:00
+minor jscript so you can't pick APs twice
+
 amyX -- 2017-05-23 21:47
 set up oauth logins for the website
 wrote code to check if user logging in via gmail is a stuy.edu user
@@ -124,3 +127,9 @@ added some display fxnality to front end
 amyX -- 2017-05-25 22:19
 modified admin_home.html's modify course panel with flask code
 	write code to iterate through departments and then create panels for each departments, correctly linked the different div containers such that they'd open and respond to clicks appropriately
+	
+vannaM -- 2017-05-25 22:40
+remove is less theoretical
+navbar has correct links
+search works in theory
+mod uses real information
