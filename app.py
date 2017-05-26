@@ -96,11 +96,12 @@ def signup():
 
 @app.route('/admin_home/')
 def admin_home():
-    # getdept = db_manager.list_departments()
+    getdept = db_manager.list_departments()
+    print getdept
     if 'admin' not in session:
         return redirect(url_for('oauth_testing'))
     courses = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('admin_home.html', courses= courses, login=True)
+    return render_template('admin_home.html', courses= courses, login=True, depts=getdept)
 
 @app.route("/search/")
 def search():
@@ -188,7 +189,7 @@ def testForm():
     if 'upload' in request.files:
         #get the file
         filedata  = request.files['upload']
-        db_manager.init_students(filedata)
+        db_manager.add_students(filedata)
         #go to student home
         return redirect(url_for("admin_home"))
     #if the file is missing

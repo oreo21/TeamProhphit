@@ -115,8 +115,12 @@ added db functions to get course by code, get student by id, edit course, edit s
 wrote up a list to let front-end/Flask team members know what functions I wrote and when they should be utilized
 commented my functions to explain what they do
 
-amyX -- 2017-05-25
+amyX -- 2017-05-25 21:07
 started adding the code for modifying courses on the front end and flask side
 created search.html template and created search route in app.py + added flask loops in search.html
 debugged oauth problems
 added some display fxnality to front end
+
+amyX -- 2017-05-25 22:19
+modified admin_home.html's modify course panel with flask code
+	write code to iterate through departments and then create panels for each departments, correctly linked the different div containers such that they'd open and respond to clicks appropriately
