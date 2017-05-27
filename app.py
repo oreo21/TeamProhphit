@@ -83,8 +83,8 @@ def logout():
 @app.route('/student_home/')
 def student_home():
     #NOTE: dummy variables for now
-    #if 'student' not in session:
-    #    return redirect(url_for('oauth_testing'))
+    if 'student' not in session:
+        return redirect(url_for('oauth_testing'))
     numAps = 3
     aps = ['first','second','third','fourth','fifth']
     return render_template('student_home.html', numAps = numAps, aps=aps)
@@ -96,19 +96,51 @@ def signup():
 
 @app.route('/admin_home/')
 def admin_home():
-    getdept = db_manager.list_departments()
-    print getdept
     if 'admin' not in session:
         return redirect(url_for('oauth_testing'))
     courses = ['HGS44XE','HGS44XW','HPS21X']
-    return render_template('admin_home.html', courses= courses, login=True, depts=getdept)
+    getdept = db_manager.list_departments()
+    cohorts = ['2017','2018','2019','2020']
+    return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts)
+
+@app.route("/settings/", methods=['POST'])
+def settings():
+    if 'shut_down' in request.form:
+        #shut down function
+        print 'shut down'
+    else:
+        #export
+        print 'export'
+    return redirect(url_for('admin_home'))
 
 @app.route("/search/")
 def search():
     query = request.query_string[7:]
     results = db_manager.get_student(query)
-    return render_template("search.html",student=results)
-    """
+    courses = db_manager.get_APs()
+    return render_template("search.html",student=results,osis=query, courses=courses)
+
+@app.route("/modify_student/", methods = ['POST'])
+def modify_student():
+    #cohort
+    if 'cohort' in request.form:
+        cohort = request.form['cohort']
+    #selections; returns list
+    if 'selections' in request.form:
+        selections = request.form.getlist('selections')
+    #exceptions; returns list
+    if 'exceptions' in request.form:
+        exceptions = request.form.getlist('exceptions')
+    #number of aps
+    if 'amount' in request.form:
+        amount = request.form['amount']
+    return redirect(url_for('home'))
+
+@app.route("/delete_student/", methods = ['POST'])
+def delete_student():
+    return redirect(url_for('home'))
+
+"""
 {u'cohort': u'2017',
 u'first_name': u'Moe',
 u'last_name': u'Szyslak',
@@ -162,10 +194,16 @@ u'overall_average': 0,
 u'id': u'111111128'}
 
     """
-@app.route('/rm/')
-def rm():
-    course = request.form['course']
+@app.route('/rm_courses/', methods=["POST"])
+def rm_course():
+    #returns list
+    courses = request.form.getlist('course')
     #NOTE: function to remove course
+    return redirect(url_for('home'))
+
+@app.route('/rm_cohort/', methods=["POST"])
+def rm_cohort():
+    cohort = request.form['cohort']
     return redirect(url_for('home'))
 
 #options for editing course
@@ -173,12 +211,13 @@ def rm():
 def mod(course):
     #NOTE: will eventually be list of courses in same dep't that can be prereqs
     courses = ['HGS44XE','HGS44XW','HPS21X']
-    depts = db_manager.list_departments()
     course_info = db_manager.get_course(course)
-    return render_template('modify.html',course=str(course),courses=courses,depts=depts,course_info = course_info, special=True)
+    #hardcoded for now
+    cohorts = ['2017','2016','2015','2014']
+    return render_template('modify.html',course=str(course),courses=courses,course_info = course_info, special=True, cohorts=cohorts)
 
 #does actual editing of course
-@app.route('/modifyCourse/')
+@app.route('/modifyCourse/', methods = ['POST', 'GET'])
 def modifyCourse():
     return redirect(url_for('adHome'))
 
