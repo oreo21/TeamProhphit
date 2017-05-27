@@ -170,3 +170,7 @@ finished designing the db schema for storing prereq courses to allow for admins 
 added a function to return all the courses in a department
 figured out special cases for classes that I will need to address
 made a to-do list for upcoming days
+
+vannaM -- 2017-05-26 21:20
+removed now-irrelevant html files
+finished front-end functionality of remove, search (+ editing students), shut down of system, export file

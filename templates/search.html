@@ -5,5 +5,76 @@
 {%endblock%}
 
 {%block body%}
-{{student}}
+{%if student is iterable%}
+  <div class="jumbotron">
+    <h2>{{student['first_name']}} {{student['last_name']}}</h2>
+    <h4>{{osis}}</h4>
+  </div>
+
+  <div class="row">
+    <div class="text-center">
+      <form action='/modify_student/' class="form-horizontal" method="POST">
+
+        <p>Cohort: <input type="text" name="cohort" value="{{student['cohort']}}"></p>
+        <p>Student Selections: <br>
+          {%for i in student['selections']%}
+          <input type="checkbox" name="selections" value="{{i}}" checked><br>
+          {%endfor%}</p>
+          <p>Allow {{student['first_name']}} {{student['last_name']}} to take:  <div class="btn sml-btn btn-info" id="but">show</div></p>
+          <div id="options">
+            <p>{%for i in courses%}
+              <input type="checkbox" name="exceptions" value="{{i}}">{{i}}<br>
+              {%endfor%}</p>
+            </div>
+
+            <p>Allow student to take <input type="number" name="amount" value="{{student['amount']}}">APs</p>
+
+            <input type="submit" value="Submit" class="btn btn-info">
+
+        </form>
+        <form action="/delete_student/" onsubmit="return confirm('Are you sure that you want to delete this student? This action cannot be undone.');" method="POST">
+          <input type="submit" value="Delete" class="btn btn-danger" name="del" id="del">
+        </form>
+
+      </div>
+    </div>
+
+  <script>
+
+    var but = document.getElementById('but');
+    var options= document.getElementById('options');
+    var del = document.getElementById('del');
+
+    options.style.display= 'none';
+    var vis = false;
+
+    var click = function(){
+      if (vis){
+        vis = false;
+        options.style.display = 'none';
+        but.innerHTML = 'show';
+      }
+      else{
+        vis = true;
+        options.style.display = 'block';
+        but.innerHTML = 'hide';
+      }
+    }
+
+    but.addEventListener('click',click);
+
+  </script>
+
+{%else%}
+
+  No student matches this selection.
+
+{%endif%}
+
 {%endblock%}
+
+<!--
+{u'cohort': u'2015' u'first_name': u'Marge' u'last_name': u'Simpson' u'selections': [] u'department_averages': {} u'classes_taken': {u'Unknown': [{u'code': u'MGS43' u'weight': 1 u'mark': u'97'} {u'code': u'PPS81QB' u'weight': 1 u'mark': u'95'} {u'code': u'EES81QFC' u'weight': 1 u'mark': u'92'} {u'code': u'SLS43QL' u'weight': 1 u'mark': u'S'} {u'code': u'UAS11' u'weight': 1 u'mark': u'85'} {u'code': u'FSS61QE' u'weight': 1 u'mark': u'90'} {u'code': u'HGS41' u'weight': 1 u'mark': u'90'} {u'code': u'SLS43' u'weight': 1 u'mark': u'88'} {u'code': u'SLS44' u'weight': 1 u'mark': u'80'} {u'code': u'HGS42' u'weight': 1 u'mark': u'90'} {u'code': u'AHS11' u'weight': 1 u'mark': u'80'} {u'code': u'MGS44' u'weight': 1 u'mark': u'88'} {u'code': u'SLS44QL' u'weight': 1 u'mark': u'S'} {u'code': u'PPS82QB' u'weight': 1 u'mark': u'95'} {u'code': u'EES82QFC' u'weight': 1 u'mark': u'93'} {u'code': u'FSS62QE' u'weight': 1 u'mark': u'90'} {u'code': u'SCS21' u'weight': 1 u'mark': u'93'} {u'code': u'HGS43XE' u'weight': 1 u'mark': u'88'} {u'code': u'FSS63' u'weight': 1 u'mark': u'90'} {u'code': u'MRS21' u'weight': 1 u'mark': u'85'} {u'code': u'PPS83QB' u'weight': 1 u'mark': u'93'} {u'code': u'MKS21' u'weight': 1 u'mark': u'95'} {u'code': u'EES83QEL' u'weight': 1 u'mark': u'94'} {u'code': u'SCS21QL' u'weight': 1 u'mark': u'S'} {u'code': u'HGS44XE' u'weight': 1 u'mark': u'90'} {u'code': u'SCS22' u'weight': 1 u'mark': u'92'} {u'code': u'PPS84QA' u'weight': 1 u'mark': u'96'} {u'code': u'SCS22QL' u'weight': 1 u'mark': u'S'} {u'code': u'FSS64' u'weight': 1 u'mark': u'85'} {u'code': u'MRS22' u'weight': 1 u'mark': u'85'} {u'code': u'EES84QEL' u'weight': 1 u'mark': u'96'} {u'code': u'MKS22' u'weight': 1 u'mark': u'96'} {u'code': u'MQF11C' u'weight': 1 u'mark': u'100'} {u'code': u'SCF11C' u'weight': 1 u'mark': u'97'} {u'code': u'MPF11C' u'weight': 1 u'mark': u'97'} {u'code': u'SPF11C' u'weight': 1 u'mark': u'91'} {u'code': u'SEN11A' u'weight': 1 u'mark': u'100'} {u'code': u'FSN31A' u'weight': 1 u'mark': u'100'} {u'code': u'MEN11A' u'weight': 1 u'mark': u'98'} {u'code': u'PPN31' u'weight': 1 u'mark': u'100'}]} u'_id': ObjectId('592869d343f9da01e3f7c036') u'overall_average': 0 u'id': u'111111125'}
+
+
+-->
