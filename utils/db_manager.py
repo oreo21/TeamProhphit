@@ -37,11 +37,11 @@ def add_students(f):
         course_code = class_record["Course"]
         course_info = db.courses.find_one( {"code": course_code } )
         course_dept = course_info["department"] if course_info != None else "Unknown"
-        course_mark = class_record["Mark"]
 
         student = db.students.find_one( {"id" : class_record["StudentID"]} )
         #if student not in database, set up a dictionary for all student info
-        if student == None:
+        new = student == None:
+        if new:
             student = {}
             student['id'] = class_record["StudentID"]
             student['first_name'] = class_record["FirstName"]
@@ -55,23 +55,32 @@ def add_students(f):
                 student['classes_taken'][dept] = []
                 student['department_averages'][dept] = {"average": 0, "count": 0}
             student['classes_taken']["Unknown"] = [] #stores unrecognized codes
-
+            student['classes_taking'] = []
+            
             student['overall_average'] = 0
             student['selections'] = []
             student['exceptions'] = []
             student["amount"] = 0
-            
-            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
-
-            db.students.insert_one(student)
-        #if student is in db, update classes_taken field
-        else:
-            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
-            db.students.update_one( {"id" : student["id"]},
-                                    {"$set" :
-                                     {"classes_taken" : student["classes_taken"]}
-                                    }
-                                    )
+    
+        if "Mark" in class_record: #class has grade means class is in the past
+            course_mark = class_record["Mark"]
+            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark})
+            if new:
+                db.students.insert_one(student)
+            else:
+                db.students.update_one( {"id" : student["id"]},
+                                        {"$set" :
+                                         {"classes_taken" :
+                                          student["classes_taken"]}})
+        else: #class has no grade means class is current
+            student["classes_taking"].append(course_code)
+            if new:
+                db.students.insert_one(student)
+            else:
+                db.students.update_one( {"id" : student["id"]},
+                                        {"$set" :
+                                         {"classes_taken" :
+                                          student["classes_taken"]}})
 
 # args: string student OSIS number
 # return: student document as a dictionary

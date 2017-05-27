@@ -2,8 +2,8 @@ from pymongo import MongoClient
 import csv
 import hashlib
 
-server = MongoClient()
-#server = MongoClient("lisa.stuy.edu")
+#server = MongoClient()
+server = MongoClient("lisa.stuy.edu")
 db = server['ttpp']
 
 course_file = "data/courses.csv"
@@ -13,6 +13,26 @@ def initialize():
     init_departments(course_file)
     init_admin()
 
+def get_weight(code):
+    #Physical education classes
+    if code[:2] == "PE" and (code[-1] == "A" or code[-1] == "B"):
+        return 0
+    #Lab classes
+    if code[0] == "S" and code[-1] == "L":
+        return 0
+    return 1
+
+def get_science_department(code):
+    sym = code[1]
+    if sym == "P":
+        return "Physics"
+    elif sym == "C":
+        return "Chemistry"
+    elif sym == "L" or sym == "B":
+        return "Biology"
+    else:
+        return "Science"
+
 def init_courses(filename):
     f = open(filename)
     course_list = csv.DictReader(f)
@@ -20,11 +40,19 @@ def init_courses(filename):
         course = {}
         course["code"] = elem["CourseCode"]
         course["name"] = elem["CourseName"]
-        course["department"] = elem["Department"]
+
+        if course["code"][1] == "S":
+            course["department"] = get_science_department(course["code"])
+        else:
+            course["department"] = elem["Department"]
+
         course["is_AP"] = 1 if course["code"][-1] == "X" else 0
+        course["weight"] = get_weight(course["code"])
         course["prereq_courses"] = []
         course["prereq_overall_average"] = 0
         course["prereq_department_averages"] = []
+        if course["code"][0] == "S":
+            print course
         db.courses.insert_one(course)
 
 def init_departments(filename):
