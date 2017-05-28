@@ -40,13 +40,13 @@ def add_students(f):
 
         student = db.students.find_one( {"id" : class_record["StudentID"]} )
         #if student not in database, set up a dictionary for all student info
-        new = student == None:
+        new = student == None
         if new:
             student = {}
             student['id'] = class_record["StudentID"]
             student['first_name'] = class_record["FirstName"]
             student['last_name'] = class_record["LastName"]
-            student['cohort'] = str(datetime.datetime.now().year - (int(class_record["Grade"]) - 9))
+            student['cohort'] = class_record["Grade"]
 
             student['classes_taken'] = {}
             student['department_averages'] = {}
@@ -151,6 +151,9 @@ def recalculate_overall_average(student_id):
                              {"overall_average" : avg}
                             }
                           )
+
+
+
 # args: string course code
 # return: course document
 def get_course(code):
@@ -170,12 +173,13 @@ def edit_student(student_id, field, value):
                             {"$set" : {field : value}}
                            )
 # args: none
-# return: list of course codes of all AP courses
+# return: list of course codes first term of all AP courses
 def get_APs():
     docs = db.courses.find({"is_AP" : 1})
     ret = []
     for doc in docs:
-        ret.append( doc["code"].encode("ascii") )
+        if doc["department"] != "Functional Codes" and "2 of 2" not in doc["name"]:
+            ret.append( doc["code"].encode("ascii") )
     return ret
 
 def get_department_courses(department):
@@ -194,14 +198,74 @@ def edit_course(code, field, value):
                            {"$set" : {field : value}}
                            )
 
+#return -1 if class not taken    
+def get_class_mark(student_id, course_code):
+    student = db.students.find_one("id" : student_id)
+    
+    course_info = db.courses.find_one({"code" : code})
+    dept = course_info["department"]
+    for course in student["classes_taken"][dept]:
+        if course["code"] = course_code:
+            return course["mark"]
+    return -1
+    
+#generates list of aps this student can sign up for based on pre-reqs
+def get_applicable_APs(student_id):
+    student = db.students.find_one({"id": student_id})
+    all_APs = get_APs()
+    ret = []
+    for course_code in all_APs:
+        course = db.courses.find_one({"code" : course_code})
+
+        #in the correct grade
+        if student["cohort"] not in course["grade_levels"]:
+            continue
+
+        #meets overall avg requirement
+        if student["overall_average"] < course["prereq_overall_average"]:
+            continue
+
+        #meets department avgs requirement
+        meets_avg_reqs = True
+        for and_req in course["prereq_department_averages"]:
+            met = False
+            for or_req in and_req:
+                dept = req["name"]
+                avg = req["average"]
+                if student[department_averages][dept] >= avg:
+                    met = True
+                    break
+            if not met:
+                meets_avg_reqs = False
+                break
+        
+        if not meets_avg_reqs:
+            continue
+
+        #meets prereq class requirements
+        meets_class_reqs = True
+        for and_req in course["prereq_courses"]:
+            met = False
+            for or_req in and_req:
+                code = req["code"]
+                mark = req["mark"]
+                
+                if code in student["classes_taking"] or \
+                   get_class_mark(student_id, code) >= mark:
+                    met = True
+                    break
+            if not met:
+                meets_class_reqs = False
+                break
+
+        if not meets_class_reqs:
+            continue
+
+        ret.append(course_code)
+        
+    
 
 
-# PE courses: PE---A or PE---B
-# Science courses:
-#  physics SP---
-#  chemistry SC---
-#  biology SB--- or SL---
-#    admin inputs for every other combo
-#    lab courses: S---L
 # Math courses:
 #  compsci MK---
+ 

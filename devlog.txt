@@ -174,3 +174,8 @@ made a to-do list for upcoming days
 vannaM -- 2017-05-26 21:20
 removed now-irrelevant html files
 finished front-end functionality of remove, search (+ editing students), shut down of system, export file
+
+haleyZ -- 2017-05-28 01:24
+adjusted db schema so that courses store applicable grade levels (9, 10 11, 12)
+fixed bug with determining cours weights
+wrote function to generate list of aps a student qualifies for (untested)
