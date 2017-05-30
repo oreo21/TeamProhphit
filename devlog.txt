@@ -179,3 +179,8 @@ haleyZ -- 2017-05-28 01:24
 adjusted db schema so that courses store applicable grade levels (9, 10 11, 12)
 fixed bug with determining cours weights
 wrote function to generate list of aps a student qualifies for (untested)
+
+haleyZ -- 2017-05-30 11:00
+wrote remove_student, remove_cohort functions
+wrote grade_to_cohort, cohort_to_grade helpers
+added admin override to ap generation function
