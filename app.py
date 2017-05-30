@@ -106,8 +106,14 @@ def admin_home():
 @app.route("/search/")
 def search():
     query = request.query_string[7:]
+    print query
     results = db_manager.get_student(query)
     return render_template("search.html",student=results)
+
+@app.route('/results/')
+def results():
+
+
     """
 {u'cohort': u'2017',
 u'first_name': u'Moe',
