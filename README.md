@@ -9,7 +9,7 @@ Our goal is to create a website that students can use to select electives and AP
 ### Group Members: 
 * Reo Kimura 
 * Vanna Mavromatis
-* Haley Zheng
+* Haley Zeng
 * Amy Xu
 
 ### Dependencies:
