@@ -98,6 +98,20 @@ def get_overall_average(student_id):
     student = get_student(student_id)
     return student["overall_average"]
 
+# args: string student OSIS number, string field, string/list/number value
+# return: none
+# updates field with new value
+# possible fields to be updated:
+#     * first_name
+#     * last_name
+#     * cohort
+#     * id
+#     * selections
+def edit_student(student_id, field, value):
+    db.students.update_one( {"id" : student_id},
+                            {"$set" : {field : value}}
+                           )
+
 # args: string student OSIS number, string department name
 # return: none
 # recalculates the departmental average
@@ -166,19 +180,6 @@ def cohort_to_grade(cohort):
 def get_course(code):
     return db.courses.find_one({"code" : code})
 
-# args: string student OSIS number, string field, string/list/number value
-# return: none
-# updates field with new value
-# possible fields to be updated:
-#     * first_name
-#     * last_name
-#     * cohort
-#     * id
-#     * selections
-def edit_student(student_id, field, value):
-    db.students.update_one( {"id" : student_id},
-                            {"$set" : {field : value}}
-                           )
 # args: none
 # return: list of course codes first term of all AP courses
 def get_APs():
