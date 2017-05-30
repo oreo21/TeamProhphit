@@ -14,20 +14,18 @@
 <!--content-->
 
 <h2>{{course}}</h2>
+<h4>{{course_info['name']}}</h4>
+<h4>{{course_info['department']}}</h4>
 <div class="row">
   <div class="col-md-6">
     <h3>Modify Requirements:</h3>
-    <form action='/modifyCourse/' class="form-horizontal">
-      <p>Name: <input type="text" name="name" value="{{course_info['name']}}"></p>
-      <p>Department: <select name="dept">
-        <option selected value="{{course_info['department']}}">{{course_info['department']}}</option>
-        {%for d in depts%}
-        <option value="{{d}}">{{d}}</option>
-        {%endfor%}
-      </select></p>
+    <form action='/modifyCourse/' class="form-horizontal" method="POST">
       <p>Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100" value={{course_info['prereq_overall_average']}}></p>
       <p>Minimum Departmental Average <input type="number" name="minDept" min="0" max="100" value={{course_info['prereq_department_average']}}></p>
-      <p>Cohort Requirement <input type="number" name="cohort"></p>
+      <h4>Cohort Requirement:</h4>
+        {%for cohort in cohorts%}
+        <input type="checkbox" name="cohort" value="{{cohort}}">{{cohort}}<br>
+        {%endfor%}
       <h4>Prerequisite Courses:</h4>
 
       {%for course in courses%}

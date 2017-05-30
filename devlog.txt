@@ -170,3 +170,17 @@ finished designing the db schema for storing prereq courses to allow for admins 
 added a function to return all the courses in a department
 figured out special cases for classes that I will need to address
 made a to-do list for upcoming days
+
+vannaM -- 2017-05-26 21:20
+removed now-irrelevant html files
+finished front-end functionality of remove, search (+ editing students), shut down of system, export file
+
+haleyZ -- 2017-05-28 01:24
+adjusted db schema so that courses store applicable grade levels (9, 10 11, 12)
+fixed bug with determining cours weights
+wrote function to generate list of aps a student qualifies for (untested)
+
+haleyZ -- 2017-05-30 11:00
+wrote remove_student, remove_cohort functions
+wrote grade_to_cohort, cohort_to_grade helpers
+added admin override to ap generation function

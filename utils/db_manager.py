@@ -37,17 +37,16 @@ def add_students(f):
         course_code = class_record["Course"]
         course_info = db.courses.find_one( {"code": course_code } )
         course_dept = course_info["department"] if course_info != None else "Unknown"
-        course_mark = class_record["Mark"]
 
         student = db.students.find_one( {"id" : class_record["StudentID"]} )
         #if student not in database, set up a dictionary for all student info
-        if student == None:
+        new = student == None
+        if new:
             student = {}
             student['id'] = class_record["StudentID"]
             student['first_name'] = class_record["FirstName"]
             student['last_name'] = class_record["LastName"]
-            student['cohort'] = str(datetime.datetime.now().year - (int(class_record["Grade"]) - 9))
-
+            student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
             student['classes_taken'] = {}
             student['department_averages'] = {}
             depts = list_departments()
@@ -55,23 +54,32 @@ def add_students(f):
                 student['classes_taken'][dept] = []
                 student['department_averages'][dept] = {"average": 0, "count": 0}
             student['classes_taken']["Unknown"] = [] #stores unrecognized codes
-
+            student['classes_taking'] = []
+            
             student['overall_average'] = 0
             student['selections'] = []
             student['exceptions'] = []
             student["amount"] = 0
-            
-            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
-
-            db.students.insert_one(student)
-        #if student is in db, update classes_taken field
-        else:
-            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark, "weight" : 1})
-            db.students.update_one( {"id" : student["id"]},
-                                    {"$set" :
-                                     {"classes_taken" : student["classes_taken"]}
-                                    }
-                                    )
+    
+        if "Mark" in class_record: #class has grade means class is in the past
+            course_mark = class_record["Mark"]
+            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark})
+            if new:
+                db.students.insert_one(student)
+            else:
+                db.students.update_one( {"id" : student["id"]},
+                                        {"$set" :
+                                         {"classes_taken" :
+                                          student["classes_taken"]}})
+        else: #class has no grade means class is current
+            student["classes_taking"].append(course_code)
+            if new:
+                db.students.insert_one(student)
+            else:
+                db.students.update_one( {"id" : student["id"]},
+                                        {"$set" :
+                                         {"classes_taken" :
+                                          student["classes_taken"]}})
 
 # args: string student OSIS number
 # return: student document as a dictionary
@@ -142,6 +150,17 @@ def recalculate_overall_average(student_id):
                              {"overall_average" : avg}
                             }
                           )
+
+def grade_to_cohort(grade):
+    this_year = datetime.datetime.now().year
+    offset = grade - 9 + 1
+    return this_year - offset
+    
+def cohort_to_grade(cohort):
+    this_year = datetime.datetime.now().year
+    offset = this_year - cohort - 1
+    return 9 + offset
+
 # args: string course code
 # return: course document
 def get_course(code):
@@ -161,12 +180,13 @@ def edit_student(student_id, field, value):
                             {"$set" : {field : value}}
                            )
 # args: none
-# return: list of course codes of all AP courses
+# return: list of course codes first term of all AP courses
 def get_APs():
     docs = db.courses.find({"is_AP" : 1})
     ret = []
     for doc in docs:
-        ret.append( doc["code"].encode("ascii") )
+        if doc["department"] != "Functional Codes" and "2 of 2" not in doc["name"]:
+            ret.append( doc["code"].encode("ascii") )
     return ret
 
 def get_department_courses(department):
@@ -185,14 +205,84 @@ def edit_course(code, field, value):
                            {"$set" : {field : value}}
                            )
 
+#return -1 if class not taken    
+def get_class_mark(student_id, course_code):
+    student = db.students.find_one({"id" : student_id})
+    
+    course_info = db.courses.find_one({"code" : code})
+    dept = course_info["department"]
+    for course in student["classes_taken"][dept]:
+        if course["code"] == course_code:
+            return course["mark"]
+    return -1
+    
+#generates list of aps this student can sign up for based on pre-reqs
+def get_applicable_APs(student_id):
+    student = db.students.find_one({"id": student_id})
+    all_APs = get_APs()
+    ret = []
+    for course_code in all_APs:
+        
+        #admin override allows this AP
+        #don't bother chechking other pre-reqs
+        if course_code in student["exceptions"]:
+            ret.append(course_code)
+            continue
+        
+        course = db.courses.find_one({"code" : course_code})
 
+        #is in the correct grade
+        if cohort_to_grade(student["cohort"]) not in course["grade_levels"]:
+            continue
 
-# PE courses: PE---A or PE---B
-# Science courses:
-#  physics SP---
-#  chemistry SC---
-#  biology SB--- or SL---
-#    admin inputs for every other combo
-#    lab courses: S---L
+        #meets overall avg requirement
+        if student["overall_average"] < course["prereq_overall_average"]:
+            continue
+
+        #meets department avgs requirement
+        meets_avg_reqs = True
+        for and_req in course["prereq_department_averages"]:
+            met = False
+            for or_req in and_req:
+                dept = req["name"]
+                avg = req["average"]
+                if student[department_averages][dept] >= avg:
+                    met = True
+                    break
+            if not met:
+                meets_avg_reqs = False
+                break
+        
+        if not meets_avg_reqs:
+            continue
+
+        #meets prereq class requirements
+        meets_class_reqs = True
+        for and_req in course["prereq_courses"]:
+            met = False
+            for or_req in and_req:
+                code = req["code"]
+                mark = req["mark"]
+                
+                if code in student["classes_taking"] or \
+                   get_class_mark(student_id, code) >= mark:
+                    met = True
+                    break
+            if not met:
+                meets_class_reqs = False
+                break
+
+        if not meets_class_reqs:
+            continue
+
+        #if passed all checks, then AP is applicable
+        ret.append(course_code)
+        
+def remove_student(student_id):
+    db.students.delete_many({"id" : student_id})
+
+def remove_cohort(year):
+    db.students.delete_many({"cohort" : year})
+
 # Math courses:
 #  compsci MK---

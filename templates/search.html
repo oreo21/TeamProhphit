@@ -5,9 +5,72 @@
 {%endblock%}
 
 {%block body%}
-{{student}}
-{% for item in student %}
-  <a href="/results/">{{student["first_name"] + student["last_name"]}}</a>
+{%if student is iterable%}
+  <div class="jumbotron">
+    <h2>{{student['first_name']}} {{student['last_name']}}</h2>
+    <h4>{{osis}}</h4>
+  </div>
+
+  <div class="row">
+    <div class="text-center">
+      <form action='/modify_student/' class="form-horizontal" method="POST">
+
+        <p>Cohort: <input type="text" name="cohort" value="{{student['cohort']}}"></p>
+        <p>Student Selections: <br>
+          {%for i in student['selections']%}
+          <input type="checkbox" name="selections" value="{{i}}" checked><br>
+          {%endfor%}</p>
+          <p>Allow {{student['first_name']}} {{student['last_name']}} to take:  <div class="btn sml-btn btn-info" id="but">show</div></p>
+          <div id="options">
+            <p>{%for i in courses%}
+              <input type="checkbox" name="exceptions" value="{{i}}">{{i}}<br>
+              {%endfor%}</p>
+            </div>
+
+            <p>Allow student to take <input type="number" name="amount" value="{{student['amount']}}">APs</p>
+
+            <input type="submit" value="Submit" class="btn btn-info">
+
+        </form>
+        <form action="/delete_student/" onsubmit="return confirm('Are you sure that you want to delete this student? This action cannot be undone.');" method="POST">
+          <input type="submit" value="Delete" class="btn btn-danger" name="del" id="del">
+        </form>
+
+      </div>
+    </div>
+
+  <script>
+
+    var but = document.getElementById('but');
+    var options= document.getElementById('options');
+    var del = document.getElementById('del');
+
+    options.style.display= 'none';
+    var vis = false;
+
+    var click = function(){
+      if (vis){
+        vis = false;
+        options.style.display = 'none';
+        but.innerHTML = 'show';
+      }
+      else{
+        vis = true;
+        options.style.display = 'block';
+        but.innerHTML = 'hide';
+      }
+    }
+
+    but.addEventListener('click',click);
+
+  </script>
+
+{%else%}
+
+  No student matches this selection.
+
+{%endif%}
+
 {%endblock%}
 
 <!--

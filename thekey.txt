@@ -1,0 +1,2 @@
+client id: 489155957932-bhqrlbre3f9qs6b5gcm9uq4h267ku60o.apps.googleusercontent.com
+client secret: LPSSBtgiRu0IcXKcZoeKz1Gf

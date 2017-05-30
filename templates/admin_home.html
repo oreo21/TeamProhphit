@@ -14,6 +14,7 @@
     <li class="active"><a href="#mod" data-toggle="tab">Modify Courses</a></li>
     <li><a href="#rmv" data-toggle="tab">Remove Students</a></li>
     <li><a href="#add" data-toggle="tab">Add Students</a></li>
+    <li><a href="#settings" data-toggle="tab">Settings</a></li>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade active in" id="add">
           <br><br><br>
@@ -26,7 +27,84 @@
 
         <div class="tab-pane fade" id="rmv">
           <br><br><br>
-          <p>Remove code to be added</p>
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="jumbotron" id="course_button">
+                <h3>Remove Courses</h3>
+              </div>
+              <div id="course">
+                <form action="/rm_courses/" method="POST" class="form-horizontal">
+                  {%for course in courses%}
+                  <!--pass course name into remove function-->
+                  <p><input type="checkbox" name="course" value ="{{course}}">{{course}}</p>
+
+                  {%endfor%}
+                </form>
+                <p><input type="submit" value="Submit" class="btn btn-info"></p>
+              </div>
+            </div>
+
+            <!-- remove a cohort -->
+            <div class="col-md-6">
+              <div class="jumbotron" id="cohort_button">
+                <h3>Remove a Cohort</h3>
+              </div>
+              <div id="cohort">
+                <form action="/rm_cohort/" method="POST" class="form-horizontal">
+                  <p><select name="cohort">
+                    {%for cohort in cohorts%}
+                      <option value="{{cohort}}">{{cohort}}</option>
+                    {%endfor%}
+                  </select></p>
+                  <p><input type="submit" value="Submit" class="btn btn-info"></p>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <script>
+
+            var course_button = document.getElementById('course_button');
+            var cohort_button = document.getElementById('cohort_button');
+
+            var course = document.getElementById('course');
+            var cohort = document.getElementById('cohort');
+
+            var course_shown = false;
+            var cohort_shown = false;
+
+            course.style.display = 'none';
+            cohort.style.display = 'none';
+
+            var display_course = function(){
+              if (course_shown){
+                course.style.display = 'none';
+                course_shown = false;
+              }
+
+              else{
+                course.style.display = 'block';
+                course_shown = true;
+              }
+            }
+
+            var display_cohort = function(){
+              if (cohort_shown){
+                cohort.style.display = 'none';
+                cohort_shown = false;
+              }
+
+              else{
+                cohort.style.display = 'block';
+                cohort_shown = true;
+              }
+            }
+
+            course_button.addEventListener('click',display_course);
+            cohort_button.addEventListener('click',display_cohort);
+
+          </script>
         </div>
 
         <div class="tab-pane fade" id="mod">
@@ -61,6 +139,22 @@
           {% endfor %}
 
         </div>
+      <div class="tab-pane fade" id="settings">
+        <br><br><br>
+        <div class="jumbotron">
+            <h2>Settings</h2>
+        </div>
+        <div class="row text-center">
+          <form action="/settings/" method="POST">
+            <div class="col-md-6">
+              <input type="submit" name="export" class="btn btn-large btn-info" value="Export Information"/>
+            </div>
+            <div class="col-md-6">
+              <input type="submit" name="shut_down" class="btn btn-large btn-info" value="Shut Down Website"/>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </ul>
 {%endblock%}
