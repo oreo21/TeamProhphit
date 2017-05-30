@@ -215,9 +215,16 @@ def get_applicable_APs(student_id):
     all_APs = get_APs()
     ret = []
     for course_code in all_APs:
+        
+        #admin override allows this AP
+        #don't bother chechking other pre-reqs
+        if course_code in student["exceptions"]:
+            ret.append(course_code)
+            continue
+        
         course = db.courses.find_one({"code" : course_code})
 
-        #in the correct grade
+        #is in the correct grade
         if student["cohort"] not in course["grade_levels"]:
             continue
 
@@ -261,6 +268,7 @@ def get_applicable_APs(student_id):
         if not meets_class_reqs:
             continue
 
+        #if passed all checks, then AP is applicable
         ret.append(course_code)
         
     
