@@ -184,3 +184,8 @@ haleyZ -- 2017-05-30 11:00
 wrote remove_student, remove_cohort functions
 wrote grade_to_cohort, cohort_to_grade helpers
 added admin override to ap generation function
+
+amyX -- 2017-05-30 14:06
+added fxnality on flask for setting prereqs
+connect front and back end for modifying prereqs
+

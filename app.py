@@ -124,8 +124,6 @@ def search():
 def results():
 
 
-    """
-=======
     courses = db_manager.get_APs()
     return render_template("search.html",student=results,osis=query, courses=courses)
 
@@ -201,8 +199,8 @@ u'Career Development': []
 u'_id': ObjectId('592649559478151726b3c26d'),
 u'overall_average': 0,
 u'id': u'111111128'}
+"""
 
-    """
 @app.route('/rm_courses/', methods=["POST"])
 def rm_course():
     #returns list
@@ -228,8 +226,15 @@ def mod(course):
 #does actual editing of course
 @app.route('/modifyCourse/', methods = ['POST', 'GET'])
 def modifyCourse():
-    return redirect(url_for('adHome'))
+    minGPA = request.form["minGPA"]
+    mindept = request.form["minDept"]
+    cohort = request.form["cohort"]
+    prereqs = request.form["prereq"]
+    course = request.form["course"]
 
+    edit_course(course, hello, str/list/num value)
+    return redirect(url_for('adHome'))
+#<!-- name, code, department, is_AP, weight, prereq_courses, prereq_overall_average, prereq_department_averages, grade_levels -->
 #example of how to deal w/file
 @app.route('/testForm/', methods=['POST'])
 def testForm():
