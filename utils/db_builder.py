@@ -90,4 +90,9 @@ def init_admin():
     admin['password'] = hashlib.sha512("password").hexdigest()
     db.admins.insert_one(admin)
 
+def init_state():
+    doc = {}
+    doc["on"] = 0
+    db.state.insert_one(doc)
+    
 initialize()
