@@ -180,6 +180,12 @@ def cohort_to_grade(cohort):
 def get_course(code):
     return db.courses.find_one({"code" : code})
 
+def get_problematic_courses():
+    docs = db.courses.find({"department" : "Unknown"})
+    ret = [doc for doc in docs]
+    print ret
+    return ret
+
 # args: none
 # return: list of course codes first term of all AP courses
 def get_APs():
