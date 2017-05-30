@@ -46,8 +46,7 @@ def add_students(f):
             student['id'] = class_record["StudentID"]
             student['first_name'] = class_record["FirstName"]
             student['last_name'] = class_record["LastName"]
-            student['cohort'] = class_record["Grade"]
-
+            student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
             student['classes_taken'] = {}
             student['department_averages'] = {}
             depts = list_departments()
@@ -152,7 +151,15 @@ def recalculate_overall_average(student_id):
                             }
                           )
 
-
+def grade_to_cohort(grade):
+    this_year = datetime.datetime.now().year
+    offset = grade - 9 + 1
+    return this_year - offset
+    
+def cohort_to_grade(cohort):
+    this_year = datetime.datetime.now().year
+    offset = this_year - cohort - 1
+    return 9 + offset
 
 # args: string course code
 # return: course document
@@ -200,12 +207,12 @@ def edit_course(code, field, value):
 
 #return -1 if class not taken    
 def get_class_mark(student_id, course_code):
-    student = db.students.find_one("id" : student_id)
+    student = db.students.find_one({"id" : student_id})
     
     course_info = db.courses.find_one({"code" : code})
     dept = course_info["department"]
     for course in student["classes_taken"][dept]:
-        if course["code"] = course_code:
+        if course["code"] == course_code:
             return course["mark"]
     return -1
     
@@ -225,7 +232,7 @@ def get_applicable_APs(student_id):
         course = db.courses.find_one({"code" : course_code})
 
         #is in the correct grade
-        if student["cohort"] not in course["grade_levels"]:
+        if cohort_to_grade(student["cohort"]) not in course["grade_levels"]:
             continue
 
         #meets overall avg requirement
@@ -271,9 +278,11 @@ def get_applicable_APs(student_id):
         #if passed all checks, then AP is applicable
         ret.append(course_code)
         
-    
+def remove_student(student_id):
+    db.students.delete_many({"id" : student_id})
 
+def remove_cohort(year):
+    db.students.delete_many({"cohort" : year})
 
 # Math courses:
 #  compsci MK---
- 
