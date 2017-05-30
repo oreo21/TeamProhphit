@@ -11,3 +11,19 @@ Our goal is to create a website that students can use to select electives and AP
 * Vanna Mavromatis
 * Haley Zheng
 * Amy Xu
+
+### Dependencies:
+* Flask
+* oauth2client
+* httplib2
+
+To download these dependencies, 
+```$ pip install <dependency>```
+
+### Getting Started:
+* Clone the repo
+* On the top level of the repo, run the database initializer
+```$ python utils/db_builder.py```
+* Run the Flask app
+```$ python app.py```
+* In a web broswer, go to localhot:5000
