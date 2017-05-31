@@ -189,3 +189,7 @@ amyX -- 2017-05-30 14:06
 added fxnality on flask for setting prereqs
 connect front and back end for modifying prereqs
 
+haleyZ -- 2017-05-31 12:20
+Wrote functions to get and set site status, drop db and drop students collection
+Fixed edit_student so it will recalculate averages
+Fixed init_departments so cs will be its own average

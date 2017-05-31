@@ -12,6 +12,7 @@ def initialize():
     init_courses(course_file)
     init_departments(course_file)
     init_admin()
+    init_state()
 
 def get_weight(code):
     #Physical education classes
@@ -38,7 +39,10 @@ def is_science_course(code):
 
 def is_pe_course(code):
     return code[0] == "P" and (code[-1] == "A" or code[-1] == "B")
-    
+
+def is_cs_course(code):
+    return code[:2] == "MK"
+
 def init_courses(filename):
     f = open(filename)
     course_list = csv.DictReader(f)
@@ -69,6 +73,8 @@ def init_departments(filename):
         code = elem["CourseCode"]
         if is_science_course(code):
             dep = get_science_department(code)
+        elif is_cs_course(code):
+            dep = "Computer Science"
         else:
             dep = elem["Department"]
         new = db.departments.find_one({"name" : dep}) == None

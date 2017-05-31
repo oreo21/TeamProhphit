@@ -3,9 +3,11 @@ import csv
 import hashlib
 import datetime
 
+db_name = "ttpp"
+
 server = MongoClient()
 #server = MongoClient("lisa.stuy.edu")
-db = server['ttpp']
+db = server[db_name]
 
 # args: none
 # return: a list of the names of all the departments
@@ -111,6 +113,14 @@ def edit_student(student_id, field, value):
     db.students.update_one( {"id" : student_id},
                             {"$set" : {field : value}}
                            )
+    if field == "classes_taken":
+        recalculate_department_averages(student_id)
+        recalculate_overall_average(student_id)
+
+def recalculate_department_averages(student_id):
+    depts = list_departments()
+    for dept in depts:
+        recalculate_department_average(student_id, dept)
 
 # args: string student OSIS number, string department name
 # return: none
@@ -291,5 +301,18 @@ def remove_student(student_id):
 def remove_cohort(year):
     db.students.delete_many({"cohort" : year})
 
+def get_site_status():
+    res = db.state.find_one({})
+    return res["on"]
+
+def set_site_status(status):
+    db.state.update_one({}, {"$set" : {"on" : status}})
+    
+def drop_db():
+    server.drop_database(db_name)
+
+def drop_students():
+    db.students.drop()
+    
 # Math courses:
 #  compsci MK---
