@@ -193,3 +193,7 @@ haleyZ -- 2017-05-31 12:20
 Wrote functions to get and set site status, drop db and drop students collection
 Fixed edit_student so it will recalculate averages
 Fixed init_departments so cs will be its own average
+
+amyX -- 2017-05-31 14:02 
+finished the flask code for putting the right courses in the right departments under modify
+finished flask modify fxnality
