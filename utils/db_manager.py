@@ -88,18 +88,6 @@ def add_students(f):
 def get_student(student_id):
     return db.students.find_one( {"id" : student_id} )
 
-# args: string student OSIS number, string department name
-# return: departmental average of student as a float
-def get_department_average(student_id, department):
-    student = get_student(student_id)
-    return student["department_averages"][department]
-
-# args: string student OSIS number
-# return: average of student as a float
-def get_overall_average(student_id):
-    student = get_student(student_id)
-    return student["overall_average"]
-
 # args: string student OSIS number, string field, string/list/number value
 # return: none
 # updates field with new value
