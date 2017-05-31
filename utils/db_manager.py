@@ -19,6 +19,15 @@ def list_departments():
         ret.append( dept["name"].encode("ascii") )
     return ret
 
+def list_departments_AP():
+    ret = []
+    APs = get_APs()
+    for AP in APs:
+        dept = get_course(AP)["department"]
+        if dept not in ret:
+            ret.append(dept)
+    return ret
+
 # args: fileObject f
 #       f is a file object of a CSV ofstudents' transcripts
 #       each row in the CSV file correlates to one class
