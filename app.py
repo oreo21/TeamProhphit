@@ -232,7 +232,10 @@ def modifyCourse():
     prereqs = request.form["prereq"]
     course = request.form["course"]
 
-    edit_course(course, hello, str/list/num value)
+    edit_course(course, "prereq_overall_average", minGPA)
+    edit_course(course, "prereq_department_averages", minDept)
+    edit_course(course, "grade_levels", cohort)
+    edit_course(course, "prereq_courses", prereq)
     return redirect(url_for('adHome'))
 #<!-- name, code, department, is_AP, weight, prereq_courses, prereq_overall_average, prereq_department_averages, grade_levels -->
 #example of how to deal w/file
