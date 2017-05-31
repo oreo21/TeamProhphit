@@ -98,10 +98,11 @@ def signup():
 def admin_home():
     if 'admin' not in session:
         return redirect(url_for('oauth_testing'))
-    courses = ['HGS44XE','HGS44XW','HPS21X']
+    courses = db_manager.get_APs()
+    print courses
     getdept = db_manager.list_departments()
     cohorts = ['2017','2018','2019','2020']
-    return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts)
+    return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course)
 
 @app.route("/settings/", methods=['POST'])
 def settings():

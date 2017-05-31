@@ -109,15 +109,13 @@
 
         <div class="tab-pane fade active in" id="mod">
           <br><br><br>
-          {%for course in courses%}
+          <!-- {%for course in courses%}
 
-            <!--modify opens new html page w/variable path-->
+            
             <p><a href="/mod/{{course}}/">{{course}}</a></p>
 
-          {%endfor%}
+          {%endfor%} -->
 
-          {% set counter = 1 %}
-          {% set phrase = "collapse" %}
 
           {% for dept in depts%}
           <div class="container">
@@ -130,7 +128,13 @@
                   </h4>
                 </div>
                 <div id="{{ "collapse" ~ depts.index(dept) }}" class="panel-collapse collapse">
-                  <div class="panel-body">courses</div>
+                  <div class="panel-body">{% for crs in courses %}
+                      {% if myfxn(crs)["department"] == dept %}
+                        <p><a href="/mod/{{crs}}/">{{crs}}</a></p>
+
+                      {% endif %}
+                      {% endfor %}
+                  </div>
                   <div class="panel-footer">Panel Footer</div>
                 </div>
               </div>
