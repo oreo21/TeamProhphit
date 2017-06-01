@@ -9,6 +9,39 @@ server = MongoClient()
 #server = MongoClient("lisa.stuy.edu")
 db = server[db_name]
 
+
+def get_weight(code):
+    #Physical education classes
+    if is_pe_course(code):
+        return 0
+    #Lab classes
+    if is_science_course(code) and code[-1] == "L":
+        return 0
+    return 1
+
+def get_science_department(code):
+    sym = code[1]
+    if sym == "P":
+        return "Physics"
+    elif sym == "C":
+        return "Chemistry"
+    elif sym == "L" or sym == "B":
+        return "Biology"
+    else:
+        return "Science"
+
+def is_science_course(code):
+    return code[0] == "S"
+
+def is_pe_course(code):
+    return code[0] == "P" and (code[-1] == "A" or code[-1] == "B")
+
+def is_cs_course(code):
+    return code[:2] == "MK"
+
+def is_AP(code):
+    return code[-1] == "X" 
+
 # args: none
 # return: a list of the names of all the departments
 def list_departments():
@@ -49,13 +82,7 @@ def add_students(f):
         course_info = db.courses.find_one( {"code": course_code } )
         course_dept = course_info["department"] if course_info != None else "Unknown"
         if course_dept == "Unknown":
-            db.departments.update_one({"name" : "Unknown"},
-                                      {"$push" :
-                                       {"courses": course_code }
-                                      }
-            )
-
-
+            add_unknown_course(course_code, class_record["Course Title"])
         
         student = db.students.find_one( {"id" : class_record["StudentID"]} )
         #if student not in database, set up a dictionary for all student info
@@ -195,8 +222,25 @@ def cohort_to_grade(cohort):
 def get_course(code):
     return db.courses.find_one({"code" : code})
 
+def add_unknown_course(code, name):
+    course = {}
+    course["code"] = code
+    course["name"] = name
+    course["department"] = "Unknown"
+    course["is_AP"] = is_AP(course["code"])
+    course["weight"] = get_weight(course["code"])
+    course["prereq_courses"] = []
+    course["prereq_overall_average"] = 0
+    course["prereq_department_averages"] = []
+    course["grade_levels"] = [9, 10, 11, 12]
+    db.courses.insert_one(course)
+    
 def get_problematic_courses():
-    return db.departments.find_one({"name" : "Unknown"})["courses"]
+    courses = db.courses.find({"department" : "Unknown"})
+    ret = []
+    for c in courses:
+        ret.append(c["code"])
+    return ret
 
 # args: none
 # return: list of course codes first term of all AP courses
@@ -223,7 +267,7 @@ def edit_course(code, field, value):
     db.courses.update_one( {"code" : code},
                            {"$set" : {field : value}}
                            )
-
+    
 #return -1 if class not taken
 def get_class_mark(student_id, course_code):
     student = db.students.find_one({"id" : student_id})

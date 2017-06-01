@@ -207,3 +207,6 @@ search fix
 separated logins
 success/error messages (bc users need external validation)
 categorizing failure classes
+
+haleyZ -- 2017-05-31 22:20
+fixed the way courses with unknown departments are stored in the db so that get_problematic_courses() works

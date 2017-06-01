@@ -1,6 +1,8 @@
 from pymongo import MongoClient
+from db_manager import *
 import csv
 import hashlib
+
 
 server = MongoClient()
 #server = MongoClient("lisa.stuy.edu")
@@ -13,35 +15,6 @@ def initialize():
     init_departments(course_file)
     init_admin()
     init_state()
-
-def get_weight(code):
-    #Physical education classes
-    if is_pe_course(code):
-        return 0
-    #Lab classes
-    if is_science_course(code) and code[-1] == "L":
-        return 0
-    return 1
-
-def get_science_department(code):
-    sym = code[1]
-    if sym == "P":
-        return "Physics"
-    elif sym == "C":
-        return "Chemistry"
-    elif sym == "L" or sym == "B":
-        return "Biology"
-    else:
-        return "Science"
-
-def is_science_course(code):
-    return code[0] == "S"
-
-def is_pe_course(code):
-    return code[0] == "P" and (code[-1] == "A" or code[-1] == "B")
-
-def is_cs_course(code):
-    return code[:2] == "MK"
 
 def init_courses(filename):
     f = open(filename)
@@ -56,7 +29,7 @@ def init_courses(filename):
         else:
             course["department"] = elem["Department"]
 
-        course["is_AP"] = 1 if course["code"][-1] == "X" else 0
+        course["is_AP"] = is_AP(course["code"])
         course["weight"] = get_weight(course["code"])
         course["prereq_courses"] = []
         course["prereq_overall_average"] = 0
