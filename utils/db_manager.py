@@ -66,12 +66,12 @@ def add_students(f):
                 student['department_averages'][dept] = {"average": 0, "count": 0}
             student['classes_taken']["Unknown"] = [] #stores unrecognized codes
             student['classes_taking'] = []
-            
+
             student['overall_average'] = 0
             student['selections'] = []
             student['exceptions'] = []
             student["amount"] = 0
-    
+
         if "Mark" in class_record: #class has grade means class is in the past
             course_mark = class_record["Mark"]
             student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark})
@@ -176,7 +176,7 @@ def grade_to_cohort(grade):
     this_year = datetime.datetime.now().year
     offset = grade - 9 + 1
     return this_year - offset
-    
+
 def cohort_to_grade(cohort):
     this_year = datetime.datetime.now().year
     offset = this_year - cohort - 1
@@ -190,7 +190,7 @@ def get_course(code):
 def get_problematic_courses():
     docs = db.courses.find({"department" : "Unknown"})
     ret = [doc for doc in docs]
-    print ret
+    #print ret
     return ret
 
 # args: none
@@ -219,30 +219,30 @@ def edit_course(code, field, value):
                            {"$set" : {field : value}}
                            )
 
-#return -1 if class not taken    
+#return -1 if class not taken
 def get_class_mark(student_id, course_code):
     student = db.students.find_one({"id" : student_id})
-    
+
     course_info = db.courses.find_one({"code" : code})
     dept = course_info["department"]
     for course in student["classes_taken"][dept]:
         if course["code"] == course_code:
             return course["mark"]
     return -1
-    
+
 #generates list of aps this student can sign up for based on pre-reqs
 def get_applicable_APs(student_id):
     student = db.students.find_one({"id": student_id})
     all_APs = get_APs()
     ret = []
     for course_code in all_APs:
-        
+
         #admin override allows this AP
         #don't bother chechking other pre-reqs
         if course_code in student["exceptions"]:
             ret.append(course_code)
             continue
-        
+
         course = db.courses.find_one({"code" : course_code})
 
         #is in the correct grade
@@ -266,7 +266,7 @@ def get_applicable_APs(student_id):
             if not met:
                 meets_avg_reqs = False
                 break
-        
+
         if not meets_avg_reqs:
             continue
 
@@ -277,7 +277,7 @@ def get_applicable_APs(student_id):
             for or_req in and_req:
                 code = req["code"]
                 mark = req["mark"]
-                
+
                 if code in student["classes_taking"] or \
                    get_class_mark(student_id, code) >= mark:
                     met = True
@@ -291,7 +291,7 @@ def get_applicable_APs(student_id):
 
         #if passed all checks, then AP is applicable
         ret.append(course_code)
-        
+
 def remove_student(student_id):
     db.students.delete_many({"id" : student_id})
 
@@ -304,12 +304,12 @@ def get_site_status():
 
 def set_site_status(status):
     db.state.update_one({}, {"$set" : {"on" : status}})
-    
+
 def drop_db():
     server.drop_database(db_name)
 
 def drop_students():
     db.students.drop()
-    
+
 # Math courses:
 #  compsci MK---

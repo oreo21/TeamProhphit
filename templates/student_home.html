@@ -34,7 +34,7 @@
               <form action="/signup/" method="POST">
                 {%for i in range(numAps)%}
                   <p><select name="APS" class="ap">
-                    <option disabled selected value> -- select an option -- </option>
+                    <option disabled selected value> - * - select an option - * - </option>
                     {%for class in aps%}
                       <option value="{{class}}">{{class}}</option>
                     {%endfor%}</select></p>

@@ -1,0 +1,47 @@
+{%extends "base.html"%}
+
+{%block title%}
+  Uncategorized Classes
+{%endblock%}
+
+{%block body%}
+{%if noProblems%}
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron">
+          No problems!
+        </div>
+      </div>
+    </div>
+
+{%else%}
+
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+    <h3>Please choose appropriate departments for the following courses.</h3>
+    <form action='/categorizeForm/' class="form-horizontal" method="POST">
+
+      {%for course in courses%}
+
+      <p><select name="{{course}}">
+        <option disabled selected value> — * - select a department - * - </option>
+        {%for dept in depts%}
+        <option value="{{dept}}">{{dept}}</option>
+        {%endfor%}
+      </select></p>
+
+      {%endfor%}
+
+      <input type="submit" value="Submit" class="btn btn-info">
+    </form>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
+
+{%endif%}
+
+{%endblock%}

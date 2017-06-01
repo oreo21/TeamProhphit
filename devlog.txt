@@ -64,7 +64,7 @@ reverted some necessary login code in app.py
 
 amyX -- 2017-05-21 23:46
 added static folder and incorporated bootstrap
-implemented lumen theme for bootstrap 
+implemented lumen theme for bootstrap
 added register options for admin and student
 
 amyX -- 2017-05-22 00:26
@@ -149,7 +149,7 @@ added some display fxnality to front end
 amyX -- 2017-05-25 22:19
 modified admin_home.html's modify course panel with flask code
 	write code to iterate through departments and then create panels for each departments, correctly linked the different div containers such that they'd open and respond to clicks appropriately
-	
+
 vannaM -- 2017-05-25 22:40
 remove is less theoretical
 navbar has correct links
@@ -194,9 +194,16 @@ Wrote functions to get and set site status, drop db and drop students collection
 Fixed edit_student so it will recalculate averages
 Fixed init_departments so cs will be its own average
 
-amyX -- 2017-05-31 14:02 
+amyX -- 2017-05-31 14:02
 finished the flask code for putting the right courses in the right departments under modify
 finished flask modify fxnality
 
 amyX -- 2017-05-31 14:06
 fixed empty departments in modify
+
+vannaM -- 2017-05-21 21:45
+aesthetic
+search fix
+separated logins
+success/error messages (bc users need external validation)
+categorizing failure classes

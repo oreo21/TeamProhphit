@@ -5,11 +5,20 @@
 {%endblock%}
 
 {%block body%}
-	<!-- <h1>Welcome {{ user }}!</h1>
-	<p><a href="/add/">Add</a></p>
-	<p><a href="/remove/">Remove</a></p>
-	<p><a href="/modifyChoose/">Modify Course</a></p> -->
 
+  {%if problems%}
+    <div class="alert alert-dismissible alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4>Warning!</h4>
+      <p>Some classes haven't been sorted into departments! <a href="/categorize/">You can fix that here!</a></p>
+    </div>
+  {%endif%}
+  {%if success%}
+  <div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{success}}
+  </div>
+  {%endif%}
   <ul class="nav nav-pills">
     <li class="active"><a href="#mod" data-toggle="tab">Modify Courses</a></li>
     <li><a href="#rmv" data-toggle="tab">Remove Students</a></li>
@@ -111,7 +120,7 @@
           <br><br><br>
           <!-- {%for course in courses%}
 
-            
+
             <p><a href="/mod/{{course}}/">{{course}}</a></p>
 
           {%endfor%} -->
@@ -130,7 +139,7 @@
                 <div id="{{ "collapse" ~ depts.index(dept) }}" class="panel-collapse collapse">
                   <div class="panel-body">{% for crs in courses %}
                       {% if myfxn(crs)["department"] == dept %}
-                        <p><a href="/mod/{{crs}}/">{{crs}}</a></p>
+                        <p><a href="/mod/{{crs}}/">{{myfxn(crs)['name']}} ({{crs}})</a></p>
 
                       {% endif %}
                       {% endfor %}

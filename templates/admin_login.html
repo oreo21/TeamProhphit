@@ -1,16 +1,40 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Admin Login
+Home Page
 {% endblock %}
 
 {% block body %}
-  <h1>Login Page for Admins</h1>
-  <p> {{ messageLogin }} </p>
-  <form action="/authenticate/" method="POST">
-    <p>Username: <input type="text" name="username"></p>
-    <p>Password: <input type="password" name="password"></p>
-    <input type="submit" name="action" value="Login">
-    <input type="hidden" name="acct_type" value="admin">
-  </form>
+<div class="bg"</div>
+  <div class="jumbotron">
+    <h1>Select your Courses with Stuy-le</h1>
+    <p>{site name} is designed to help you streamline your course selections process.</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 text-center">
+        <div class="box">
+          <div class="box-content">
+            <h1 class="tag-title">Admin Login</h1>
+            <hr />
+            <p class="intro">This site will allow you to add student cohorts, search up students, modify course prerequisite and grade requirements, and more. Programming stream-lined. In Stuy-le.</p>
+            <br /><br/>
+            <a href="/login/" class="btn btn-info btn-lg btn-block">Login</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="box">
+          <div class="box-content">
+            <h1 class="tag-title">Questions/Problems?</h1>
+            <hr />
+            <p class="intro">If you have any questions about programming or conflicts please email programoffice@stuy.edu.</p>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

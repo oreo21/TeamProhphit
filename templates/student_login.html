@@ -1,33 +1,41 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Student Login
+Home Page
 {% endblock %}
 
 {% block body %}
-  <p> {{ messageLogin }} </p>
-  <div class="row">
-    <div class="col-md-6">
-      <h1>Student's Login</h1>
-      <form class="form-horizontal" action="/login/" method="POST">
-        <p>Username: <input type="text" name="username"></p>
-        <p>Password: <input type="password" name="password"></p>
-        <input class="btn btn-info" type="submit" name="action" value="Login">
-        <input class="btn btn-info" type="submit" name="action" value="Register">
-        <input type="hidden" name="acct_type" value="student">
-      </form>
-    </div>
-
-    <div class="col-md-6">
-      <h1>Admin's Login</h1>
-      <form class="form-horizontal" action="/login/" method="POST">
-        <p>Username: <input type="text" name="username"></p>
-        <p>Password: <input type="password" name="password"></p>
-        <input class="btn btn-info" type="submit" name="action" value="Login">
-        <input class="btn btn-info" type="submit" name="action" value="Register">
-        <input type="hidden" name="acct_type" value="admin">
-      </form>
-    </div>
+<div class="bg"</div>
+  <div class="jumbotron">
+    <h1>Select your Courses with Stuy-le</h1>
+    <p>{site name} is designed to help you streamline your course selections process.</p>
   </div>
 
-{% endblock %}
+  <div class="container">
+    <div class="row">
+      <div class="row">
+        <div class="col-md-8 text-center">
+          <div class="box">
+            <div class="box-content">
+              <h1 class="tag-title">Student Login</h1>
+              <hr />
+              <p class="intro">Students can sign in with their stuy.edu emails to access AP course signups for next semester. Our site's algorithm will generate a customized form based on each student's previous courses and transcript for him/her to fill out.</p>
+              <br />
+              <a href="/login/" class="btn btn-info btn-lg btn-block">Login</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="box">
+            <div class="box-content">
+              <h1 class="tag-title">Questions/Problems?</h1>
+              <hr />
+              <p class="intro">If you have any questions about programming or conflicts please email programoffice@stuy.edu.</p>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

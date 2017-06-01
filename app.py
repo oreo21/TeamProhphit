@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["mrgrumpy@stuy.edu", "jxu9@stuy.edu", "vmavromatis@stuy.edu"]
+adminlist = ["jxu9@stuy.edu", "vmavromatis@stuy.edu"]
 
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
@@ -70,7 +70,16 @@ def home():
     elif 'student' in session:
         return redirect(url_for('student_home'))
     else:
-        return render_template('home.html')
+        return render_template('student_login.html')
+
+@app.route('/admin-login/')
+def adminLogin():
+    if 'admin' in session:
+        return redirect(url_for('admin_home'))
+    elif 'student' in session:
+        return redirect(url_for('student_home'))
+    else:
+        return render_template('admin_login.html')
 
 @app.route('/logout/')
 def logout():
@@ -99,10 +108,39 @@ def admin_home():
     if 'admin' not in session:
         return redirect(url_for('oauth_testing'))
     courses = db_manager.get_APs()
-    print courses
-    getdept = db_manager.list_departments()
+    #print courses
+    getdept = db_manager.list_departments_AP()
     cohorts = ['2017','2018','2019','2020']
-    return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course)
+    problems = db_manager.get_problematic_courses()
+    if len(problems) > 0:
+        problems = True
+    else:
+        problems = False
+
+    success = False
+
+    if 'success' in session:
+        success = session['success']
+        session.pop('success')
+
+    return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success)
+
+@app.route('/categorize/')
+def categorize():
+    noProblems = False
+    courses = db_manager.get_problematic_courses()
+    if len(courses) <= 0:
+        noProblems = True
+    depts = db_manager.list_departments()
+    print noProblems
+    return render_template('categorize.html',courses=courses, depts=depts, noProblems = noProblems)
+
+@app.route('/categorizeForm/', methods=['POST'])
+def categorizeForm():
+    for course in request.form:
+        db_manager.edit_course(course, "department", request.form[i])
+    session['success'] = "Courses successfully categorized!"
+    return redirect(url_for('home'))
 
 @app.route("/settings/", methods=['POST'])
 def settings():
@@ -117,16 +155,10 @@ def settings():
 @app.route("/search/")
 def search():
     query = request.query_string[7:]
-    print query
     results = db_manager.get_student(query)
-    return render_template("search.html",student=results)
-
-@app.route('/results/')
-def results():
-
-
     courses = db_manager.get_APs()
-    return render_template("search.html",student=results,osis=query, courses=courses)
+    getdept = db_manager.list_departments_AP()
+    return render_template("search.html",student=results, osis=query, courses=courses, depts=getdept, myfxn=db_manager.get_course)
 
 @app.route("/modify_student/", methods = ['POST'])
 def modify_student():
@@ -142,65 +174,12 @@ def modify_student():
     #number of aps
     if 'amount' in request.form:
         amount = request.form['amount']
+    session['success'] = "Student successfully modified!"
     return redirect(url_for('home'))
 
 @app.route("/delete_student/", methods = ['POST'])
 def delete_student():
     return redirect(url_for('home'))
-
-"""
-{u'cohort': u'2017',
-u'first_name': u'Moe',
-u'last_name': u'Szyslak',
-u'selections': [],
-u'department_averages': {
-u'Visual Arts': {u'count': 0, u'average': 0},
-u'Theater': {u'count': 0, u'average': 0},
-u'Science': {u'count': 0, u'average': 0},
-u'Guidance': {u'count': 0, u'average': 0},
-u'Functional Codes': {u'count': 0, u'average': 0},
-u'PE and Health': {u'count': 0, u'average': 0},
-u'Human Services ': {u'count': 0, u'average': 0},
-u'Music': {u'count': 0, u'average': 0},
-u'English/ESL': {u'count': 0, u'average': 0},
-u'Social Studies': {u'count': 0, u'average': 0},
-u'Mathematics': {u'count': 0, u'average': 0},
-u'Technology': {u'count': 0, u'average': 0},
-u'LOTE': {u'count': 0, u'average': 0},
-u'Career Development': {u'count': 0, u'average': 0}
-},
-u'classes_taken': {
-u'Visual Arts': [],
-u'Theater': [],
-u'Science': [],
-u'Guidance': [],
-u'Functional Codes': [],
-u'PE and Health': [],
-u'Social Studies': [],
-u'Music': [],
-u'English/ESL': [],
-u'Unknown': [
-{
-u'code': u'SLN11A',
-u'weight': 1,
-u'mark': u'98'
-},
-{
-u'code': u'MEN11A',
-u'weight': 1,
-u'mark': u'100'
-}
-],
-u'Human Services ': [],
-u'Mathematics': [],
-u'Technology': [],
-u'LOTE': [],
-u'Career Development': []
-},
-u'_id': ObjectId('592649559478151726b3c26d'),
-u'overall_average': 0,
-u'id': u'111111128'}
-"""
 
 @app.route('/rm_courses/', methods=["POST"])
 def rm_course():
@@ -212,6 +191,7 @@ def rm_course():
 @app.route('/rm_cohort/', methods=["POST"])
 def rm_cohort():
     cohort = request.form['cohort']
+    session['success'] = "Cohort %s successfully deleted!"%cohort
     return redirect(url_for('home'))
 
 #options for editing course
@@ -233,10 +213,12 @@ def modifyCourse():
     prereqs = request.form["prereq"]
     course = request.form["course"]
 
-    edit_course(course, "prereq_overall_average", minGPA)
-    edit_course(course, "prereq_department_averages", minDept)
-    edit_course(course, "grade_levels", cohort)
-    edit_course(course, "prereq_courses", prereq)
+    db_manager.edit_course(course, "prereq_overall_average", minGPA)
+    db_manager.edit_course(course, "prereq_department_averages", minDept)
+    db_manager.edit_course(course, "grade_levels", cohort)
+    db_manager.edit_course(course, "prereq_courses", prereq)
+
+    session['success'] = "Courses modified successfully!"
     return redirect(url_for('adHome'))
 #<!-- name, code, department, is_AP, weight, prereq_courses, prereq_overall_average, prereq_department_averages, grade_levels -->
 #example of how to deal w/file
@@ -247,6 +229,7 @@ def testForm():
         #get the file
         filedata  = request.files['upload']
         db_manager.add_students(filedata)
+        session['success'] = True
         #go to student home
         return redirect(url_for("admin_home"))
     #if the file is missing

@@ -22,13 +22,23 @@
           {%endfor%}</p>
           <p>Allow {{student['first_name']}} {{student['last_name']}} to take:  <div class="btn sml-btn btn-info" id="but">show</div></p>
           <div id="options">
-            <p>{%for i in courses%}
-              <input type="checkbox" name="exceptions" value="{{i}}">{{i}}<br>
-              {%endfor%}</p>
+            {%for dept in depts%}
+            <div class="btn-group">
+              <a href="#" class="btn btn-primary">{{dept}}</a>
+              <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                {%for i in courses%}
+                  {%if myfxn(i)["department"] == dept %}
+                    <li><input type="checkbox" name="exceptions" value="{{crs}}">{{myfxn(i)['name']}} ({{i}})</li>
+                  {%endif%}
+                {%endfor%}
+              </ul>
             </div>
+            <h4 class="">{{dept}}</h4>
+            {%endfor%}
+          </div>
 
             <p>Allow student to take <input type="number" name="amount" value="{{student['amount']}}">APs</p>
-
             <input type="submit" value="Submit" class="btn btn-info">
 
         </form>
@@ -67,7 +77,10 @@
 
 {%else%}
 
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
   No student matches this selection.
+</div>
 
 {%endif%}
 
