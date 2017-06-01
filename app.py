@@ -132,7 +132,7 @@ def categorize():
     if len(courses) <= 0:
         noProblems = True
     depts = db_manager.list_departments()
-    print noProblems
+    print courses
     return render_template('categorize.html',courses=courses, depts=depts, noProblems = noProblems)
 
 @app.route('/categorizeForm/', methods=['POST'])
@@ -229,7 +229,7 @@ def testForm():
         #get the file
         filedata  = request.files['upload']
         db_manager.add_students(filedata)
-        session['success'] = True
+        session['success'] = "Transcript uploaded succesfully!"
         #go to student home
         return redirect(url_for("admin_home"))
     #if the file is missing
