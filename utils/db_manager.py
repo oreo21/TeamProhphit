@@ -48,7 +48,15 @@ def add_students(f):
         course_code = class_record["Course"]
         course_info = db.courses.find_one( {"code": course_code } )
         course_dept = course_info["department"] if course_info != None else "Unknown"
+        if course_dept == "Unknown":
+            db.departments.update_one({"name" : "Unknown"},
+                                      {"$push" :
+                                       {"courses": course_code }
+                                      }
+            )
 
+
+        
         student = db.students.find_one( {"id" : class_record["StudentID"]} )
         #if student not in database, set up a dictionary for all student info
         new = student == None
@@ -188,10 +196,7 @@ def get_course(code):
     return db.courses.find_one({"code" : code})
 
 def get_problematic_courses():
-    docs = db.courses.find({"department" : "Unknown"})
-    ret = [doc for doc in docs]
-    #print ret
-    return ret
+    return db.departments.find_one({"name" : "Unknown"})["courses"]
 
 # args: none
 # return: list of course codes first term of all AP courses

@@ -89,6 +89,7 @@ def init_departments(filename):
                                        {"courses": code }
                                       }
             )
+    db.departments.insert_one({"name" : "Unknown", "courses" : []})
 
 def init_admin():
     admin = {}
