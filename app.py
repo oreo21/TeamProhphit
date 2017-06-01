@@ -133,12 +133,13 @@ def categorize():
         noProblems = True
     depts = db_manager.list_departments()
     print courses
-    return render_template('categorize.html',courses=courses, depts=depts, noProblems = noProblems)
+    return render_template('categorize.html',courses=courses, depts=depts, noProblems = noProblems, fxn=db_manager.get_course)
 
 @app.route('/categorizeForm/', methods=['POST'])
 def categorizeForm():
+    print request.form
     for course in request.form:
-        db_manager.edit_course(course, "department", request.form[i])
+        db_manager.edit_course(course, "department", request.form[course])
     session['success'] = "Courses successfully categorized!"
     return redirect(url_for('home'))
 
