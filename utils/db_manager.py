@@ -54,7 +54,7 @@ def is_cs_course(code):
 # args: course code
 # return: true if course is an AP, false if not
 def is_AP(code):
-    return code[-1] == "X" 
+    return code[-1] == "X"
 
 # args: file obj of csv containing course info
 # returns: none
@@ -151,7 +151,7 @@ def add_students(f):
         course_dept = course_info["department"] if course_info != None else "Unknown"
         if course_dept == "Unknown":
             add_unknown_course(course_code, class_record["Course Title"])
-        
+
         student = db.students.find_one( {"id" : class_record["StudentID"]} )
         #if student not in database, set up a dictionary for all student info
         new = student == None
@@ -306,7 +306,7 @@ def add_unknown_course(code, name):
     course["prereq_department_averages"] = []
     course["grade_levels"] = [9, 10, 11, 12]
     db.courses.insert_one(course)
-    
+
 def get_problematic_courses():
     courses = db.courses.find({"department" : "Unknown"})
     ret = []
@@ -341,7 +341,7 @@ def edit_course(code, field, value):
     db.courses.update_one( {"code" : code},
                            {"$set" : {field : value}}
                            )
-    
+
 #return -1 if class not taken
 def get_class_mark(student_id, course_code):
     student = db.students.find_one({"id" : student_id})

@@ -18,26 +18,34 @@
 <h4>{{course_info['department']}}</h4>
 <div class="row">
   <div class="col-md-6">
-    <h3>Modify Requirements:</h3>
     <form action='/modifyCourse/' class="form-horizontal" method="POST">
-      <input type="hidden" name="course" value="{{course_info["name"]}}">
-      <p>Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100" value={{course_info['prereq_overall_average']}}></p>
-      <p>Minimum Departmental Average <input type="number" name="minDept" min="0" max="100" value={{course_info['prereq_department_average']}}></p>
-      <h4>Cohort Requirement:</h4>
-        {%for cohort in cohorts%}
-        <input type="checkbox" name="cohort" value="{{cohort}}">{{cohort}}<br>
+      <fieldset>
+        <legend>Modify Requirements:</legend>
+        <input type="hidden" name="course" value="{{course_info["name"]}}">
+        <p>Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100" value={{course_info['prereq_overall_average']}}></p>
+        <p>Minimum Departmental Average <input type="number" name="minDept" min="0" max="100" value={{course_info['prereq_department_average']}}></p>
+        <p>Choose Average for Different Department:</p><p class="btn btn-info" id="showDepts">click</p>
+        <div id="theDepts">
+          {%for i in depts%}
+            <p>Average required for {{i}}: <input type="text" name="{{i}}"\></p>
+          {%endfor%}
+        </div>
+        <h4>Cohort Requirement:</h4>
+          {%for cohort in cohorts%}
+          <input type="checkbox" name="cohort" value="{{cohort}}">{{cohort}}<br>
+          {%endfor%}
+        <h4>Prerequisite Courses:</h4>
+
+        {%for course in courses%}
+
+        <input type="checkbox" name="prereq" value="{{course}}"> {{course}}<br>
+
         {%endfor%}
-      <h4>Prerequisite Courses:</h4>
 
-      {%for course in courses%}
-
-      <input type="checkbox" name="prereq" value="{{course}}"> {{course}}<br>
-
-      {%endfor%}
-
-      <input type="hidden" name="course" value="{{course}}">
-      <input type="submit" value="Submit" class="btn btn-info">
-    </form>
+        <input type="hidden" name="course" value="{{course}}">
+        <input type="submit" value="Submit" class="btn btn-info">
+      </form>
+    </fieldset>
   </div>
   <div class="col-md-6">
     <h3>Current Prerequisite Requirements:</h3>
@@ -52,6 +60,29 @@
     </p>
   </div>
 </div>
+
+<script>
+
+var but;
+var deptDiv;
+
+var showDepts = function(){
+  if (deptDiv.style.display == 'none'){
+    deptDiv.style.display = 'block';
+  }
+  else{
+    deptDiv.style.display = 'none';
+  }
+}
+
+window.onload = function(){
+  but = document.getElementById('showDepts');
+  deptDiv = document.getElementById('theDepts');
+  but.addEventListener('click',showDepts);
+  deptDiv.style.display = 'none';
+}
+
+</script>
 
 
 {%endblock%}
