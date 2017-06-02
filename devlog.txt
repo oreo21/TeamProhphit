@@ -210,3 +210,6 @@ categorizing failure classes
 
 haleyZ -- 2017-05-31 22:20
 fixed the way courses with unknown departments are stored in the db so that get_problematic_courses() works
+
+amyX -- 2017-06-01 14:07
+implemented flask part for manually setting undocumented courses (missing dept) in app.py and categorize.html
