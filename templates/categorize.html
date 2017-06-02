@@ -26,8 +26,8 @@
 
       {%for course in courses%}
 
-      <p><select name="{{course}}">
-        <option disabled selected value> — * - select a department - * - </option>
+      <p>{{fxn(course)["name"]}} :  <select name="{{course}}">
+        <option disabled selected value> — * - select a department for {{course}} - * - </option>
         {%for dept in depts%}
         <option value="{{dept}}">{{dept}}</option>
         {%endfor%}
