@@ -22,17 +22,73 @@
   <ul class="nav nav-pills">
     <li class="active"><a href="#mod" data-toggle="tab">Modify Courses</a></li>
     <li><a href="#rmv" data-toggle="tab">Remove Students</a></li>
-    <li><a href="#add" data-toggle="tab">Add Students</a></li>
+    <li><a href="#add" data-toggle="tab">Add</a></li>
     <li><a href="#settings" data-toggle="tab">Settings</a></li>
     <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade" id="add">
-          <br><br><br>
-          <h4>Upload Student Transcript</h4>
-          <form action="/testForm/" method="POST" enctype="multipart/form-data">
-            <input type="file" name="upload"/>
-            <input type="submit" class="btn btn-info" value="Upload"/>
-          </form>
+      <div class="tab-pane fade" id="add">
+        <br><br><br>
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="alert alert-dismissible alert-danger col-md-8" id="error">
+          </div>
+          <div class="col-md-2">
+          </div>
         </div>
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8 text-center">
+            <p><form action="/testForm/" method="POST" enctype="multipart/form-data" class='well form-horizontal'>
+              <fieldset>
+                <legend>Upload Student Transcript</legend>
+                <center><input type="file" name="upload"/></center>
+                <input type="submit" class="btn btn-info" value="Upload"/>
+              </fieldset>
+            </form></p>
+            <br>
+            <p><div class="well form-horizontal">
+              <fieldset>
+                <legend>Add Admin</legend>
+                <p><input type="text" name="email" id='email1' placeholder="E-mail"></p>
+                <p><input type="text" name="checkEmail" id='email2' placeholder="Reenter E-mail"></p>
+                <p><input type="password" name="pass" id='pass1' placeholder="Password"></p>
+                <p><input type="password" name="checkpass" id='pass2' placeholder="Reenter Password"></p>
+                <input type="submit" class="btn btn-info" value="Add" id="but"/>
+              </fieldset>
+            </div></p>
+          </div>
+          <div class="col-md-2">
+          </div>
+        </div>
+      </div>
+      <script>
+
+      var error;
+      window.onload = function(){
+        document.getElementById('error');
+        error.style.display = 'none';
+      }
+
+      var validation = function(){
+          $.ajax({
+              url: '/checkMatch/',
+              type: 'POST',
+              data: {'email1':document.getElementById('email1').value, 'email2':document.getElementById('email2').value,'pass1':document.getElementById('pass1').value,'pass2':document.getElementById('pass2').value},
+              success: function(data){
+                  if (data){
+                    error.style.display = 'block';
+                    error.innerHTML = data;
+                  }
+                  else{
+                    window.location = '/';
+                  }
+              }
+
+          });
+        }
+        document.getElementById('but').addEventListener('click',validation);
+      </script>
 
         <div class="tab-pane fade" id="rmv">
           <br><br><br>
@@ -159,12 +215,24 @@
         </div>
         <div class="row text-center">
           <form action="/settings/" method="POST">
-            <div class="col-md-6">
-              <input type="submit" name="export" class="btn btn-large btn-info" value="Export Information"/>
-            </div>
-            <div class="col-md-6">
-              <input type="submit" name="shut_down" class="btn btn-large btn-info" value="Shut Down Website"/>
-            </div>
+            <fieldset>
+              <div class="col-md-3">
+                <input type="submit" name="export" class="btn btn-large btn-info" value="Export Information"/>
+              </div>
+              <div class="col-md-3">
+                {%if on%}
+                <input type="submit" name="shut_down" class="btn btn-large btn-info" value="Shut Down Website"/>
+                {%else%}
+                <input type="submit" name="turn_on" class="btn btn-large btn-info" value="Turn On Website"/>
+                {%endif%}
+              </div>
+              <div class="col-md-3">
+                <input type="submit" name="clear_db" class="btn btn-large btn-info" value="Reset Database"/>
+              </div>
+              <div class="col-md-3">
+                <input type="submit" name="clear_students" class="btn btn-large btn-info" value="Clear Student Information"/>
+              </div>
+            </fieldset>
           </div>
         </form>
       </div>

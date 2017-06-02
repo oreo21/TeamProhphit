@@ -1,7 +1,6 @@
 from pymongo import MongoClient
-import csv
-import hashlib
-import datetime
+from db_builder import initialize
+import csv, hashlib, datetime
 
 db_name = "ttpp"
 
@@ -9,7 +8,9 @@ server = MongoClient()
 #server = MongoClient("lisa.stuy.edu")
 db = server[db_name]
 
-
+# args: course code
+# return: weight of course (1 or 0)
+#         0 if course is a PE or Lab course
 def get_weight(code):
     #Physical education classes
     if is_pe_course(code):
@@ -19,6 +20,8 @@ def get_weight(code):
         return 0
     return 1
 
+# args: course code of a science course
+# return: the specific science dept (Physics, Chem, or Bio), or Science if unknown
 def get_science_department(code):
     sym = code[1]
     if sym == "P":
@@ -30,17 +33,80 @@ def get_science_department(code):
     else:
         return "Science"
 
+# args: course code
+# return: true if course is a science course, false if not    
 def is_science_course(code):
     return code[0] == "S"
 
+# args: course code
+# return: boolean if course is or is not AP
+
+# args: course code
+# return: true if course is a physical education course, false if not
 def is_pe_course(code):
     return code[0] == "P" and (code[-1] == "A" or code[-1] == "B")
 
+# args: course code
+# return: true if course is a computer science course, false if not
 def is_cs_course(code):
     return code[:2] == "MK"
 
+# args: course code
+# return: true if course is an AP, false if not
 def is_AP(code):
-    return code[-1] == "X" 
+    return code[-1] == "X"
+
+# args: file obj of csv containing course info
+# returns: none
+# initializes courses collection
+def add_courses(f):
+    course_list = csv.DictReader(f)
+    for elem in course_list:
+        course = {}
+        course["code"] = elem["CourseCode"]
+        course["name"] = elem["CourseName"]
+
+        if is_science_course(course["code"]):
+            course["department"] = get_science_department(course["code"])
+        else:
+            course["department"] = elem["Department"]
+
+        course["is_AP"] = is_AP(course["code"])
+        course["weight"] = get_weight(course["code"])
+        course["prereq_courses"] = []
+        course["prereq_overall_average"] = 0
+        course["prereq_department_averages"] = []
+        course["grade_levels"] = [9, 10, 11, 12]
+        db.courses.insert_one(course)
+
+
+# args: file obj of csv containing course info
+# returns: none
+# initializes departments collection to hold lists of courses per dept
+def add_departments(f):
+    course_list = csv.DictReader(f)
+    for elem in course_list:
+        code = elem["CourseCode"]
+        if is_science_course(code):
+            dep = get_science_department(code)
+        elif is_cs_course(code):
+            dep = "Computer Science"
+        else:
+            dep = elem["Department"]
+        new = db.departments.find_one({"name" : dep}) == None
+        if new:
+            d = {}
+            d['name'] = dep
+            d["courses"] = [ code ]
+            db.departments.insert_one(d)
+        else:
+            db.departments.update_one({"name" : dep},
+                                      {"$push" :
+                                       {"courses": code }
+                                      }
+            )
+    db.departments.insert_one({"name" : "Unknown", "courses" : []})
+
 
 # args: none
 # return: a list of the names of all the departments
@@ -52,6 +118,8 @@ def list_departments():
         ret.append( dept["name"].encode("ascii") )
     return ret
 
+# args: none
+# return: a list of the names of departments that have AP classes
 def list_departments_AP():
     ret = []
     APs = get_APs()
@@ -83,7 +151,7 @@ def add_students(f):
         course_dept = course_info["department"] if course_info != None else "Unknown"
         if course_dept == "Unknown":
             add_unknown_course(course_code, class_record["Course Title"])
-        
+
         student = db.students.find_one( {"id" : class_record["StudentID"]} )
         #if student not in database, set up a dictionary for all student info
         new = student == None
@@ -207,11 +275,15 @@ def recalculate_overall_average(student_id):
                             }
                           )
 
+# args: current grade (9, 10, 11, 12)
+# returns: cohort (year of freshman year)
 def grade_to_cohort(grade):
     this_year = datetime.datetime.now().year
     offset = grade - 9 + 1
     return this_year - offset
 
+# args: cohort (year of freshman year)
+# returns: current grade (9, 10, 11, 12)
 def cohort_to_grade(cohort):
     this_year = datetime.datetime.now().year
     offset = this_year - cohort - 1
@@ -234,7 +306,7 @@ def add_unknown_course(code, name):
     course["prereq_department_averages"] = []
     course["grade_levels"] = [9, 10, 11, 12]
     db.courses.insert_one(course)
-    
+
 def get_problematic_courses():
     courses = db.courses.find({"department" : "Unknown"})
     ret = []
@@ -252,6 +324,8 @@ def get_APs():
             ret.append( doc["code"].encode("ascii") )
     return ret
 
+# args: department name
+# returns: list of courses in the dept
 def get_department_courses(department):
     dept = db.departments.find_one({"name" : department})
     return dept["courses"]
@@ -267,7 +341,7 @@ def edit_course(code, field, value):
     db.courses.update_one( {"code" : code},
                            {"$set" : {field : value}}
                            )
-    
+
 #return -1 if class not taken
 def get_class_mark(student_id, course_code):
     student = db.students.find_one({"id" : student_id})
@@ -341,6 +415,13 @@ def get_applicable_APs(student_id):
         #if passed all checks, then AP is applicable
         ret.append(course_code)
 
+def set_admin_list(lis):
+    db.admins.update_one( {"name" : "other"},
+                          {"$set" : {"emails" : lis} } )
+        
+def get_admin_list():
+    return db.admins.find_one({"name" : "other"})["emails"]
+        
 def remove_student(student_id):
     db.students.delete_many({"id" : student_id})
 
@@ -360,5 +441,26 @@ def drop_db():
 def drop_students():
     db.students.drop()
 
-# Math courses:
-#  compsci MK---
+def reset_db():
+    drop_db()
+    initialize()
+
+#returns string that is in csv format
+def export():
+    most_APs = 4
+    ret = ""
+    students = db.students.find()
+    for s in student:
+        fname = s["first_name"]
+        lname = s["last_name"]
+        osis = s["id"]
+        cohort = s["cohort"]
+        selections = s["selection"]
+        if len(selections) > most_APs:
+            most_APs = len(selections)
+        row = ",".join( [fname, lname, osis, cohort, ",".join(selections)] )
+        ret += row + "\n"
+    heading = "first_name,last_name,id,cohort,"
+    heading += ",".join( ["selection" + str(x + 1) for x in range(most_APs)] )
+    ret = heading + "\n" + ret
+    return ret

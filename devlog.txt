@@ -213,3 +213,10 @@ fixed the way courses with unknown departments are stored in the db so that get_
 
 amyX -- 2017-06-01 14:07
 implemented flask part for manually setting undocumented courses (missing dept) in app.py and categorize.html
+
+vannaM -- 2017-06-01 21:00
+frontend functionality for reset db + clear students (under SETTINGS)
+shut down + turn on functional now
+modify form issues fixed
+frontend for admin account creation + frontend validation w/ajax
+aesthetic, cleaning

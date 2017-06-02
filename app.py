@@ -70,7 +70,8 @@ def home():
     elif 'student' in session:
         return redirect(url_for('student_home'))
     else:
-        return render_template('student_login.html')
+        on = (db_manager.get_site_status() == 'on')
+        return render_template('student_login.html', on=on)
 
 @app.route('/admin-login/')
 def adminLogin():
@@ -80,6 +81,37 @@ def adminLogin():
         return redirect(url_for('student_home'))
     else:
         return render_template('admin_login.html')
+
+@app.route('/checkMatch/', methods=['POST'])
+def checkMatch():
+    if len(request.form['email1']) == 0:
+        ret = "Please fill in e-mail."
+    elif not request.form['email1'].endswith("@stuy.edu"):
+        ret = "Please use your stuy.edu e-mail."
+    elif request.form['email1'] != request.form['email2']:
+        ret = "E-mails don't match."
+    elif len(request.form['pass1']) == 0:
+        ret = "Please enter password."
+    elif request.form['pass1'] != request.form['pass2']:
+        ret = "Passwords don't match."
+    elif not passCheck(request.form['pass1']):
+        ret = "Please enter a stronger passwords. Passwords must include at least one uppercase letter, one lowercase letter, and one number, and must be 8 character long."
+    else:
+        ret = ''
+        session['success'] = "Admin successfully added."
+    return ret
+
+def passCheck(password):
+
+    if len(password) < 8:
+        return False
+
+    lower = 'abcdefghijklmnopqrstuvwxyz'
+    upper = 'ABCDEFGHIJKLMNOPQRSTUVQXYZ'
+    nums = '0123456789'
+
+    ret = [0 if x in lower else 1 if x in upper else 2 if x in nums else 3 for x in password]
+    return 0 in ret and 1 in ret and 2 in ret
 
 @app.route('/logout/')
 def logout():
@@ -123,7 +155,9 @@ def admin_home():
         success = session['success']
         session.pop('success')
 
-    return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success)
+    on = (db_manager.get_site_status()=='on')
+
+    return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success, on=on)
 
 @app.route('/categorize/')
 def categorize():
@@ -132,7 +166,6 @@ def categorize():
     if len(courses) <= 0:
         noProblems = True
     depts = db_manager.list_departments()
-    print courses
     return render_template('categorize.html',courses=courses, depts=depts, noProblems = noProblems, fxn=db_manager.get_course)
 
 @app.route('/categorizeForm/', methods=['POST'])
@@ -146,11 +179,21 @@ def categorizeForm():
 @app.route("/settings/", methods=['POST'])
 def settings():
     if 'shut_down' in request.form:
-        #shut down function
-        print 'shut down'
-    else:
-        #export
+        db_manager.set_site_status('off')
+        session['success'] = 'Site shut down successfully'
+    elif 'turn_on' in request.form:
+        db_manager.set_site_status('on')
+        session['success'] = 'Site turned on successfully'
+    elif 'clear_db' in request.form:
+        print 'clear db'
+        session['success'] = 'DB Cleared'
+    elif 'clear_students' in request.form:
+        print 'clear students'
+        session['success'] = "Students Cleared"
+    elif 'export' in request.form:
         print 'export'
+        session['success'] = "Exported"
+
     return redirect(url_for('admin_home'))
 
 @app.route("/search/")
@@ -203,24 +246,37 @@ def mod(course):
     course_info = db_manager.get_course(course)
     #hardcoded for now
     cohorts = ['2017','2016','2015','2014']
-    return render_template('modify.html',course=str(course),courses=courses,course_info = course_info, special=True, cohorts=cohorts)
+    depts = db_manager.list_departments()
+    return render_template('modify.html',course=str(course),courses=courses,course_info = course_info, special=True, cohorts=cohorts, depts=depts)
 
 #does actual editing of course
-@app.route('/modifyCourse/', methods = ['POST', 'GET'])
+@app.route('/modifyCourse/', methods = ['POST'])
 def modifyCourse():
-    minGPA = request.form["minGPA"]
-    mindept = request.form["minDept"]
-    cohort = request.form["cohort"]
-    prereqs = request.form["prereq"]
-    course = request.form["course"]
+    dept = db_manager.list_departments()
 
-    db_manager.edit_course(course, "prereq_overall_average", minGPA)
-    db_manager.edit_course(course, "prereq_department_averages", minDept)
-    db_manager.edit_course(course, "grade_levels", cohort)
-    db_manager.edit_course(course, "prereq_courses", prereq)
+    course = request.form['course']
+
+    if 'minGPA' in request.form:
+        minGPA = request.form["minGPA"]
+        db_manager.edit_course(course, "prereq_overall_average", minGPA)
+    if 'minDept' in request.form:
+        minDept = request.form["minDept"]
+        db_manager.edit_course(course, "prereq_department_averages", minDept)
+    if 'cohort' in request.form:
+        cohort = request.form["cohort"]
+        db_manager.edit_course(course, "grade_levels", cohort)
+    if 'prereq' in request.form:
+        prereqs = request.form["prereq"]
+        db_manager.edit_course(course, "prereq_courses", prereq)
+
+    for i in request.form:
+        if i in dept and request.form[i]:
+            #i is the department, request.form[i] is the grade
+            print i + " : " + request.form[i]
+            #db_manager.edit_course(course, "prereq_department_averages", minDept)
 
     session['success'] = "Courses modified successfully!"
-    return redirect(url_for('adHome'))
+    return redirect(url_for('home'))
 #<!-- name, code, department, is_AP, weight, prereq_courses, prereq_overall_average, prereq_department_averages, grade_levels -->
 #example of how to deal w/file
 @app.route('/testForm/', methods=['POST'])

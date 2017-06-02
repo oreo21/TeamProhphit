@@ -1,18 +1,26 @@
 {%extends "base.html"%}
 
 {%block title%}
-  Search Results
+Search Results
 {%endblock%}
 
 {%block body%}
 {%if student is iterable%}
-  <div class="jumbotron">
-    <h2>{{student['first_name']}} {{student['last_name']}}</h2>
-    <h4>{{osis}}</h4>
-  </div>
 
-  <div class="row">
-    <div class="text-center">
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="text-center col-md-8">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{student['first_name']}} {{student['last_name']}}</h3>
+      </div>
+      <div class="panel-body">
+        <p><b>Osis:</b> {{osis}}</p>
+        <p><b>Cohort:</b> {{student['cohort']}}</p>
+      </div>
+    </div>
+    <div class="well" style='font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;'>
       <form action='/modify_student/' class="form-horizontal" method="POST">
 
         <p>Cohort: <input type="text" name="cohort" value="{{student['cohort']}}"></p>
@@ -28,9 +36,9 @@
               <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
               <ul class="dropdown-menu">
                 {%for i in courses%}
-                  {%if myfxn(i)["department"] == dept %}
-                    <li><input type="checkbox" name="exceptions" value="{{crs}}">{{myfxn(i)['name']}} ({{i}})</li>
-                  {%endif%}
+                {%if myfxn(i)["department"] == dept %}
+                <li><input type="checkbox" name="exceptions" value="{{crs}}">{{myfxn(i)['name']}} ({{i}})</li>
+                {%endif%}
                 {%endfor%}
               </ul>
             </div>
@@ -38,56 +46,59 @@
             {%endfor%}
           </div>
 
-            <p>Allow student to take <input type="number" name="amount" value="{{student['amount']}}">APs</p>
-            <input type="submit" value="Submit" class="btn btn-info">
+          <p>Allow student to take <input type="number" name="amount" value="{{student['amount']}}">APs</p>
+          <input type="submit" value="Submit" class="btn btn-info">
 
         </form>
         <form action="/delete_student/" onsubmit="return confirm('Are you sure that you want to delete this student? This action cannot be undone.');" method="POST">
           <input type="submit" value="Delete" class="btn btn-danger" name="del" id="del">
         </form>
-
       </div>
     </div>
 
+  </div>
+  <div class="col-md-2">
+  </div>
+
   <script>
 
-    var but = document.getElementById('but');
-    var options= document.getElementById('options');
-    var del = document.getElementById('del');
+  var but = document.getElementById('but');
+  var options= document.getElementById('options');
+  var del = document.getElementById('del');
 
-    options.style.display= 'none';
-    var vis = false;
+  options.style.display= 'none';
+  var vis = false;
 
-    var click = function(){
-      if (vis){
-        vis = false;
-        options.style.display = 'none';
-        but.innerHTML = 'show';
-      }
-      else{
-        vis = true;
-        options.style.display = 'block';
-        but.innerHTML = 'hide';
-      }
+  var click = function(){
+    if (vis){
+      vis = false;
+      options.style.display = 'none';
+      but.innerHTML = 'show';
     }
+    else{
+      vis = true;
+      options.style.display = 'block';
+      but.innerHTML = 'hide';
+    }
+  }
 
-    but.addEventListener('click',click);
+  but.addEventListener('click',click);
 
   </script>
 
-{%else%}
+  {%else%}
 
-<div class="alert alert-dismissible alert-danger">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  No student matches this selection.
-</div>
+  <div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    No student matches this selection.
+  </div>
 
-{%endif%}
+  {%endif%}
 
-{%endblock%}
+  {%endblock%}
 
-<!--
-{u'cohort': u'2015' u'first_name': u'Marge' u'last_name': u'Simpson' u'selections': [] u'department_averages': {} u'classes_taken': {u'Unknown': [{u'code': u'MGS43' u'weight': 1 u'mark': u'97'} {u'code': u'PPS81QB' u'weight': 1 u'mark': u'95'} {u'code': u'EES81QFC' u'weight': 1 u'mark': u'92'} {u'code': u'SLS43QL' u'weight': 1 u'mark': u'S'} {u'code': u'UAS11' u'weight': 1 u'mark': u'85'} {u'code': u'FSS61QE' u'weight': 1 u'mark': u'90'} {u'code': u'HGS41' u'weight': 1 u'mark': u'90'} {u'code': u'SLS43' u'weight': 1 u'mark': u'88'} {u'code': u'SLS44' u'weight': 1 u'mark': u'80'} {u'code': u'HGS42' u'weight': 1 u'mark': u'90'} {u'code': u'AHS11' u'weight': 1 u'mark': u'80'} {u'code': u'MGS44' u'weight': 1 u'mark': u'88'} {u'code': u'SLS44QL' u'weight': 1 u'mark': u'S'} {u'code': u'PPS82QB' u'weight': 1 u'mark': u'95'} {u'code': u'EES82QFC' u'weight': 1 u'mark': u'93'} {u'code': u'FSS62QE' u'weight': 1 u'mark': u'90'} {u'code': u'SCS21' u'weight': 1 u'mark': u'93'} {u'code': u'HGS43XE' u'weight': 1 u'mark': u'88'} {u'code': u'FSS63' u'weight': 1 u'mark': u'90'} {u'code': u'MRS21' u'weight': 1 u'mark': u'85'} {u'code': u'PPS83QB' u'weight': 1 u'mark': u'93'} {u'code': u'MKS21' u'weight': 1 u'mark': u'95'} {u'code': u'EES83QEL' u'weight': 1 u'mark': u'94'} {u'code': u'SCS21QL' u'weight': 1 u'mark': u'S'} {u'code': u'HGS44XE' u'weight': 1 u'mark': u'90'} {u'code': u'SCS22' u'weight': 1 u'mark': u'92'} {u'code': u'PPS84QA' u'weight': 1 u'mark': u'96'} {u'code': u'SCS22QL' u'weight': 1 u'mark': u'S'} {u'code': u'FSS64' u'weight': 1 u'mark': u'85'} {u'code': u'MRS22' u'weight': 1 u'mark': u'85'} {u'code': u'EES84QEL' u'weight': 1 u'mark': u'96'} {u'code': u'MKS22' u'weight': 1 u'mark': u'96'} {u'code': u'MQF11C' u'weight': 1 u'mark': u'100'} {u'code': u'SCF11C' u'weight': 1 u'mark': u'97'} {u'code': u'MPF11C' u'weight': 1 u'mark': u'97'} {u'code': u'SPF11C' u'weight': 1 u'mark': u'91'} {u'code': u'SEN11A' u'weight': 1 u'mark': u'100'} {u'code': u'FSN31A' u'weight': 1 u'mark': u'100'} {u'code': u'MEN11A' u'weight': 1 u'mark': u'98'} {u'code': u'PPN31' u'weight': 1 u'mark': u'100'}]} u'_id': ObjectId('592869d343f9da01e3f7c036') u'overall_average': 0 u'id': u'111111125'}
+  <!--
+  {u'cohort': u'2015' u'first_name': u'Marge' u'last_name': u'Simpson' u'selections': [] u'department_averages': {} u'classes_taken': {u'Unknown': [{u'code': u'MGS43' u'weight': 1 u'mark': u'97'} {u'code': u'PPS81QB' u'weight': 1 u'mark': u'95'} {u'code': u'EES81QFC' u'weight': 1 u'mark': u'92'} {u'code': u'SLS43QL' u'weight': 1 u'mark': u'S'} {u'code': u'UAS11' u'weight': 1 u'mark': u'85'} {u'code': u'FSS61QE' u'weight': 1 u'mark': u'90'} {u'code': u'HGS41' u'weight': 1 u'mark': u'90'} {u'code': u'SLS43' u'weight': 1 u'mark': u'88'} {u'code': u'SLS44' u'weight': 1 u'mark': u'80'} {u'code': u'HGS42' u'weight': 1 u'mark': u'90'} {u'code': u'AHS11' u'weight': 1 u'mark': u'80'} {u'code': u'MGS44' u'weight': 1 u'mark': u'88'} {u'code': u'SLS44QL' u'weight': 1 u'mark': u'S'} {u'code': u'PPS82QB' u'weight': 1 u'mark': u'95'} {u'code': u'EES82QFC' u'weight': 1 u'mark': u'93'} {u'code': u'FSS62QE' u'weight': 1 u'mark': u'90'} {u'code': u'SCS21' u'weight': 1 u'mark': u'93'} {u'code': u'HGS43XE' u'weight': 1 u'mark': u'88'} {u'code': u'FSS63' u'weight': 1 u'mark': u'90'} {u'code': u'MRS21' u'weight': 1 u'mark': u'85'} {u'code': u'PPS83QB' u'weight': 1 u'mark': u'93'} {u'code': u'MKS21' u'weight': 1 u'mark': u'95'} {u'code': u'EES83QEL' u'weight': 1 u'mark': u'94'} {u'code': u'SCS21QL' u'weight': 1 u'mark': u'S'} {u'code': u'HGS44XE' u'weight': 1 u'mark': u'90'} {u'code': u'SCS22' u'weight': 1 u'mark': u'92'} {u'code': u'PPS84QA' u'weight': 1 u'mark': u'96'} {u'code': u'SCS22QL' u'weight': 1 u'mark': u'S'} {u'code': u'FSS64' u'weight': 1 u'mark': u'85'} {u'code': u'MRS22' u'weight': 1 u'mark': u'85'} {u'code': u'EES84QEL' u'weight': 1 u'mark': u'96'} {u'code': u'MKS22' u'weight': 1 u'mark': u'96'} {u'code': u'MQF11C' u'weight': 1 u'mark': u'100'} {u'code': u'SCF11C' u'weight': 1 u'mark': u'97'} {u'code': u'MPF11C' u'weight': 1 u'mark': u'97'} {u'code': u'SPF11C' u'weight': 1 u'mark': u'91'} {u'code': u'SEN11A' u'weight': 1 u'mark': u'100'} {u'code': u'FSN31A' u'weight': 1 u'mark': u'100'} {u'code': u'MEN11A' u'weight': 1 u'mark': u'98'} {u'code': u'PPN31' u'weight': 1 u'mark': u'100'}]} u'_id': ObjectId('592869d343f9da01e3f7c036') u'overall_average': 0 u'id': u'111111125'}
 
 
 -->
