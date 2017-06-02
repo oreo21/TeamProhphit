@@ -13,11 +13,14 @@ def initialize():
     init_state()
 
 def init_admin():
-    admin = {}
-    admin['username'] = "admin"
-    admin['password'] = hashlib.sha512("password").hexdigest()
-    db.admins.insert_one(admin)
+    super_admin = {}
+    super_admin['name'] = "super_admin"
+    super_admin['password'] = hashlib.sha512("password").hexdigest()
+    db.admins.insert_one(super_admin)
 
+    other_admins = {"name" : "other", "emails": []}
+    db.admins.insert_one(other_admins)
+    
 def init_state():
     doc = {}
     doc["on"] = 0

@@ -415,6 +415,13 @@ def get_applicable_APs(student_id):
         #if passed all checks, then AP is applicable
         ret.append(course_code)
 
+def set_admin_list(lis):
+    db.admins.update_one( {"name" : "other"},
+                          {"$set" : {"emails" : lis} } )
+        
+def get_admin_list():
+    return db.admins.find_one({"name" : "other"})["emails"]
+        
 def remove_student(student_id):
     db.students.delete_many({"id" : student_id})
 
@@ -437,3 +444,23 @@ def drop_students():
 def reset_db():
     drop_db()
     initialize()
+
+#returns string that is in csv format
+def export():
+    most_APs = 4
+    ret = ""
+    students = db.students.find()
+    for s in student:
+        fname = s["first_name"]
+        lname = s["last_name"]
+        osis = s["id"]
+        cohort = s["cohort"]
+        selections = s["selection"]
+        if len(selections) > most_APs:
+            most_APs = len(selections)
+        row = ",".join( [fname, lname, osis, cohort, ",".join(selections)] )
+        ret += row + "\n"
+    heading = "first_name,last_name,id,cohort,"
+    heading += ",".join( ["selection" + str(x + 1) for x in range(most_APs)] )
+    ret = heading + "\n" + ret
+    return ret
