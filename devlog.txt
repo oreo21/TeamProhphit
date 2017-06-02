@@ -210,3 +210,10 @@ categorizing failure classes
 
 haleyZ -- 2017-05-31 22:20
 fixed the way courses with unknown departments are stored in the db so that get_problematic_courses() works
+
+vannaM -- 2017-06-01 21:00
+frontend functionality for reset db + clear students (under SETTINGS)
+shut down + turn on functional now
+modify form issues fixed
+frontend for admin account creation + frontend validation w/ajax
+aesthetic, cleaning
