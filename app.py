@@ -156,6 +156,7 @@ def admin_home():
         session.pop('success')
 
     on = (db_manager.get_site_status()=='on')
+    print db_manager.get_APs()
 
     return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success, on=on)
 
@@ -307,15 +308,66 @@ def addadmin():
 
 @app.route('/validateCSV/', methods=['POST'])
 def validateCSV():
-    #get error message (debugging only)
-    db_manager.add_departments(request.form['f'])
-    db_manager.add_courses(request.form['f'])
+
     try:
-        csv = csv.reader(request.form['f'])
-        db_manager.add_departments(request.form['f'])
-        db_manager.add_courses(request.form['f'])
+        #read file
+        fil = request.files['f'].read()
+        #return file
+        ret = []
+        #split file by lines
+        data = fil.split('\n')
+        #get headers
+        headers = []
+        for i in data[0].split(','):
+            headers.append(i)
+        for line in data[1:]:
+            l = line.split(',')
+            info = {}
+            i = 0
+            for category in headers:
+                info[category] = l[i]
+                i += 1
+                if i >= len(l):
+                    break
+            ret.append(info)
+
+        db_manager.add_departments(ret)
+        db_manager.add_courses(ret)
         session['success'] = "Courses uploaded succesfully!"
-        ret = ''
+        return ''
+    #bad file
+    except:
+        return 'Error. CSV is in invalid form.'
+
+@app.route('/validateTranscript/', methods=['POST'])
+def validateTranscript():
+
+    try:
+        #read file
+        fil = request.files['f'].read()
+        #return file
+        ret = []
+        #split file by lines
+        data = fil.split('\n')
+        #get headers
+        headers = []
+        for i in data[0].split(','):
+            headers.append(i)
+        for line in data[1:]:
+            l = line.split(',')
+            info = {}
+            i = 0
+            for category in headers:
+                info[category] = l[i]
+                i += 1
+                if i >= len(l):
+                    break
+            ret.append(info)
+
+        db_manager.add_students(ret)
+        session['success'] = "transcripts uploaded succesfully!"
+        return ''
+    #bad file
     except:
         return 'Error. CSV is in invalid form.'
 
