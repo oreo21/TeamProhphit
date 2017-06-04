@@ -39,18 +39,23 @@
           <div class="col-md-2">
           </div>
           <div class="col-md-8 text-center">
-            <p><form action="/testForm/" method="POST" enctype="multipart/form-data" class='well form-horizontal'>
-              <fieldset>
-                <legend>Upload Student Transcript</legend>
-                <center><input type="file" name="upload" accept=".csv"/></center>
-                <input type="submit" class="btn btn-info" value="Upload" id="student-upload"/>
-              </fieldset>
-            </form></p>
-            <fieldset>
-              <legend>Upload Course List</legend>
-              <center><input type="file" name="upload" id="course-file"/></center>
-              <input type="submit" class="btn btn-info" value="Upload" id="course-upload"/>
-            </p>
+            <div class='well form-horizontal'>
+              <p><form action="/testForm/" method="POST" enctype="multipart/form-data" id="transcript-form">
+                <fieldset>
+                  <legend>Upload Student Transcript</legend>
+                  <center><input type="file" name="f" id="transcript-file"/></center>
+                </fieldset>
+                <p class="btn btn-info" value="Upload" id="transcript-upload">Upload</p>
+              </form></p>
+            </div>
+            <div class='well form-horizontal'>
+              <p><form name="course-form" method="POST" enctype="multipart/form-data" id="course-form">
+                <fieldset>
+                  <legend>Upload Course List</legend>
+                  <center><input type="file" name="f" id="course-file"/></center>
+                </fieldset>
+              </form><p class="btn btn-info" id="course-upload"/>Upload</p></p>
+            </div>
             <br>
             <p><div class="well form-horizontal">
               <fieldset>
@@ -69,8 +74,7 @@
       </div>
       <script>
 
-      var error;
-      var courseUpload;
+      var error, courseUpload, courseForm, transcriptForm, fd;
 
       window.onload = function(){
 
@@ -81,6 +85,7 @@
 
         document.getElementById('but').addEventListener('click',validation);
         courseUpload.addEventListener('click',validateCourses);
+        document.getElementById('student-upload').addEventListener('click',validateTranscript);
       }
 
       var validation = function(){
@@ -102,11 +107,51 @@
 
       var validateCourses = function(){
         if (document.getElementById('course-file').value != ""){
+          courseForm = document.getElementById('course-form');
+          //console.log(courseForm);
+          fd = new FormData(courseForm);
+          //console.log(fd.entries());
+          //console.log(formdata);
           $.ajax({
               url: '/validateCSV/',
               type: 'POST',
-              data: {'f' : document.getElementById('course-file').value},
+              data: fd,
+              contentType: false,
+              processData: false,
               success: function(data){
+                console.log(data);
+                  if (data){
+                    error.style.display = 'block';
+                    error.innerHTML = data;
+                  }
+                  else{
+                    window.location = '/';
+                  }
+              }
+
+          });
+        }
+        else{
+          error.style.display = 'block';
+          error.innerHTML = "No file uploaded."
+        }
+      }
+
+      var validateTranscript = function(){
+        if (document.getElementById('transcript-file').value != ""){
+          transcriptForm = document.getElementById('transcript-form');
+          //console.log(courseForm);
+          fd = new FormData(transcriptForm);
+          //console.log(fd.entries());
+          //console.log(formdata);
+          $.ajax({
+              url: '/validateTranscript/',
+              type: 'POST',
+              data: fd,
+              contentType: false,
+              processData: false,
+              success: function(data){
+                console.log(data);
                   if (data){
                     error.style.display = 'block';
                     error.innerHTML = data;

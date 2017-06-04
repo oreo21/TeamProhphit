@@ -34,7 +34,7 @@ def get_science_department(code):
         return "Science"
 
 # args: course code
-# return: true if course is a science course, false if not    
+# return: true if course is a science course, false if not
 def is_science_course(code):
     return code[0] == "S"
 
@@ -54,58 +54,66 @@ def is_cs_course(code):
 # args: course code
 # return: true if course is an AP, false if not
 def is_AP(code):
-    return code[-1] == "X"
+    if code[-1] == "X":
+        return 1
+    return 0
 
 # args: file obj of csv containing course info
 # returns: none
 # initializes courses collection
 def add_courses(f):
-    course_list = csv.DictReader(f)
-    for elem in course_list:
-        course = {}
-        course["code"] = elem["CourseCode"]
-        course["name"] = elem["CourseName"]
+    for elem in f:
+        try:
+            course = {}
+            course["code"] = elem["CourseCode"]
+            course["name"] = elem["CourseName"]
 
-        if is_science_course(course["code"]):
-            course["department"] = get_science_department(course["code"])
-        else:
-            course["department"] = elem["Department"]
+            if is_science_course(course["code"]):
+                course["department"] = get_science_department(course["code"])
+            else:
+                course["department"] = elem["Department"]
 
-        course["is_AP"] = is_AP(course["code"])
-        course["weight"] = get_weight(course["code"])
-        course["prereq_courses"] = []
-        course["prereq_overall_average"] = 0
-        course["prereq_department_averages"] = []
-        course["grade_levels"] = [9, 10, 11, 12]
-        db.courses.insert_one(course)
+            course["is_AP"] = is_AP(course["code"])
+            course["weight"] = get_weight(course["code"])
+            course["prereq_courses"] = []
+            course["prereq_overall_average"] = 0
+            course["prereq_department_averages"] = []
+            course["grade_levels"] = [9, 10, 11, 12]
+            #print course
+            db.courses.insert_one(course)
+        #deal w/expected funkiness
+        except:
+            pass
 
 
 # args: file obj of csv containing course info
 # returns: none
 # initializes departments collection to hold lists of courses per dept
 def add_departments(f):
-    course_list = csv.DictReader(f)
-    for elem in course_list:
-        code = elem["CourseCode"]
-        if is_science_course(code):
-            dep = get_science_department(code)
-        elif is_cs_course(code):
-            dep = "Computer Science"
-        else:
-            dep = elem["Department"]
-        new = db.departments.find_one({"name" : dep}) == None
-        if new:
-            d = {}
-            d['name'] = dep
-            d["courses"] = [ code ]
-            db.departments.insert_one(d)
-        else:
-            db.departments.update_one({"name" : dep},
-                                      {"$push" :
-                                       {"courses": code }
-                                      }
-            )
-    db.departments.insert_one({"name" : "Unknown", "courses" : []})
+    for elem in f:
+        try:
+            code = elem["CourseCode"]
+            if is_science_course(code):
+                dep = get_science_department(code)
+            elif is_cs_course(code):
+                dep = "Computer Science"
+            else:
+                dep = elem["Department"]
+            new = db.departments.find_one({"name" : dep}) == None
+            if new:
+                d = {}
+                d['name'] = dep
+                d["courses"] = [ code ]
+                db.departments.insert_one(d)
+            else:
+                db.departments.update_one({"name" : dep},
+                                          {"$push" :
+                                           {"courses": code }
+                                          }
+                )
+        #sometimes things are funky for no good reason
+        except:
+            pass
 
 
 # args: none
@@ -418,10 +426,10 @@ def get_applicable_APs(student_id):
 def set_admin_list(lis):
     db.admins.update_one( {"name" : "other"},
                           {"$set" : {"emails" : lis} } )
-        
+
 def get_admin_list():
     return db.admins.find_one({"name" : "other"})["emails"]
-        
+
 def remove_student(student_id):
     db.students.delete_many({"id" : student_id})
 
