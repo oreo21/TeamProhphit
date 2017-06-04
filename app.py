@@ -185,7 +185,7 @@ def settings():
         db_manager.set_site_status('on')
         session['success'] = 'Site turned on successfully'
     elif 'clear_db' in request.form:
-        print 'clear db'
+        db_manager.reset_db()
         session['success'] = 'DB Cleared'
     elif 'clear_students' in request.form:
         print 'clear students'
@@ -294,6 +294,19 @@ def testForm():
         return redirect(url_for("add"))
 
 
+@app.route('/validateCSV/', methods=['POST'])
+def validateCSV():
+    #get error message (debugging only)
+    db_manager.add_departments(request.form['f'])
+    db_manager.add_courses(request.form['f'])
+    try:
+        csv = csv.reader(request.form['f'])
+        db_manager.add_departments(request.form['f'])
+        db_manager.add_courses(request.form['f'])
+        session['success'] = "Courses uploaded succesfully!"
+        ret = ''
+    except:
+        return 'Error. CSV is in invalid form.'
 
 if __name__ == '__main__':
     app.debug = True

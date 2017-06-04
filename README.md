@@ -22,4 +22,4 @@ To download these dependencies,
 ```$ python utils/db_builder.py```
 * Run the Flask app
 ```$ python app.py```
-* In a web broswer, go to localhot:5000
+* In a web broswer, go to localhost:5000
