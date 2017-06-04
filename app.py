@@ -2,7 +2,7 @@ import os, sys, random, csv
 from flask import Flask, render_template, url_for, request, redirect, session
 from utils import auth
 from utils import db_manager
-
+import hashlib
 #oauth imports and stuff
 from oauth2client.client import flow_from_clientsecrets, OAuth2Credentials # OAuth library, import the function and class that this uses
 from httplib2 import Http # The http library to issue REST calls to the oauth api
@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["jxu9@stuy.edu", "vmavromatis@stuy.edu"]
+adminlist = ["vmavromatis@stuy.edu"]
 
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
@@ -293,6 +293,17 @@ def testForm():
     else:
         return redirect(url_for("add"))
 
+@app.route('/adddeptadmin/')
+def addadmin():
+    email = request.form["email"]
+    if email != request.form["checkEmail"]:
+        return render_template("admin_home.html", message="the emails you've entered do not match.")
+    else:
+        p = hashlib.sha512(request.form["pass"])
+        if p == hashlib.sha512(request.form["checkpass"]):
+            #set admin fxn
+            return render_template("admin_home.html", message="added new admin successfully.")
+        return render_template("admin_home.html", message="the passwords you've entered do not match.")
 
 @app.route('/validateCSV/', methods=['POST'])
 def validateCSV():
