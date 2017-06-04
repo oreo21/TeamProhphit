@@ -42,10 +42,15 @@
             <p><form action="/testForm/" method="POST" enctype="multipart/form-data" class='well form-horizontal'>
               <fieldset>
                 <legend>Upload Student Transcript</legend>
-                <center><input type="file" name="upload"/></center>
-                <input type="submit" class="btn btn-info" value="Upload"/>
+                <center><input type="file" name="upload" accept=".csv"/></center>
+                <input type="submit" class="btn btn-info" value="Upload" id="student-upload"/>
               </fieldset>
             </form></p>
+            <fieldset>
+              <legend>Upload Course List</legend>
+              <center><input type="file" name="upload" id="course-file"/></center>
+              <input type="submit" class="btn btn-info" value="Upload" id="course-upload"/>
+            </p>
             <br>
             <p><div class="well form-horizontal">
               <fieldset>
@@ -65,16 +70,42 @@
       <script>
 
       var error;
+      var courseUpload;
+
       window.onload = function(){
-        document.getElementById('error');
+
+        error = document.getElementById('error');
         error.style.display = 'none';
+
+        courseUpload = document.getElementById('course-upload');
+
+        document.getElementById('but').addEventListener('click',validation);
+        courseUpload.addEventListener('click',validateCourses);
       }
 
       var validation = function(){
+        $.ajax({
+            url: '/checkMatch/',
+            type: 'POST',
+            data: {'email1':document.getElementById('email1').value, 'email2':document.getElementById('email2').value,'pass1':document.getElementById('pass1').value,'pass2':document.getElementById('pass2').value},
+            success: function(data){
+                if (data){
+                  error.style.display = 'block';
+                  error.innerHTML = data;
+                }
+                else{
+                  window.location = '/';
+                }
+            }
+          });
+        }
+
+      var validateCourses = function(){
+        if (document.getElementById('course-file').value != ""){
           $.ajax({
-              url: '/checkMatch/',
+              url: '/validateCSV/',
               type: 'POST',
-              data: {'email1':document.getElementById('email1').value, 'email2':document.getElementById('email2').value,'pass1':document.getElementById('pass1').value,'pass2':document.getElementById('pass2').value},
+              data: {'f' : document.getElementById('course-file').value},
               success: function(data){
                   if (data){
                     error.style.display = 'block';
@@ -87,7 +118,12 @@
 
           });
         }
-        document.getElementById('but').addEventListener('click',validation);
+        else{
+          error.style.display = 'block';
+          error.innerHTML = "No file uploaded."
+        }
+      }
+
       </script>
 
         <div class="tab-pane fade" id="rmv">
