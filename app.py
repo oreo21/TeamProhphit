@@ -286,7 +286,7 @@ def testForm():
     if 'upload' in request.files:
         #get the file
         filedata  = request.files['upload']
-        db_manager.add_students(filedata)
+        db_manager.add_courses(filedata)
         session['success'] = "Transcript uploaded succesfully!"
         #go to student home
         return redirect(url_for("admin_home"))
