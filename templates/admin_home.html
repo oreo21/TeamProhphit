@@ -39,7 +39,7 @@
           <div class="col-md-2">
           </div>
           <div class="col-md-8 text-center">
-            <p><form action="/testForm/" method="POST" enctype="multipart/form-data" class='well form-horizontal'>
+            <p><form action="/uploadstudents/" method="POST" enctype="multipart/form-data" class='well form-horizontal'>
               <fieldset>
                 <legend>Upload Student Transcript</legend>
                 <center><input type="file" name="upload" accept=".csv"/></center>
@@ -47,32 +47,12 @@
               </fieldset>
             </form></p>
 
-            <p><fieldset><form action="//" method="POST" nctype="multipart/form-data" class='well form-horizontal'>
+            <p><fieldset><form action="/uploadcourses/" method="POST" nctype="multipart/form-data" class='well form-horizontal'>
               <legend>Upload Course List</legend>
               <center><input type="file" name="upload" id="course-file"/></center>
               <input type="submit" class="btn btn-info" value="Upload" id="course-upload"/>
             </fieldset>
           </form></p>
-
-            <div class='well form-horizontal'>
-              <p><form action="/testForm/" method="POST" enctype="multipart/form-data" id="transcript-form">
-                <fieldset>
-                  <legend>Upload Student Transcript</legend>
-                  <center><input type="file" name="f" id="transcript-file"/></center>
-                </fieldset>
-                <p class="btn btn-info" value="Upload" id="transcript-upload">Upload</p>
-              </form></p>
-            </div>
-            <div class='well form-horizontal'>
-              <p><form name="course-form" method="POST" enctype="multipart/form-data" id="course-form">
-                <fieldset>
-                  <legend>Upload Course List</legend>
-                  <center><input type="file" name="f" id="course-file"/></center>
-                </fieldset>
-              </form><p class="btn btn-info" id="course-upload"/>Upload</p></p>
-            </div>
-            <br>
-
             <p><div class="well form-horizontal">
               <fieldset>
                 <legend>Add Admin</legend>

@@ -223,3 +223,8 @@ aesthetic, cleaning
 
 vannaM -- 2017-06-04 03:00
 created uploading of student transcripts + courses
+
+amyX -- 2017-06-04 20:12
+added routes for uploading different types of transcripts
+fixed multiple transcript upload forms on admin_home, probably from git automerging 
+added additional scope to oauth in order to get more info than email (eg. full name)
