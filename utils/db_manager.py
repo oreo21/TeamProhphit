@@ -156,6 +156,7 @@ def remove_stuyedu(s):
 #             * Mark (Grade in the course)
 # return: none
 def add_students(f):
+    ret = []
     for class_record in f:
         try:
             course_code = class_record["Course"]
@@ -211,7 +212,8 @@ def add_students(f):
                                               student["classes_taken"]}})
         except:
             #things go wrong sometimes (empty entries)
-            pass
+            ret.append(student['id'] + " ")
+        return ret
 
 def get_id(email):
     user = remove_stuyedu(email)

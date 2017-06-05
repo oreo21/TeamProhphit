@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["jxu9@stuy.edu"]
+adminlist = ["jxu9@stuy.edu","vmavromatis@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -386,8 +386,11 @@ def validateTranscript():
                 if i >= len(l):
                     break
             ret.append(info)
-        db_manager.add_students(ret)
-        session['success'] = "transcripts uploaded succesfully!"
+        fail = db_manager.add_students(ret)
+        failMsg = ""
+        if len(fail) > 0:
+            failMsg = ",".join(fail) + " not uploaded."
+        session['success'] = "Transcripts uploaded succesfully! %s"%failMsg
         return ''
     #bad file
     except:
