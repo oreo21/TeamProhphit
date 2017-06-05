@@ -360,7 +360,6 @@ def validateCSV():
 
 @app.route('/validateTranscript/', methods=['POST'])
 def validateTranscript():
-
     try:
         #read file
         fil = request.files['f'].read()

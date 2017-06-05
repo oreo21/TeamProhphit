@@ -20,11 +20,11 @@ def init_admin():
 
     other_admins = {"name" : "other", "emails": []}
     db.admins.insert_one(other_admins)
-    
+
 def init_state():
     doc = {}
     doc["on"] = 0
     db.state.insert_one(doc)
 
-if __name__ == "__main__"
-initialize()
+if __name__ == "__main__":
+    initialize()
