@@ -113,7 +113,7 @@ def add_departments(f):
             #things go wrong sometimes (empty entries)
         except:
             print elem
-        
+
 
 
 # args: none
@@ -219,7 +219,7 @@ def get_id(email):
     if result == None:
         return -1
     return result["id"]
-        
+
 # args: string student OSIS number
 # return: student document as a dictionary
 def get_student(student_id):
@@ -387,9 +387,10 @@ def get_applicable_APs(student_id):
 
         #admin override allows this AP
         #don't bother chechking other pre-reqs
-        if course_code in student["exceptions"]:
-            ret.append(course_code)
-            continue
+        if "exceptions" in course_code:
+            if course_code in student["exceptions"]:
+                ret.append(course_code)
+                continue
 
         course = db.courses.find_one({"code" : course_code})
 
