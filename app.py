@@ -149,7 +149,7 @@ def student_home():
     #get_applicable_APs(student_id)
     #student["id"] for osis
     aps = db_manager.get_applicable_APs(student["id"])
-    return render_template('student_home.html', numAps = len(aps), aps=aps)
+    return render_template('student_home.html', numAps = len(aps), aps=agps)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])
