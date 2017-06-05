@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["vmavromatis@stuy.edu", "jxu9@stuy.edu"]
+adminlist = ["jxu9@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -144,7 +144,21 @@ def logout():
 def student_home():
     #NOTE: dummy variables for now
     if 'student' not in session:
-        return redirect(url_for('oauth_testing'))
+        return redirect(url_for('/'))
+    student = db_manager.get_student(db_manager.get_id(session["student"]))
+    #aps = db_manager.get_applicable_APs(student["id"])
+    signedUp = False
+    if 'signedUp' in session:
+        signedUp = True
+        session.pop(['signedUp'])
+    return render_template('student_home.html', signedUp=signedUp)
+
+#student sign up for APs
+@app.route('/student_signup/')
+def student_signup():
+    #NOTE: dummy variables for now
+    if 'student' not in session:
+        return redirect(url_for('/'))
     student = db_manager.get_student(db_manager.get_id(session["student"]))
     #get_applicable_APs(student_id)
     #student["id"] for osis
@@ -154,6 +168,7 @@ def student_home():
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])
 def signup():
+    session['signedUp'] = True
     return redirect(url_for('home'))
 
 #admin home
