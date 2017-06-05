@@ -14,12 +14,12 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["vmavromatis@stuy.edu"]
+adminlist = ["vmavromatis@stuy.edu", "jxu9@stuy.edu"]
 
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
     flow = flow_from_clientsecrets('client_secrets.json',
-                                   scope = 'https://www.googleapis.com/auth/userinfo.email',
+                                   scope = ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
                                    redirect_uri = url_for('oauth_testing', _external = True))
 
     if 'code' not in request.args:
@@ -46,6 +46,14 @@ def sample_info_route():
         response, content = http_auth.request('https://www.googleapis.com/oauth2/v1/userinfo?alt=json') # Issues a request to the google oauth api to get user information
 
         c = json.loads(content) # Load the response
+        for thing in c:
+            print "this is the key below"
+            print thing
+            # print
+            # print "this is the value below"
+            # print c[thing]
+        print c['email']
+        # return c['email'] # Return the email
 
         if c["hd"] == "stuy.edu":
             if c['email'] in adminlist:
@@ -55,11 +63,7 @@ def sample_info_route():
             return redirect("/")
         else:
             return redirect(url_for("/"), message="please login with your stuy.edu email")
-        # for thing in c:
-        #     print thing
-        #     print c[thing]
-        # print c['email']
-        # return c['email'] # Return the email
+
 
 
 @app.route('/')
@@ -280,8 +284,8 @@ def modifyCourse():
     return redirect(url_for('home'))
 #<!-- name, code, department, is_AP, weight, prereq_courses, prereq_overall_average, prereq_department_averages, grade_levels -->
 #example of how to deal w/file
-@app.route('/testForm/', methods=['POST'])
-def testForm():
+@app.route('/uploadcourses/', methods=['POST'])
+def uploadcourses():
     #if there's a file uploaded
     if 'upload' in request.files:
         #get the file
@@ -294,7 +298,21 @@ def testForm():
     else:
         return redirect(url_for("add"))
 
-@app.route('/adddeptadmin/')
+@app.route('/uploadstudents/', methods=['POST'])
+def uploadstudents():
+    #if there's a file uploaded
+    if 'upload' in request.files:
+        #get the file
+        filedata  = request.files['upload']
+        db_manager.add_students(filedata)
+        session['success'] = "Transcript uploaded succesfully!"
+        #go to student home
+        return redirect(url_for("admin_home"))
+    #if the file is missing
+    else:
+        return redirect(url_for("add"))
+
+@app.route('/adddeptadmin/', methods=["POST"])
 def addadmin():
     email = request.form["email"]
     if email != request.form["checkEmail"]:
