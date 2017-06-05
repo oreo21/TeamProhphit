@@ -255,6 +255,7 @@ def rm_course():
     #returns list
     courses = request.form.getlist('course')
     #NOTE: function to remove course
+    session['succes'] = "Course removed."
     return redirect(url_for('home'))
 
 #remove cohort
