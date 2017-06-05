@@ -137,6 +137,11 @@ def list_departments_AP():
             ret.append(dept)
     return ret
 
+def remove_stuyedu(s):
+    if s.find("@stuy.edu") != -1:
+        s = s[:s.find("@stuy.edu")]
+    return s
+
 # args: fileObject f
 #       f is a file object of a CSV ofstudents' transcripts
 #       each row in the CSV file correlates to one class
@@ -161,13 +166,15 @@ def add_students(f):
 
             student = db.students.find_one( {"id" : class_record["StudentID"]} )
             #if student not in database, set up a dictionary for all student info
+
+            "fkrgiofjoeg".strip("12345")
             new = student == None
             if new:
                 student = {}
                 student['id'] = class_record["StudentID"]
                 student['first_name'] = class_record["FirstName"]
                 student['last_name'] = class_record["LastName"]
-                student['username'] = class_record["Email"]
+                student['username'] = remove_stuyedu(class_record["Email"])
                 student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
                 student['classes_taken'] = {}
                 student['department_averages'] = {}
