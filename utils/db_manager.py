@@ -156,14 +156,16 @@ def remove_stuyedu(s):
 #             * Mark (Grade in the course)
 # return: none
 def add_students(f):
-    ret = []
+    ret = False
     for class_record in f:
         try:
             course_code = class_record["Course"]
+            print "course code"
             course_info = db.courses.find_one( {"code": course_code } )
             course_dept = course_info["department"] if course_info != None else "Unknown"
             if course_dept == "Unknown":
                 add_unknown_course(course_code, class_record["Course Title"])
+            print "course title"
 
             student = db.students.find_one( {"id" : class_record["StudentID"]} )
             #if student not in database, set up a dictionary for all student info
@@ -211,9 +213,8 @@ def add_students(f):
                                              {"classes_taken" :
                                               student["classes_taken"]}})
         except:
-            #things go wrong sometimes (empty entries)
-            ret.append(student['id'] + " ")
-        return ret
+            ret = True
+    return ret
 
 def get_id(email):
     user = remove_stuyedu(email)

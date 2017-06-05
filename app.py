@@ -390,8 +390,8 @@ def validateTranscript():
             ret.append(info)
         fail = db_manager.add_students(ret)
         failMsg = ""
-        if len(fail) > 0:
-            failMsg = ",".join(fail) + " not uploaded."
+        if fail > 0:
+            failMsg = "Some transcripts failed to add!"
         session['success'] = "Transcripts uploaded succesfully! %s"%failMsg
         return ''
     #bad file
