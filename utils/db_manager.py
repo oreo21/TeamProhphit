@@ -178,11 +178,7 @@ def add_students(f):
                 student['id'] = class_record["StudentID"]
                 student['first_name'] = class_record["FirstName"]
                 student['last_name'] = class_record["LastName"]
-                for i in class_record:
-                    print i
-                print class_record['Email']
                 student['username'] = remove_stuyedu(class_record["Email"])
-                print "email"
                 student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
                 student['classes_taken'] = {}
                 student['department_averages'] = {}
