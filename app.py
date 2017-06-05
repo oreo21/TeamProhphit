@@ -160,8 +160,10 @@ def student_signup():
     if 'student' not in session:
         return redirect(url_for('/'))
     student = db_manager.get_student(db_manager.get_id(session["student"]))
-    aps = db_manager.get_applicable_APs(db_manager.get_id(session["student"]))
-    return render_template('student_signup.html', numAps = len(aps), aps=aps)
+    #get_applicable_APs(student_id)
+    #student["id"] for osis
+    aps = db_manager.get_applicable_APs(student["id"])
+    return render_template('student_home.html', numAps = len(aps), aps=agps)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])
