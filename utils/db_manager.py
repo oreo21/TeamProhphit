@@ -216,7 +216,7 @@ def add_students(f):
 def get_id(email):
     user = remove_stuyedu(email)
     result = db.students.find_one({"username" : user})
-    if results == None:
+    if result == None:
         return -1
     return result["id"]
         
