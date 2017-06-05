@@ -33,10 +33,7 @@ var validation = function(){
 var validateCourses = function(){
   if (document.getElementById('course-file').value != ""){
     courseForm = document.getElementById('course-form');
-    //console.log(courseForm);
     fd = new FormData(courseForm);
-    //console.log(fd.entries());
-    //console.log(formdata);
     $.ajax({
         url: '/validateCSV/',
         type: 'POST',

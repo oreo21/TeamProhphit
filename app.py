@@ -1,5 +1,5 @@
 import os, sys, random, csv
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import Flask, render_template, url_for, request, redirect, session, make_response
 from utils import auth
 from utils import db_manager
 import hashlib
@@ -16,6 +16,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     ))
 adminlist = ["vmavromatis@stuy.edu", "jxu9@stuy.edu"]
 
+#oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
     flow = flow_from_clientsecrets('client_secrets.json',
@@ -31,6 +32,7 @@ def oauth_testing():
         session['credentials'] = credentials.to_json() # Converts the credentials to json and stores it in the session variable
         return redirect(url_for('sample_info_route'))
 
+#oauth stuff
 @app.route('/auth/', methods = ['POST', 'GET'])
 def sample_info_route():
     if 'credentials' not in session: # If the credentials are not here, user must login
@@ -65,9 +67,8 @@ def sample_info_route():
             return redirect(url_for("/"), message="please login with your stuy.edu email")
 
 
-
+#home; redirects where you should be
 @app.route('/')
-# @app.route('/login/')
 def home():
     if 'admin' in session:
         return redirect(url_for('admin_home'))
@@ -77,6 +78,7 @@ def home():
         on = (db_manager.get_site_status() == 'on')
         return render_template('student_login.html', on=on)
 
+#admin login
 @app.route('/admin-login/')
 def adminLogin():
     if 'admin' in session:
@@ -86,6 +88,7 @@ def adminLogin():
     else:
         return render_template('admin_login.html')
 
+#checks if all your information checks out
 @app.route('/checkMatch/', methods=['POST'])
 def checkMatch():
     if len(request.form['email1']) == 0:
@@ -102,18 +105,22 @@ def checkMatch():
         ret = "Please enter a stronger passwords. Passwords must include at least one uppercase letter, one lowercase letter, and one number, and must be 8 character long."
     else:
         ret = ''
+        email = request.form["email1"]
+        p = hashlib.sha512(request.form["pass1"])
+        db_manager.set_admin_list(db_manager.get_admin_list().append(email))
         session['success'] = "Admin successfully added."
     return ret
 
+#checks if your password is good
 def passCheck(password):
-
+    #length
     if len(password) < 8:
         return False
-
+    #diff categories
     lower = 'abcdefghijklmnopqrstuvwxyz'
     upper = 'ABCDEFGHIJKLMNOPQRSTUVQXYZ'
     nums = '0123456789'
-
+    #check
     ret = [0 if x in lower else 1 if x in upper else 2 if x in nums else 3 for x in password]
     return 0 in ret and 1 in ret and 2 in ret
 
@@ -125,6 +132,7 @@ def logout():
         session.pop('student')
     return redirect(url_for('home'))
 
+#student home
 @app.route('/student_home/')
 def student_home():
     #NOTE: dummy variables for now
@@ -139,6 +147,7 @@ def student_home():
 def signup():
     return redirect(url_for('home'))
 
+#admin home
 @app.route('/admin_home/')
 def admin_home():
     if 'admin' not in session:
@@ -164,6 +173,7 @@ def admin_home():
 
     return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success, on=on)
 
+#generate categorize form
 @app.route('/categorize/')
 def categorize():
     noProblems = False
@@ -173,6 +183,7 @@ def categorize():
     depts = db_manager.list_departments()
     return render_template('categorize.html',courses=courses, depts=depts, noProblems = noProblems, fxn=db_manager.get_course)
 
+#categorize problematic courses
 @app.route('/categorizeForm/', methods=['POST'])
 def categorizeForm():
     print request.form
@@ -181,6 +192,7 @@ def categorizeForm():
     session['success'] = "Courses successfully categorized!"
     return redirect(url_for('home'))
 
+#all settings functions
 @app.route("/settings/", methods=['POST'])
 def settings():
     if 'shut_down' in request.form:
@@ -196,11 +208,16 @@ def settings():
         print 'clear students'
         session['success'] = "Students Cleared"
     elif 'export' in request.form:
-        print 'export'
-        session['success'] = "Exported"
+        response = make_response(db_manager.export())
+        cd = 'attachment; filename=studentSelections.csv'
+        response.mimetype='text/csv'
+        response.headers['Content-Disposition'] = cd
+        return response
+        #return render_template('export.html', file = response)
 
     return redirect(url_for('admin_home'))
 
+#search
 @app.route("/search/")
 def search():
     query = request.query_string[7:]
@@ -209,6 +226,7 @@ def search():
     getdept = db_manager.list_departments_AP()
     return render_template("search.html",student=results, osis=query, courses=courses, depts=getdept, myfxn=db_manager.get_course)
 
+#modify student
 @app.route("/modify_student/", methods = ['POST'])
 def modify_student():
     #cohort
@@ -226,17 +244,21 @@ def modify_student():
     session['success'] = "Student successfully modified!"
     return redirect(url_for('home'))
 
+#delete students
 @app.route("/delete_student/", methods = ['POST'])
 def delete_student():
     return redirect(url_for('home'))
 
+#remove courses
 @app.route('/rm_courses/', methods=["POST"])
 def rm_course():
     #returns list
     courses = request.form.getlist('course')
     #NOTE: function to remove course
+    session['succes'] = "Course removed."
     return redirect(url_for('home'))
 
+#remove cohort
 @app.route('/rm_cohort/', methods=["POST"])
 def rm_cohort():
     cohort = request.form['cohort']
@@ -282,6 +304,7 @@ def modifyCourse():
 
     session['success'] = "Courses modified successfully!"
     return redirect(url_for('home'))
+
 #<!-- name, code, department, is_AP, weight, prereq_courses, prereq_overall_average, prereq_department_averages, grade_levels -->
 #example of how to deal w/file
 @app.route('/uploadCourses/', methods=['POST'])
@@ -325,11 +348,12 @@ def addadmin():
             return render_template("admin_home.html", message="added new admin successfully.")
         return render_template("admin_home.html", message="the passwords you've entered do not match.")
 
+#function to add courses
 @app.route('/validateCSV/', methods=['POST'])
 def validateCSV():
-
     try:
         #read file
+        print request.files
         fil = request.files['f'].read()
         #return file
         ret = []
@@ -349,15 +373,18 @@ def validateCSV():
                 if i >= len(l):
                     break
             ret.append(info)
-
+        print "thing made"
         db_manager.add_departments(ret)
+        print "dept"
         db_manager.add_courses(ret)
+        print "courses"
         session['success'] = "Courses uploaded succesfully!"
         return ''
     #bad file
     except:
         return 'Error. CSV is in invalid form.'
 
+#functions to add students
 @app.route('/validateTranscript/', methods=['POST'])
 def validateTranscript():
     try:
@@ -381,7 +408,6 @@ def validateTranscript():
                 if i >= len(l):
                     break
             ret.append(info)
-
         db_manager.add_students(ret)
         session['success'] = "transcripts uploaded succesfully!"
         return ''
