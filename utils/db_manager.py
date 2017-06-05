@@ -88,6 +88,7 @@ def add_courses(f):
 # returns: none
 # initializes departments collection to hold lists of courses per dept
 def add_departments(f):
+    db.departments.insert_one({"name" : "Unknown", "courses" : []})
     for elem in f:
         try:
             code = elem["CourseCode"]
@@ -109,10 +110,10 @@ def add_departments(f):
                                            {"courses": code }
                                           }
                 )
-                db.departments.insert_one({"name" : "Unknown", "courses" : []})
             #things go wrong sometimes (empty entries)
         except:
             print elem
+        
 
 
 # args: none
@@ -166,6 +167,7 @@ def add_students(f):
                 student['id'] = class_record["StudentID"]
                 student['first_name'] = class_record["FirstName"]
                 student['last_name'] = class_record["LastName"]
+                student['username'] = class_record["Email"]
                 student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
                 student['classes_taken'] = {}
                 student['department_averages'] = {}
