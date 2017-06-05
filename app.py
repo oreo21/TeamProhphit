@@ -284,7 +284,7 @@ def modifyCourse():
     return redirect(url_for('home'))
 #<!-- name, code, department, is_AP, weight, prereq_courses, prereq_overall_average, prereq_department_averages, grade_levels -->
 #example of how to deal w/file
-@app.route('/uploadcourses/', methods=['POST'])
+@app.route('/uploadCourses/', methods=['POST'])
 def uploadcourses():
     #if there's a file uploaded
     if 'upload' in request.files:
@@ -294,11 +294,12 @@ def uploadcourses():
         session['success'] = "Transcript uploaded succesfully!"
         #go to student home
         return redirect(url_for("admin_home"))
+    return redirect(url_for("admin_home"))
     #if the file is missing
-    else:
-        return redirect(url_for("add"))
+    # else:
+    #     return render_template("admin_home.html")
 
-@app.route('/uploadstudents/', methods=['POST'])
+@app.route('/uploadStudents/', methods=['POST'])
 def uploadstudents():
     #if there's a file uploaded
     if 'upload' in request.files:
@@ -309,8 +310,8 @@ def uploadstudents():
         #go to student home
         return redirect(url_for("admin_home"))
     #if the file is missing
-    else:
-        return redirect(url_for("add"))
+    return redirect(url_for("admin_home"))
+
 
 @app.route('/adddeptadmin/', methods=["POST"])
 def addadmin():

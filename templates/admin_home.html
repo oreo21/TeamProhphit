@@ -13,6 +13,7 @@
       <p>Some classes haven't been sorted into departments! <a href="/categorize/">You can fix that here!</a></p>
     </div>
   {%endif%}
+  
   {%if success%}
   <div class="alert alert-dismissible alert-success">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -39,7 +40,7 @@
           <div class="col-md-2">
           </div>
           <div class="col-md-8 text-center">
-            <p><form action="/uploadstudents/" method="POST" enctype="multipart/form-data" class='well form-horizontal'>
+            <p><form action="/uploadStudents/" method="POST" enctype="multipart/form-data" class='well form-horizontal'>
               <fieldset>
                 <legend>Upload Student Transcript</legend>
                 <center><input type="file" name="upload" accept=".csv"/></center>
@@ -47,7 +48,7 @@
               </fieldset>
             </form></p>
 
-            <p><fieldset><form action="/uploadcourses/" method="POST" nctype="multipart/form-data" class='well form-horizontal'>
+            <p><fieldset><form action="/uploadCourses/" method="POST" nctype="multipart/form-data" class='well form-horizontal'>
               <legend>Upload Course List</legend>
               <center><input type="file" name="upload" id="course-file"/></center>
               <input type="submit" class="btn btn-info" value="Upload" id="course-upload"/>
