@@ -213,6 +213,13 @@ def add_students(f):
             #things go wrong sometimes (empty entries)
             pass
 
+def get_id(email):
+    user = remove_stuyedu(email)
+    result = db.students.find_one({"username" : user})
+    if results == None:
+        return -1
+    return result["id"]
+        
 # args: string student OSIS number
 # return: student document as a dictionary
 def get_student(student_id):
