@@ -107,7 +107,7 @@ def checkMatch():
         ret = ''
         email = request.form["email1"]
         p = hashlib.sha512(request.form["pass1"])
-        db_manager.set_admin_list(db_manager.get_admin_list().append(email))
+        db_manager.set_admin_list(db_manager.get_admin_list().append(email)) #UNICORN (idk if this work)
         session['success'] = "Admin successfully added."
     return ret
 
@@ -124,6 +124,14 @@ def passCheck(password):
     ret = [0 if x in lower else 1 if x in upper else 2 if x in nums else 3 for x in password]
     return 0 in ret and 1 in ret and 2 in ret
 
+#will only be run *after* Check Match, which accounts for checking info
+@app.route('/adddeptadmin/', methods=["POST"])
+def addadmin():
+    email = request.form["email1"]
+    p = hashlib.sha512(request.form["pass1"]) #UNICORN (we're not adding the admin lmao)
+    session['success'] = "%s successfully added as admin."%str(email)
+    return redirect(url_for('home'))
+
 @app.route('/logout/')
 def logout():
     if 'admin' in session:
@@ -138,8 +146,8 @@ def student_home():
     #NOTE: dummy variables for now
     if 'student' not in session:
         return redirect(url_for('oauth_testing'))
-    numAps = 3
-    aps = ['first','second','third','fourth','fifth']
+    numAps = 3 #UNICORN
+    aps = ['first','second','third','fourth','fifth'] #UNICORN
     return render_template('student_home.html', numAps = numAps, aps=aps)
 
 #NOTE: should allow students to sign up for class
@@ -155,7 +163,7 @@ def admin_home():
     courses = db_manager.get_APs()
     #print courses
     getdept = db_manager.list_departments_AP()
-    cohorts = ['2017','2018','2019','2020']
+    cohorts = ['2017','2018','2019','2020'] #UNICORN
     problems = db_manager.get_problematic_courses()
     if len(problems) > 0:
         problems = True
@@ -205,7 +213,7 @@ def settings():
         db_manager.reset_db()
         session['success'] = 'DB Cleared'
     elif 'clear_students' in request.form:
-        print 'clear students'
+        print 'clear students' #UNICORN
         session['success'] = "Students Cleared"
     elif 'export' in request.form:
         response = make_response(db_manager.export())
@@ -213,7 +221,6 @@ def settings():
         response.mimetype='text/csv'
         response.headers['Content-Disposition'] = cd
         return response
-        #return render_template('export.html', file = response)
 
     return redirect(url_for('admin_home'))
 
@@ -231,22 +238,22 @@ def search():
 def modify_student():
     #cohort
     if 'cohort' in request.form:
-        cohort = request.form['cohort']
+        cohort = request.form['cohort'] #UNICORN
     #selections; returns list
     if 'selections' in request.form:
-        selections = request.form.getlist('selections')
+        selections = request.form.getlist('selections') #UNICORN
     #exceptions; returns list
     if 'exceptions' in request.form:
-        exceptions = request.form.getlist('exceptions')
+        exceptions = request.form.getlist('exceptions') #UNICORN
     #number of aps
     if 'amount' in request.form:
-        amount = request.form['amount']
+        amount = request.form['amount'] #UNICORN
     session['success'] = "Student successfully modified!"
     return redirect(url_for('home'))
 
 #delete students
 @app.route("/delete_student/", methods = ['POST'])
-def delete_student():
+def delete_student(): #UNICORN
     return redirect(url_for('home'))
 
 #remove courses
@@ -255,13 +262,13 @@ def rm_course():
     #returns list
     courses = request.form.getlist('course')
     #NOTE: function to remove course
-    session['succes'] = "Course removed."
+    session['succes'] = "Course removed." #UNICORN
     return redirect(url_for('home'))
 
 #remove cohort
 @app.route('/rm_cohort/', methods=["POST"])
 def rm_cohort():
-    cohort = request.form['cohort']
+    cohort = request.form['cohort'] #UNICORN
     session['success'] = "Cohort %s successfully deleted!"%cohort
     return redirect(url_for('home'))
 
@@ -269,10 +276,10 @@ def rm_cohort():
 @app.route('/mod/<course>/')
 def mod(course):
     #NOTE: will eventually be list of courses in same dep't that can be prereqs
-    courses = ['HGS44XE','HGS44XW','HPS21X']
+    courses = ['HGS44XE','HGS44XW','HPS21X'] #UNICORN
     course_info = db_manager.get_course(course)
     #hardcoded for now
-    cohorts = ['2017','2016','2015','2014']
+    cohorts = ['2017','2016','2015','2014'] #UNICORN
     depts = db_manager.list_departments()
     return render_template('modify.html',course=str(course),courses=courses,course_info = course_info, special=True, cohorts=cohorts, depts=depts)
 
@@ -304,49 +311,6 @@ def modifyCourse():
 
     session['success'] = "Courses modified successfully!"
     return redirect(url_for('home'))
-
-#<!-- name, code, department, is_AP, weight, prereq_courses, prereq_overall_average, prereq_department_averages, grade_levels -->
-#example of how to deal w/file
-@app.route('/uploadCourses/', methods=['POST'])
-def uploadcourses():
-    #if there's a file uploaded
-    if 'upload' in request.files:
-        #get the file
-        filedata  = request.files['upload']
-        db_manager.add_courses(filedata)
-        session['success'] = "Transcript uploaded succesfully!"
-        #go to student home
-        return redirect(url_for("admin_home"))
-    return redirect(url_for("admin_home"))
-    #if the file is missing
-    # else:
-    #     return render_template("admin_home.html")
-
-@app.route('/uploadStudents/', methods=['POST'])
-def uploadstudents():
-    #if there's a file uploaded
-    if 'upload' in request.files:
-        #get the file
-        filedata  = request.files['upload']
-        db_manager.add_students(filedata)
-        session['success'] = "Transcript uploaded succesfully!"
-        #go to student home
-        return redirect(url_for("admin_home"))
-    #if the file is missing
-    return redirect(url_for("admin_home"))
-
-
-@app.route('/adddeptadmin/', methods=["POST"])
-def addadmin():
-    email = request.form["email"]
-    if email != request.form["checkEmail"]:
-        return render_template("admin_home.html", message="the emails you've entered do not match.")
-    else:
-        p = hashlib.sha512(request.form["pass"])
-        if p == hashlib.sha512(request.form["checkpass"]):
-            #set admin fxn
-            return render_template("admin_home.html", message="added new admin successfully.")
-        return render_template("admin_home.html", message="the passwords you've entered do not match.")
 
 #function to add courses
 @app.route('/validateCSV/', methods=['POST'])

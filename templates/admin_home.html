@@ -13,7 +13,7 @@
       <p>Some classes haven't been sorted into departments! <a href="/categorize/">You can fix that here!</a></p>
     </div>
   {%endif%}
-  
+
   {%if success%}
   <div class="alert alert-dismissible alert-success">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -40,23 +40,14 @@
           <div class="col-md-2">
           </div>
           <div class="col-md-8 text-center">
-<<<<<<< HEAD
-            <p><form action="/uploadStudents/" method="POST" enctype="multipart/form-data" class='well form-horizontal'>
-=======
             <p><form  method="POST" enctype="multipart/form-data" class='well form-horizontal' id="transcript-form">
->>>>>>> 77cb2caf9c3fdbd174ab853b7b9964333aca4f05
               <fieldset>
                 <legend>Upload Student Transcript</legend>
                 <center><input type="file" name="f" accept=".csv" id="transcript-file"/></center>
                 <p class="btn btn-info" id="student-upload">Upload</p>
               </fieldset>
             </form></p>
-
-<<<<<<< HEAD
-            <p><fieldset><form action="/uploadCourses/" method="POST" nctype="multipart/form-data" class='well form-horizontal'>
-=======
             <p><fieldset><form method="POST" enctype="multipart/form-data" class='well form-horizontal' id="course-form">
->>>>>>> 77cb2caf9c3fdbd174ab853b7b9964333aca4f05
               <legend>Upload Course List</legend>
               <center><input type="file" name="f" id="course-file"/></center>
               <p class="btn btn-info" id="course-upload">Upload</p>
