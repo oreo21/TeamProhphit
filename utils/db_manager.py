@@ -54,7 +54,9 @@ def is_cs_course(code):
 # args: course code
 # return: true if course is an AP, false if not
 def is_AP(code):
-    return code[-1] == "X"
+    if(code[-1] == "X"):
+        return 1
+    return 0
 
 # args: file obj of csv containing course info
 # returns: none
@@ -110,7 +112,7 @@ def add_departments(f):
                 db.departments.insert_one({"name" : "Unknown", "courses" : []})
             #things go wrong sometimes (empty entries)
         except:
-            pass
+            print elem
 
 
 # args: none
