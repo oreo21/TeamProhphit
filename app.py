@@ -54,7 +54,6 @@ def sample_info_route():
             # print
             # print "this is the value below"
             # print c[thing]
-        print c['email']
         # return c['email'] # Return the email
 
         if c["hd"] == "stuy.edu":
@@ -146,9 +145,11 @@ def student_home():
     #NOTE: dummy variables for now
     if 'student' not in session:
         return redirect(url_for('oauth_testing'))
-    numAps = 3 #UNICORN
-    aps = ['first','second','third','fourth','fifth'] #UNICORN
-    return render_template('student_home.html', numAps = numAps, aps=aps)
+    student = db_manager.get_student(db_manager.get_id(session["student"]))
+    #get_applicable_APs(student_id)
+    #student["id"] for osis
+    aps = db_manager.get_applicable_APs(student["id"])
+    return render_template('student_home.html', numAps = len(aps), aps=aps)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])

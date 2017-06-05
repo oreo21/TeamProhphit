@@ -233,3 +233,7 @@ vannaM -- 2017-06-04 21:38
 export feature
 jscript moved to separate files
 bug fixes + cleaning
+
+amyX -- 2017-06-05 14:06
+wrote python code to start connecting and displaying student end to the entire program
+wrote code to generate list of AP slots
