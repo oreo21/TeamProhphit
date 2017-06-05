@@ -333,7 +333,6 @@ def modifyCourse():
 def validateCSV():
     try:
         #read file
-        print request.files
         fil = request.files['f'].read()
         #return file
         ret = []
@@ -342,23 +341,25 @@ def validateCSV():
         #get headers
         headers = []
         for i in data[0].split(','):
-            headers.append(i)
+            headers.append(i.strip())
         for line in data[1:]:
             l = line.split(',')
             info = {}
             i = 0
             for category in headers:
-                info[category] = l[i]
+                info[category] = l[i].strip()
                 i += 1
                 if i >= len(l):
                     break
             ret.append(info)
-        print "thing made"
-        db_manager.add_departments(ret)
-        print "dept"
-        db_manager.add_courses(ret)
-        print "courses"
-        session['success'] = "Courses uploaded succesfully!"
+        dept = db_manager.add_departments(ret)
+        course = db_manager.add_courses(ret)
+        dept = course = ""
+        if dept:
+            deptMsg = " Some departments failed to add."
+        if course:
+            courseMsg = " Some courses faield to add."
+        session['success'] = "Courses uploaded succesfully!%s%s"%(deptMsg,courseMsg)
         return ''
     #bad file
     except:
@@ -373,17 +374,17 @@ def validateTranscript():
         #return file
         ret = []
         #split file by lines
-        data = fil.split('\n')
+        data = fil.split('\r\n')
         #get headers
         headers = []
         for i in data[0].split(','):
-            headers.append(i)
+            headers.append(i.strip())
         for line in data[1:]:
             l = line.split(',')
             info = {}
             i = 0
             for category in headers:
-                info[category] = l[i]
+                info[category] = l[i].strip()
                 i += 1
                 if i >= len(l):
                     break
