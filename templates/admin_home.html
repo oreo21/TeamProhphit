@@ -78,14 +78,14 @@
                 <h3>Remove Courses</h3>
               </div>
               <div id="course">
-                <form action="/rm_courses/" method="POST" class="form-horizontal">
+                <form action="/rm_courses/" method="POST" class="form-horizontal"  onsubmit="return confirm('Are you sure that you want to remove this course? This action cannot be undone.');">
                   {%for course in courses%}
                   <!--pass course name into remove function-->
                   <p><input type="checkbox" name="course" value ="{{course}}">{{course}}: {{ myfxn(course)["name"] }}</p>
 
                   {%endfor%}
-                </form>
-                <p><input type="submit" value="Submit" class="btn btn-info" onsubmit="return confirm('Are you sure that you want to remove this course? This action cannot be undone.');"></p>
+                <p><input type="submit" value="Submit" class="btn btn-info"></p>
+              </form>
               </div>
             </div>
 
@@ -95,13 +95,13 @@
                 <h3>Remove a Cohort</h3>
               </div>
               <div id="cohort">
-                <form action="/rm_cohort/" method="POST" class="form-horizontal">
+                <form action="/rm_cohort/" method="POST" class="form-horizontal" onsubmit="return confirm('Are you sure that you want to delete this cohort? This action cannot be undone.');">
                   <p><select name="cohort">
                     {%for cohort in cohorts%}
                       <option value="{{cohort}}">{{cohort}}</option>
                     {%endfor%}
                   </select></p>
-                  <p><input type="submit" value="Submit" class="btn btn-info" onsubmit="return confirm('Are you sure that you want to delete this cohort? This action cannot be undone.');"></p>
+                  <p><input type="submit" value="Submit" class="btn btn-info" ></p>
                 </form>
               </div>
             </div>
@@ -151,23 +151,23 @@
             <h2>Settings</h2>
         </div>
         <div class="row text-center">
-          <form action="/settings/" method="POST">
+          <form action="/settings/" method="POST" onsubmit="return confirm('Are you sure?');">
             <fieldset>
               <div class="col-md-3">
                 <input type="submit" name="export" class="btn btn-large btn-info" value="Export Information"/>
               </div>
               <div class="col-md-3">
                 {%if on%}
-                <input type="submit" name="shut_down" class="btn btn-large btn-info" value="Shut Down Website" onsubmit="return confirm('Are you sure that you want to shut down the student website?');"/>
+                <input type="submit" name="shut_down" class="btn btn-large btn-info" value="Shut Down Website" />
                 {%else%}
-                <input type="submit" name="turn_on" class="btn btn-large btn-info" value="Turn On Website" onsubmit="return confirm('Are you sure that you want to turn on the student website?');"/>
+                <input type="submit" name="turn_on" class="btn btn-large btn-info" value="Turn On Website"/>
                 {%endif%}
               </div>
               <div class="col-md-3">
-                <input type="submit" name="clear_db" class="btn btn-large btn-info" value="Reset Database" onsubmit="return confirm('Are you sure that you want to reset the database? This action cannot be undone.');"/>
+                <input type="submit" name="clear_db" class="btn btn-large btn-info" value="Reset Database"/>
               </div>
               <div class="col-md-3">
-                <input type="submit" name="clear_students" class="btn btn-large btn-info" value="Clear Student Information" onsubmit="return confirm('Are you sure that you want to clear student information? This action cannot be undone.');"/>
+                <input type="submit" name="clear_students" class="btn btn-large btn-info" value="Clear Student Information"/>
               </div>
             </fieldset>
           </div>

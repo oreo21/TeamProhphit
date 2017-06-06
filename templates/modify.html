@@ -18,7 +18,7 @@
 <h4>{{course_info['department']}}</h4>
 <div class="row">
   <div class="col-md-6">
-    <form action='/modifyCourse/' class="form-horizontal" method="POST">
+    <form action='/modifyCourse/' class="form-horizontal" method="POST"onsubmit="return confirm('Are you sure that you want to modify this course?');" onsubmit="return confirm('Are you sure that you want to modify this course?');">
       <fieldset>
         <legend>Modify Requirements:</legend>
         <input type="hidden" name="course" value="{{course_info["name"]}}">
@@ -43,7 +43,7 @@
           {%endfor%}
         </div>
         <input type="hidden" name="course" value="{{course}}">
-        <p><input type="submit" value="Submit" class="btn btn-info" onsubmit="return confirm('Are you sure that you want to modify this course?');"></p>
+        <p><input type="submit" value="Submit" class="btn btn-info"></p>
       </form>
     </fieldset>
   </div>

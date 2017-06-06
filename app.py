@@ -155,7 +155,7 @@ def student_home():
     aps = db_manager.get_applicable_APs(osis)
     depts = db_manager.list_departments()
     print depts
-    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses, student = student, depts=depts)
+    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses, student = student, depts=depts, myAvg = db_manager.get_department_averages(osis))
 
 
 #NOTE: should allow students to sign up for class
