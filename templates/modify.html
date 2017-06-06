@@ -38,22 +38,16 @@
         <h4>Prerequisite Courses:</h4><p class="btn btn-info" id="prereqBut">Show</p><br>
         <div id="prereqs">
           {%for course in courses%}
-<<<<<<< HEAD
 
-          <input type="checkbox" name="prereq"> {{course}}<br>
-
-          {%endfor%}
-        </div>
-        <p><input type="submit" value="Submit" class="btn btn-info" onsubmit="return confirm('Are you sure that you want to modify this course?');"></p>
-=======
             {%for c in course%}
               <input type="checkbox" name="prereq" value="{{c}}"> {{c}}<br>
             {%endfor%}
           {%endfor%}
         </div>
+        <p><input type="submit" value="Submit" class="btn btn-info" onsubmit="return confirm('Are you sure that you want to modify this course?');"></p>
+        </div>
         <input type="hidden" name="course" value="{{course}}">
         <p><input type="submit" value="Submit" class="btn btn-info"></p>
->>>>>>> 80899e73fdc32a032309186146d61c912d2fa78b
       </form>
     </fieldset>
   </div>

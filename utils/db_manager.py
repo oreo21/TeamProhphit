@@ -309,7 +309,7 @@ def grade_to_cohort(grade):
 # returns: current grade (9, 10, 11, 12)
 def cohort_to_grade(cohort):
     this_year = datetime.datetime.now().year
-    offset = this_year - cohort - 1
+    offset = this_year - int(cohort) - 1
     return 9 + offset
 
 # args: string course code
@@ -385,7 +385,7 @@ def get_num_APs(student_id):
     i = 0
     while i < len(cutoffs) and cutoffs[i] <= avg:
         i += 1
-    return i + extra
+    return i + int(extra)
 
 
 #generates list of aps this student can sign up for based on pre-reqs
