@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = []
+adminlist = ["vmavromatis@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -204,7 +204,10 @@ def admin_home():
         success = session['success']
         session.pop('success')
 
-    on = (db_manager.get_site_status()=='on')
+    try:
+        on = (db_manager.get_site_status()=='on')
+    except:
+        on = 'off'
 
     return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success, on=on)
 
