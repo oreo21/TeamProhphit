@@ -245,3 +245,6 @@ fixed cohorts from graduation year to entering year
 amyX -- 2017-06-05 22:12
 added back button for categorize
 testing code
+
+amyX -- 2017-06-05 23:51
+got get student selected aps to work
