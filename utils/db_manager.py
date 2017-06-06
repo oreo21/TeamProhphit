@@ -54,8 +54,8 @@ def is_cs_course(code):
 # args: course code
 # return: true if course is an AP, false if not
 def is_AP(code):
-    if(code[5] == "X"):
-        return 1
+    if len(code)>=6 and code[5] == "X":
+            return 1
     return 0
 
 # args: file obj of csv containing course info
@@ -155,58 +155,60 @@ def remove_stuyedu(s):
 # return: none
 def add_students(f):
     for class_record in f:
-        course_code = class_record["Course"]
-        course_info = db.courses.find_one( {"code": course_code } )
-        course_dept = course_info["department"] if course_info != None else "Unknown"
-        if course_dept == "Unknown":
-            add_unknown_course(course_code, class_record["Course Title"])
-        student = db.students.find_one( {"id" : class_record["StudentID"]} )
-        #if student not in database, set up a dictionary for all student info
-        new = student == None
-        if new:
-            student = {}
-            student['id'] = class_record["StudentID"]
-            student['first_name'] = class_record["FirstName"]
-            student['last_name'] = class_record["LastName"]
-            student['username'] = remove_stuyedu(class_record["Email"])
-            student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
-            student['classes_taken'] = {}
-            student['department_averages'] = {}
-            depts = list_departments()
-            print "\n\n\nLISTING DEPTS\n\n\n", depts
-            for dept in depts:
-                student['classes_taken'][dept] = []
-                student['department_averages'][dept] = {"average": 0, "count": 0}
-            student['classes_taken']["Unknown"] = [] #stores unrecognized codes
-            student['classes_taking'] = []
-
-            student['overall_average'] = 0
-            student['selections'] = []
-            student['exceptions'] = []
-            student["extra"] = 0
-
-        if "Mark" in class_record: #class has grade means class is in the past
-            course_mark = class_record["Mark"]
-            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark})
+        try:
+            course_code = class_record["Course"]
+            course_info = db.courses.find_one( {"code": course_code } )
+            course_dept = course_info["department"] if course_info != None else "Unknown"
+            if course_dept == "Unknown":
+                add_unknown_course(course_code, class_record["Course Title"])
+            student = db.students.find_one( {"id" : class_record["StudentID"]} )
+            #if student not in database, set up a dictionary for all student info
+            new = student == None
             if new:
-                db.students.insert_one(student)
-            else:
-                db.students.update_one( {"id" : student["id"]},
-                                        {"$set" :
-                                         {"classes_taken" :
-                                          student["classes_taken"]}})
-            recalculate_department_average(student["id"], course_dept)
-            recalculate_overall_average(student["id"])
-        else: #class has no grade means class is current
-            student["classes_taking"].append(course_code)
-            if new:
-                db.students.insert_one(student)
-            else:
-                db.students.update_one( {"id" : student["id"]},
-                                        {"$set" :
-                                         {"classes_taken" :
-                                          student["classes_taken"]}})
+                student = {}
+                student['id'] = class_record["StudentID"]
+                student['first_name'] = class_record["FirstName"]
+                student['last_name'] = class_record["LastName"]
+                student['username'] = remove_stuyedu(class_record["Email"])
+                student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
+                student['classes_taken'] = {}
+                student['department_averages'] = {}
+                depts = list_departments()
+                print "\n\n\nLISTING DEPTS\n\n\n", depts
+                for dept in depts:
+                    student['classes_taken'][dept] = []
+                    student['department_averages'][dept] = {"average": 0, "count": 0}
+                student['classes_taken']["Unknown"] = [] #stores unrecognized codes
+                student['classes_taking'] = []
 
+                student['overall_average'] = 0
+                student['selections'] = []
+                student['exceptions'] = []
+                student["extra"] = 0
+
+            if "Mark" in class_record: #class has grade means class is in the past
+                course_mark = class_record["Mark"]
+                student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark})
+                if new:
+                    db.students.insert_one(student)
+                else:
+                    db.students.update_one( {"id" : student["id"]},
+                                            {"$set" :
+                                             {"classes_taken" :
+                                              student["classes_taken"]}})
+                recalculate_department_average(student["id"], course_dept)
+                recalculate_overall_average(student["id"])
+            else: #class has no grade means class is current
+                student["classes_taking"].append(course_code)
+                if new:
+                    db.students.insert_one(student)
+                else:
+                    db.students.update_one( {"id" : student["id"]},
+                                            {"$set" :
+                                             {"classes_taken" :
+                                              student["classes_taken"]}})
+        except:
+            pass
 
 def get_id(email):
     user = remove_stuyedu(email)
@@ -448,6 +450,7 @@ def get_applicable_APs(student_id):
 
         #if passed all checks, then AP is applicable
         ret.append(course_code)
+    return ret
 
 def set_admin_list(lis):
     db.admins.update_one( {"name" : "other"},

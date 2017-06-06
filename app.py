@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = ["vmavromatis@stuy.edu"]
+adminlist = []
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -377,33 +377,29 @@ def validateCSV():
 #functions to add students
 @app.route('/validateTranscript/', methods=['POST'])
 def validateTranscript():
-    try:
-        #read file
-        fil = request.files['f'].read()
-        #return file
-        ret = []
-        #split file by lines
-        data = fil.split('\r\n')
-        #get headers
-        headers = []
-        for i in data[0].split(','):
-            headers.append(i.strip())
-        for line in data[1:]:
-            l = line.split(',')
-            info = {}
-            i = 0
-            for category in headers:
-                info[category] = l[i].strip()
-                i += 1
-                if i >= len(l):
-                    break
-            ret.append(info)
-        db_manager.add_students(ret)
-        session['success'] = "Transcripts uploaded succesfully! %s"%failMsg
-        return ''
-    #bad file
-    except:
-        return 'Error. CSV is in invalid form.'
+    #read file
+    fil = request.files['f'].read()
+    #return file
+    ret = []
+    #split file by lines
+    data = fil.split('\r\n')
+    #get headers
+    headers = []
+    for i in data[0].split(','):
+        headers.append(i.strip())
+    for line in data[1:]:
+        l = line.split(',')
+        info = {}
+        i = 0
+        for category in headers:
+            info[category] = l[i].strip()
+            i += 1
+            if i >= len(l):
+                break
+        ret.append(info)
+    db_manager.add_students(ret)
+    session['success'] = "Transcripts uploaded succesfully!"
+    return ''
 
 if __name__ == '__main__':
     app.debug = True
