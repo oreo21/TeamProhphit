@@ -33,8 +33,12 @@ var viewSelected = function(){
   if (options.style.display == 'none'){
     options.style.display = 'block';
     selected.style.display = 'none';
+    for (var i = 0; i < ap[i].length; i++){
+      ap[i].value = "";
+    }
   }
   else{
+    //cancel
     options.style.display = 'none';
     selected.style.display = 'block';
   }
