@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = []
+adminlist = ["jxu9@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -89,24 +89,18 @@ def adminLogin():
         return render_template('admin_login.html')
 
 #checks if all your information checks out
-@app.route('/checkMatch/', methods=['POST'])
-def checkMatch():
+@app.route('/adddeptadmin/', methods=["POST"])
+def addadmin():
     if len(request.form['email1']) == 0:
         ret = "Please fill in e-mail."
     elif not request.form['email1'].endswith("@stuy.edu"):
         ret = "Please use your stuy.edu e-mail."
     elif request.form['email1'] != request.form['email2']:
         ret = "E-mails don't match."
-    elif len(request.form['pass1']) == 0:
-        ret = "Please enter password."
-    elif request.form['pass1'] != request.form['pass2']:
-        ret = "Passwords don't match."
-    elif not passCheck(request.form['pass1']):
-        ret = "Please enter a stronger passwords. Passwords must include at least one uppercase letter, one lowercase letter, and one number, and must be 8 character long."
     else:
         ret = ''
         email = request.form["email1"]
-        p = hashlib.sha512(request.form["pass1"])
+        #p = hashlib.sha512(request.form["pass1"])
         db_manager.set_admin_list(db_manager.get_admin_list().append(email)) #UNICORN (idk if this work)
         session['success'] = "Admin successfully added."
     return ret
@@ -125,12 +119,12 @@ def passCheck(password):
     return 0 in ret and 1 in ret and 2 in ret
 
 #will only be run *after* Check Match, which accounts for checking info
-@app.route('/adddeptadmin/', methods=["POST"])
-def addadmin():
-    email = request.form["email1"]
-    p = hashlib.sha512(request.form["pass1"]) #UNICORN (we're not adding the admin lmao)
-    session['success'] = "%s successfully added as admin."%str(email)
-    return redirect(url_for('home'))
+# @app.route('/adddeptadmin/', methods=["POST"])
+# def addadmin():
+#     email = request.form["email1"]
+#     db_manager.set_admin_list(db_manager.get_admin_list().append(email))
+#     session['success'] = "%s successfully added as admin."%str(email)
+#     return redirect(url_for('home'))
 
 @app.route('/logout/')
 def logout():
@@ -268,13 +262,13 @@ def modify_student():
     osis = db_manager.get_id(session["student"])
     #cohort
     if 'cohort' in request.form:
-        cohort = request.form['cohort'] #UNICORN
+        cohort = request.form['cohort']
     #selections; returns list
     if 'selections' in request.form:
-        selections = request.form.getlist('selections') #UNICORN
+        selections = request.form.getlist('selections')
     #exceptions; returns list
     if 'exceptions' in request.form:
-        exceptions = request.form.getlist('exceptions') #UNICORN
+        exceptions = request.form.getlist('exceptions')
     #number of aps
     if 'amount' in request.form:
         amount = request.form['amount'] #UNICORN
@@ -288,6 +282,7 @@ def modify_student():
 #delete students
 @app.route("/delete_student/", methods = ['POST'])
 def delete_student(): #UNICORN
+
     return redirect(url_for('home'))
 
 #remove courses
@@ -310,12 +305,16 @@ def rm_cohort():
 @app.route('/mod/<course>/')
 def mod(course):
     #NOTE: will eventually be list of courses in same dep't that can be prereqs
-    courses = ['HGS44XE','HGS44XW','HPS21X'] #UNICORN
+    #courses = db_manager.get_department_courses
+    clist = []
     course_info = db_manager.get_course(course)
-    #hardcoded for now
-    cohorts = ['2017','2016','2015','2014'] #UNICORN
+
+    cohorts = [db_manager.grade_to_cohort(9),db_manager.grade_to_cohort(10),db_manager.grade_to_cohort(11),db_manager.grade_to_cohort(12)]
     depts = db_manager.list_departments()
-    return render_template('modify.html',course=str(course),courses=courses,course_info = course_info, special=True, cohorts=cohorts, depts=depts)
+    for dept in depts:
+        clist.append(db_manager.get_department_courses(dept))
+    print clist
+    return render_template('modify.html',course=str(course),courses=clist,course_info = course_info, special=True, cohorts=cohorts, depts=depts)
 
 #does actual editing of course
 @app.route('/modifyCourse/', methods = ['POST'])
