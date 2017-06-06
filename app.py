@@ -204,10 +204,7 @@ def admin_home():
         success = session['success']
         session.pop('success')
 
-    try:
-        on = (db_manager.get_site_status()=='on')
-    except:
-        on = 'off'
+    on = (db_manager.get_site_status()=='on')
 
     return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success, on=on)
 
@@ -367,7 +364,9 @@ def validateCSV():
                     break
             ret.append(info)
         db_manager.add_departments(ret)
+        print "dept"
         db_manager.add_courses(ret)
+        print "course"
         msg = "Courses uploaded succesfully!"
         session['success'] = msg
         return ''

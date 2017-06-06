@@ -67,7 +67,6 @@ def add_courses(f):
             course = {}
             course["code"] = elem["CourseCode"]
             course["name"] = elem["CourseName"]
-
             if is_science_course(course["code"]):
                 course["department"] = get_science_department(course["code"])
             else:
@@ -113,8 +112,6 @@ def add_departments(f):
             #things go wrong sometimes (empty entries)
         except:
             pass
-    return ret
-
 
 
 # args: none
@@ -158,69 +155,58 @@ def remove_stuyedu(s):
 # return: none
 def add_students(f):
     for class_record in f:
-        msg = "start"
-        try:
-            course_code = class_record["Course"]
-            course_info = db.courses.find_one( {"code": course_code } )
-            course_dept = course_info["department"] if course_info != None else "Unknown"
-            if course_dept == "Unknown":
-                add_unknown_course(course_code, class_record["Course Title"])
-            student = db.students.find_one( {"id" : class_record["StudentID"]} )
-            #if student not in database, set up a dictionary for all student info
-            msg = "block 1 finished"
+        course_code = class_record["Course"]
+        course_info = db.courses.find_one( {"code": course_code } )
+        course_dept = course_info["department"] if course_info != None else "Unknown"
+        if course_dept == "Unknown":
+            add_unknown_course(course_code, class_record["Course Title"])
+        student = db.students.find_one( {"id" : class_record["StudentID"]} )
+        #if student not in database, set up a dictionary for all student info
+        new = student == None
+        if new:
+            student = {}
+            student['id'] = class_record["StudentID"]
+            student['first_name'] = class_record["FirstName"]
+            student['last_name'] = class_record["LastName"]
+            student['username'] = remove_stuyedu(class_record["Email"])
+            student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
+            student['classes_taken'] = {}
+            student['department_averages'] = {}
+            depts = list_departments()
+            print "\n\n\nLISTING DEPTS\n\n\n", depts
+            for dept in depts:
+                student['classes_taken'][dept] = []
+                student['department_averages'][dept] = {"average": 0, "count": 0}
+            student['classes_taken']["Unknown"] = [] #stores unrecognized codes
+            student['classes_taking'] = []
 
-            new = student == None
+            student['overall_average'] = 0
+            student['selections'] = []
+            student['exceptions'] = []
+            student["extra"] = 0
+
+        if "Mark" in class_record: #class has grade means class is in the past
+            course_mark = class_record["Mark"]
+            student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark})
             if new:
-                msg = "start new student"
-                student = {}
-                student['id'] = class_record["StudentID"]
-                student['first_name'] = class_record["FirstName"]
-                student['last_name'] = class_record["LastName"]
-                student['username'] = remove_stuyedu(class_record["Email"])
-                student['cohort'] = grade_to_cohort(int(class_record["Grade"]))
-                student['classes_taken'] = {}
-                student['department_averages'] = {}
-                depts = list_departments()
-                print "\n\n\nLISTING DEPTS\n\n\n", depts
-                for dept in depts:
-                    student['classes_taken'][dept] = []
-                    student['department_averages'][dept] = {"average": 0, "count": 0}
-                student['classes_taken']["Unknown"] = [] #stores unrecognized codes
-                student['classes_taking'] = []
+                db.students.insert_one(student)
+            else:
+                db.students.update_one( {"id" : student["id"]},
+                                        {"$set" :
+                                         {"classes_taken" :
+                                          student["classes_taken"]}})
+            recalculate_department_average(student["id"], course_dept)
+            recalculate_overall_average(student["id"])
+        else: #class has no grade means class is current
+            student["classes_taking"].append(course_code)
+            if new:
+                db.students.insert_one(student)
+            else:
+                db.students.update_one( {"id" : student["id"]},
+                                        {"$set" :
+                                         {"classes_taken" :
+                                          student["classes_taken"]}})
 
-                student['overall_average'] = 0
-                student['selections'] = []
-                student['exceptions'] = []
-                student["extra"] = 0
-                msg = "end new student"
-
-            if "Mark" in class_record: #class has grade means class is in the past
-                msg = "up to mark"
-                course_mark = class_record["Mark"]
-                student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark})
-                if new:
-                    db.students.insert_one(student)
-                else:
-                    db.students.update_one( {"id" : student["id"]},
-                                            {"$set" :
-                                             {"classes_taken" :
-                                              student["classes_taken"]}})
-                msg = "before dept avg"
-                recalculate_department_average(student["id"], course_dept)
-                msg = "after dept, before overall"
-                recalculate_overall_average(student["id"])
-                msg = "after overall"
-            else: #class has no grade means class is current
-                student["classes_taking"].append(course_code)
-                if new:
-                    db.students.insert_one(student)
-                else:
-                    db.students.update_one( {"id" : student["id"]},
-                                            {"$set" :
-                                             {"classes_taken" :
-                                              student["classes_taken"]}})
-        except:
-            pass
 
 def get_id(email):
     user = remove_stuyedu(email)
@@ -356,7 +342,7 @@ def get_APs():
     docs = db.courses.find({"is_AP" : 1})
     ret = []
     for doc in docs:
-        if doc["department"] != "Functional Codes" and "2 of 2" not in doc["name"] and int(doc["code"][-2]) % 2 == 1:
+        if doc["department"] != "Functional Codes" and "2 of 2" not in doc["name"] and (doc["code"][4].isdigit() and int(doc["code"][4]) % 2) == 1:
             ret.append( doc["code"].encode("ascii") )
     return ret
 
