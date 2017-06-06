@@ -248,3 +248,8 @@ testing code
 
 amyX -- 2017-06-05 23:51
 got get student selected aps to work
+
+amyX -- 2017-06-05 01:19
+finally got student course selections to work
+display of selected courses now work as well
+wrote code to modify students via admin search

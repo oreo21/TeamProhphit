@@ -49,7 +49,7 @@
                 <p>Please make your AP selections below. </p>
                 <form action="/signup/" method="POST">
                     {% for i in range(numAps) %}
-                      <p><select name="APS" class="ap">
+                      <p><select name="{{"APS" ~ i}}" class="ap">
                         <option disabled selected value> - * - select an option - * - </option>
                         {%for class in aps%}
                           <option value="{{class}}">{{class}}</option>

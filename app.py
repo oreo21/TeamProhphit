@@ -170,6 +170,7 @@ def signup():
     osis = db_manager.get_id(session["student"])
     for i in request.form:
         signedup.append(request.form[i])
+
     # for item in request.form:
     #     print "this is an item" + str(item)
     #code for getting the options
@@ -178,8 +179,9 @@ def signup():
     #     if request.form[index]:
     #         print "hi"
     #         signedup.append(request.form[index])
-
+    print signedup
     db_manager.edit_student(osis, "selections", signedup)
+    print db_manager.get_student(osis)["selections"]
     return redirect(url_for('home'))
 
 #admin home
@@ -190,7 +192,7 @@ def admin_home():
     courses = db_manager.get_APs()
     #print courses
     getdept = db_manager.list_departments_AP()
-    cohorts = [db_manager.grade_to_cohort(9),db_manager.grade_to_cohort(10),db_manager.grade_to_cohort(11),db_manager.grade_to_cohort(12)] #UNICORN
+    cohorts = [db_manager.grade_to_cohort(9),db_manager.grade_to_cohort(10),db_manager.grade_to_cohort(11),db_manager.grade_to_cohort(12)]
 
     problems = db_manager.get_problematic_courses()
     if len(problems) > 0:
@@ -240,7 +242,7 @@ def settings():
         db_manager.reset_db()
         session['success'] = 'DB Cleared'
     elif 'clear_students' in request.form:
-        print 'clear students' #UNICORN
+        db_manager.drop_students()
         session['success'] = "Students Cleared"
     elif 'export' in request.form:
         response = make_response(db_manager.export())
@@ -263,6 +265,7 @@ def search():
 #modify student
 @app.route("/modify_student/", methods = ['POST'])
 def modify_student():
+    osis = db_manager.get_id(session["student"])
     #cohort
     if 'cohort' in request.form:
         cohort = request.form['cohort'] #UNICORN
@@ -275,6 +278,10 @@ def modify_student():
     #number of aps
     if 'amount' in request.form:
         amount = request.form['amount'] #UNICORN
+    db_manager.edit_student(osis, "cohort", cohort)
+    db_manager.edit_student(osis, "selections", selections)
+    db_manager.edit_student(osis, "exceptions", exceptions)
+    #db_manager.edit_student(osis, "cohort", cohort)
     session['success'] = "Student successfully modified!"
     return redirect(url_for('home'))
 
