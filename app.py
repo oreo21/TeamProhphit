@@ -146,7 +146,8 @@ def student_home():
     if 'student' not in session:
         return redirect(url_for('/'))
     student = db_manager.get_student(db_manager.get_id(session["student"]))
-    #aps = db_manager.get_applicable_APs(student["id"])
+    print student
+    aps = db_manager.get_applicable_APs(student["id"])
     signedUp = False
     if 'signedUp' in session:
         signedUp = True
@@ -156,14 +157,17 @@ def student_home():
 #student sign up for APs
 @app.route('/student_signup/')
 def student_signup():
+    numaps = 0
     #NOTE: dummy variables for now
     if 'student' not in session:
         return redirect(url_for('/'))
     student = db_manager.get_student(db_manager.get_id(session["student"]))
+    overallavg = student["overall_average"]
+
     #get_applicable_APs(student_id)
     #student["id"] for osis
     aps = db_manager.get_applicable_APs(student["id"])
-    return render_template('student_home.html', numAps = len(aps), aps=agps)
+    return render_template('student_home.html', numAps = numaps, aps=aps)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])
@@ -179,7 +183,8 @@ def admin_home():
     courses = db_manager.get_APs()
     #print courses
     getdept = db_manager.list_departments_AP()
-    cohorts = ['2017','2018','2019','2020'] #UNICORN
+    cohorts = [db_manager.grade_to_cohort(9),db_manager.grade_to_cohort(10),db_manager.grade_to_cohort(11),db_manager.grade_to_cohort(12)] #UNICORN
+
     problems = db_manager.get_problematic_courses()
     if len(problems) > 0:
         problems = True
