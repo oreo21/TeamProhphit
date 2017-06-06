@@ -78,7 +78,7 @@ def add_courses(f):
             course["prereq_overall_average"] = 0
             course["prereq_department_averages"] = []
             course["grade_levels"] = [9, 10, 11, 12]
-            db.courses.insert_one(course)
+            db.courses.update_one({"code" : course["code"]}, {"$set" : course}, upsert=True)
             #things go wrong sometimes (empty entries)
         except:
             pass

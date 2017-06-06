@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = ["hzeng@stuy.edu","vmavromatis@stuy.edu"]
+adminlist = ["hzeng@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
