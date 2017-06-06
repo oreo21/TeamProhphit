@@ -128,7 +128,7 @@ def list_departments():
     for dept in depts:
        # print dept
         ret.append( dept["name"].encode("ascii") )
-    return ret
+    return sorted(ret)
 
 # args: none
 # return: a list of the names of departments that have AP classes
@@ -139,7 +139,7 @@ def list_departments_AP():
         dept = get_course(AP)["department"]
         if dept not in ret:
             ret.append(dept)
-    return ret
+    return sorted(ret)
 
 def remove_stuyedu(s):
     if s.find("@stuy.edu") != -1:
@@ -325,17 +325,18 @@ def get_course(code):
     return db.courses.find_one({"code" : code})
 
 def add_unknown_course(code, name):
-    course = {}
-    course["code"] = code
-    course["name"] = name
-    course["department"] = "Unknown"
-    course["is_AP"] = is_AP(course["code"])
-    course["weight"] = get_weight(course["code"])
-    course["prereq_courses"] = []
-    course["prereq_overall_average"] = 0
-    course["prereq_department_averages"] = []
-    course["grade_levels"] = [9, 10, 11, 12]
-    db.courses.insert_one(course)
+    if db.courses.find_one({"code" : code}) == None:
+        course = {}
+        course["code"] = code
+        course["name"] = name
+        course["department"] = "Unknown"
+        course["is_AP"] = is_AP(course["code"])
+        course["weight"] = get_weight(course["code"])
+        course["prereq_courses"] = []
+        course["prereq_overall_average"] = 0
+        course["prereq_department_averages"] = []
+        course["grade_levels"] = [9, 10, 11, 12]
+        db.courses.insert_one(course)
 
 def get_problematic_courses():
     courses = db.courses.find({"department" : "Unknown"})
@@ -350,7 +351,7 @@ def get_APs():
     docs = db.courses.find({"is_AP" : 1})
     ret = []
     for doc in docs:
-        if doc["department"] != "Functional Codes" and "2 of 2" not in doc["name"]:
+        if doc["department"] != "Functional Codes" and "2 of 2" not in doc["name"] and int(doc["code"][-2]) % 2 == 1:
             ret.append( doc["code"].encode("ascii") )
     return ret
 
