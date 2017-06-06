@@ -26,7 +26,7 @@ Search Results
         <p>Cohort: <input type="text" name="cohort" value="{{student['cohort']}}"></p>
         <p>Student Selections: <br>
           {%for i in student['selections']%}
-          <input type="checkbox" name="selections" value="{{i}}" checked><br>
+          <input type="checkbox" name="selections" value="{{i}}" checked>{{i}}<br>
           {%endfor%}</p>
           <p>Allow {{student['first_name']}} {{student['last_name']}} to take:  <div class="btn sml-btn btn-info" id="but">show</div></p>
           <div id="options">
