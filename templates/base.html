@@ -24,7 +24,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      {% if session["student"] or session["admin"] or session["super_admin"]%}
       <a class="navbar-brand" href="/">Reviewed by Rick</a>
+      {%else%}
+      <p class="navbar-brand">Reviewed by <text id="secret">Rick</text></p>
+      {%endif%}
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
