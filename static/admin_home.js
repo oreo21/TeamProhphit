@@ -15,7 +15,7 @@ window.onload = function(){
 
 var validation = function(){
   $.ajax({
-      url: '/checkMatch/',
+      url: '/addAdmin/',
       type: 'POST',
       data: {'email1':document.getElementById('email1').value, 'email2':document.getElementById('email2').value,'pass1':document.getElementById('pass1').value,'pass2':document.getElementById('pass2').value},
       success: function(data){

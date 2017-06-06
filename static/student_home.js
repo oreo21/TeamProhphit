@@ -1,4 +1,4 @@
-var ap, selected, options,but1;
+var ap, selected, options, but1;
 
 var clicked = function(event){
 
