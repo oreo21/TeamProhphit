@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = ["hzeng@stuy.edu"]
+adminlist = ["hzeng@stuy.edu","vmavromatis@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -306,13 +306,13 @@ def rm_cohort():
 def mod(course):
     #NOTE: will eventually be list of courses in same dep't that can be prereqs
     #courses = db_manager.get_department_courses
-    clist = []
+    clist = {}
     course_info = db_manager.get_course(course)
 
     cohorts = [db_manager.grade_to_cohort(9),db_manager.grade_to_cohort(10),db_manager.grade_to_cohort(11),db_manager.grade_to_cohort(12)]
     depts = db_manager.list_departments()
     for dept in depts:
-        clist.append(db_manager.get_department_courses(dept))
+        clist[dept]=db_manager.get_department_courses(dept)
     print clist
     return render_template('modify.html',course=str(course),courses=clist,course_info = course_info, special=True, cohorts=cohorts, depts=depts)
 
@@ -323,7 +323,7 @@ def modifyCourse():
 
     course = request.form['course']
     print "\n\n\nCOURSE" ,course
-    
+
     if 'minGPA' in request.form:
         minGPA = request.form["minGPA"]
         db_manager.edit_course(course, "prereq_overall_average", minGPA)
@@ -384,29 +384,31 @@ def validateCSV():
 #functions to add students
 @app.route('/validateTranscript/', methods=['POST'])
 def validateTranscript():
-    #read file
-    fil = request.files['f'].read()
-    #return file
-    ret = []
-    #split file by lines
-    data = fil.split('\r\n')
-    #get headers
-    headers = []
-    for i in data[0].split(','):
-        headers.append(i.strip())
-    for line in data[1:]:
-        l = line.split(',')
-        info = {}
-        i = 0
-        for category in headers:
-            info[category] = l[i].strip()
-            i += 1
-            if i >= len(l):
-                break
-        ret.append(info)
-    db_manager.add_students(ret)
-    session['success'] = "Transcripts uploaded succesfully!"
-    return ''
+    try:#read file
+        fil = request.files['f'].read()
+        #return file
+        ret = []
+        #split file by lines
+        data = fil.split('\r\n')
+        #get headers
+        headers = []
+        for i in data[0].split(','):
+            headers.append(i.strip())
+        for line in data[1:]:
+            l = line.split(',')
+            info = {}
+            i = 0
+            for category in headers:
+                info[category] = l[i].strip()
+                i += 1
+                if i >= len(l):
+                    break
+            ret.append(info)
+        db_manager.add_students(ret)
+        session['success'] = "Transcripts uploaded succesfully!"
+        return ''
+    except:
+        return "Error. CSV is in invalid form."
 
 if __name__ == '__main__':
     app.debug = True

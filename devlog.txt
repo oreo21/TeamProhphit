@@ -274,3 +274,7 @@ edited the readme
 
 amyX -- 2017-06-06 01:43
 changed checkmatch to add admin and removed useless passwords field
+
+vannaM -- 2017-06-06 15:40
+prereq hiding/aesthetic
+warning message for uploading transcripts and courses

@@ -1,6 +1,6 @@
 {%extends "base.html"%}
 {%block title%}
-  Modify Courses
+Modify Courses
 {%endblock%}
 
 {%block body%}
@@ -28,24 +28,29 @@
         <p>Choose Average for Different Department:</p><p class="btn btn-info" id="showDepts">Show</p>
         <div id="theDepts">
           {%for i in depts%}
-            <p>Average required for {{i}}: <input type="text" name="{{i}}"\></p>
+          <p>Average required for {{i}}: <input type="text" name="{{i}}"\></p>
           {%endfor%}
         </div>
         <h4>Cohort Requirement:</h4>
-          {%for cohort in cohorts%}
-          <input type="checkbox" name="cohort">{{cohort}}<br>
-          {%endfor%}
+        {%for cohort in cohorts%}
+        <input type="checkbox" name="cohort">{{cohort}}<br>
+        {%endfor%}
         <h4>Prerequisite Courses:</h4><p class="btn btn-info" id="prereqBut">Show</p><br>
-        <div id="prereqs">
-          {%for course in courses%}
 
-            {%for c in course%}
-              <input type="checkbox" name="prereq" value="{{c}}"> {{c}}<br>
-            {%endfor%}
+        <div class="text-center" id="prereqs">
+          {%for dept in courses%}
+          <div class="panel panel-info">
+            <div class="dept panel-heading" id="{{dept}}">{{dept}}</div>
+            <div class="panel-body" id="{{dept}}div">
+              {%for course in courses[dept]%}
+              <input type="checkbox" name="prereq" value="{{course}}"> {{course}}<br>
+              {%endfor%}
+            </div>
+          </div>
           {%endfor%}
         </div>
         <input type="hidden" name="course" value="{{course}}">
-        <p><input type="submit" value="Submit" class="btn btn-info"></p>
+        <input type="submit" value="Submit" class="btn btn-info">
       </form>
     </fieldset>
   </div>
@@ -53,16 +58,16 @@
     <h3>Current Prerequisite Requirements:</h3>
     <p>
       Prerequisites: <br/><ol>
-          {%for data in course_info["prereq_courses"]%}
-            <li>{{data}}</li>
-          {%endfor%}</ol>
-      <br/>
-      Needed Overall Average: {{course_info["prereq_overall_average"]}}<br/>
-      Needed Department Average: {{course_info["prereq_department_average"]}}<br/>
-    </p>
+        {%for data in course_info["prereq_courses"]%}
+        <li>{{data}}</li>
+        {%endfor%}</ol>
+        <br/>
+        Needed Overall Average: {{course_info["prereq_overall_average"]}}<br/>
+        Needed Department Average: {{course_info["prereq_department_average"]}}<br/>
+      </p>
+    </div>
   </div>
-</div>
 
-<script src="/static/modify.js"></script>
+  <script src="/static/modify.js"></script>
 
-{%endblock%}
+  {%endblock%}
