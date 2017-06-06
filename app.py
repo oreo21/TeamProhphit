@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = ["vmavromatis@stuy.edu"]
+adminlist = ["hzeng@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -155,7 +155,7 @@ def student_home():
     aps = db_manager.get_applicable_APs(osis)
     depts = db_manager.list_departments()
     print depts
-    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses, student = student, depts=depts)
+    return render_template('student_home.html', numAps = num, aps=aps, myfxn=db_manager.get_course, selectedCourses=selectedCourses, student = student, depts=depts)
 
 
 #NOTE: should allow students to sign up for class
@@ -267,13 +267,14 @@ def modify_student():
     #exceptions; returns list
     if 'exceptions' in request.form:
         exceptions = request.form.getlist('exceptions')
-        db_manager.edit_student(osis, "exceptions", exceptions)
+        if exceptions != "":
+            db_manager.edit_student(osis, "exceptions", exceptions)
         print exceptions
     #number of aps
-    if 'amount' in request.form:
-        amount = request.form['amount'] #UNICORN
-        db_manager.edit_student(osis, "extra", amount)
-        print amount
+    if 'extra' in request.form:
+        extra = request.form['extra'] #UNICORN
+        if extra.isdigit():
+            db_manager.edit_student(osis, "extra", amount)
 
     session['success'] = "Student successfully modified!"
     return redirect(url_for('home'))
@@ -321,7 +322,8 @@ def modifyCourse():
     dept = db_manager.list_departments()
 
     course = request.form['course']
-
+    print "\n\n\nCOURSE" ,course
+    
     if 'minGPA' in request.form:
         minGPA = request.form["minGPA"]
         db_manager.edit_course(course, "prereq_overall_average", minGPA)

@@ -21,7 +21,7 @@
     <form action='/modifyCourse/' class="form-horizontal" method="POST"onsubmit="return confirm('Are you sure that you want to modify this course?');" onsubmit="return confirm('Are you sure that you want to modify this course?');">
       <fieldset>
         <legend>Modify Requirements:</legend>
-        <input type="hidden" name="course" value="{{course_info["name"]}}"><!--course name-->
+        <input type="hidden" name="name" value="{{course_info["name"]}}"><!--course name-->
         <input type="hidden" name="course" value="{{course}}"> <!--course code-->
         <p>Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100"></p>
         <p>Minimum Departmental Average <input type="number" name="minDept" min="0" max="100"></p>

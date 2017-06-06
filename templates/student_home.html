@@ -35,7 +35,7 @@ Course Sign-Up
             </div>
             <div class="panel-body">
               {%for i in selectedCourses%}
-              <p> {{i}} </p>
+              <p> {{myfxn(i)["name"]}} ({{i}}) </p>
               {%endfor%}
             </a>
             <p class="btn btn-info" id="but1">Choose New APs</p>
@@ -53,7 +53,7 @@ Course Sign-Up
             <p><select name="{{"APS" ~ i}}" class="ap">
               <option disabled selected value> - * - select an option - * - </option>
               {%for class in aps%}
-              <option value="{{class}}">{{class}}</option>
+              <option value="{{class}}">{{myfxn(class)["name"]}} ({{class}})</option>
               {%endfor%}</select></p>
               {%endfor%}
               <input class="btn btn-info" type="submit" onclick="return confirm('Are you sure that you want to submit these courses?');">
@@ -94,7 +94,6 @@ Course Sign-Up
         {% for item in depts %}
         &#09;<b>{{item}} Average:</b> {{ student["department_averages"][item]["average"] }}<br>
         {% endfor %}
->>>>>>> 4ffc9a15fba850147c9eea9874062f52964012f3
     </div>
   </div>
 
