@@ -171,7 +171,6 @@ def add_students(f):
             student = db.students.find_one( {"id" : class_record["StudentID"]} )
             #if student not in database, set up a dictionary for all student info
 
-            "fkrgiofjoeg".strip("12345")
             new = student == None
             if new:
                 student = {}
@@ -192,7 +191,7 @@ def add_students(f):
                 student['overall_average'] = 0
                 student['selections'] = []
                 student['exceptions'] = []
-                student["amount"] = 0
+                student["extra"] = 0
 
             if "Mark" in class_record: #class has grade means class is in the past
                 course_mark = class_record["Mark"]
@@ -204,6 +203,8 @@ def add_students(f):
                                             {"$set" :
                                              {"classes_taken" :
                                               student["classes_taken"]}})
+                recalculate_department_average(student["id"], course_dept)
+                recalculate_overall_average(student["id"])
             else: #class has no grade means class is current
                 student["classes_taking"].append(course_code)
                 if new:
@@ -381,6 +382,17 @@ def get_class_mark(student_id, course_code):
         if course["code"] == course_code:
             return course["mark"]
     return -1
+
+def get_num_APs(student_id):
+    cutoffs = [85, 90, 92, 95]
+    student = db.students.find_one({"id" : student_id})
+    avg = student["overall_average"]
+    extra = student["extra"]
+    i = 0
+    while i < len(cutoffs) and cutoffs[i] <= avg:
+        i += 1
+    return i + extra
+
 
 #generates list of aps this student can sign up for based on pre-reqs
 def get_applicable_APs(student_id):
