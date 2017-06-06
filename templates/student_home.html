@@ -66,8 +66,7 @@
     </div>
     <div class="tab-pane fade in" id="stats">
       <br><br><br>
-      <b>Overall Average:</b> {{student["overall_average"]}}<br><br>
-      Departmental Averages: <br>
+      <b>Overall Average:</b> {{student["overall_average"]}}<br>
         {% for item in depts %}
         &#09;<b>{{item}} Average:</b> {{ student["department_averages"][item]["average"] }}<br>
         {% endfor %}
