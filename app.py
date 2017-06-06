@@ -159,7 +159,19 @@ def student_home():
     #get_applicable_APs(student_id)
     #student["id"] for osis
     aps = db_manager.get_applicable_APs(osis)
-    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses)
+    ap1 = db_manager.get_applicable_APs("111111125")
+    ap2 = db_manager.get_applicable_APs("111111127")
+    ap3 = db_manager.get_applicable_APs("111111124")
+
+    print aps
+    print "ap 1"
+    print ap1
+    print "ap 2"
+    print ap2
+    print "ap3"
+    print ap3
+    dept = db_manager.list_departments()
+    return render_template('student_home.html', numAps = num, aps=aps, dept=dept,selectedCourses=selectedCourses, student=student)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=["POST"])

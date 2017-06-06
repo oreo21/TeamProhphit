@@ -398,7 +398,7 @@ def get_class_mark(student_id, course_code):
     return -1
 
 def get_num_APs(student_id):
-    cutoffs = [85, 90, 92, 95]
+    cutoffs = [0, 90, 92, 95]
     student = db.students.find_one({"id" : student_id})
     avg = student["overall_average"]
     extra = student["extra"]
@@ -470,6 +470,7 @@ def get_applicable_APs(student_id):
 
         #if passed all checks, then AP is applicable
         ret.append(course_code)
+        return ret
 
 def set_admin_list(lis):
     db.admins.update_one( {"name" : "other"},

@@ -7,6 +7,7 @@
 {% block body %}
 <ul class="nav nav-tabs">
   <li class="active"><a href="#home" data-toggle="tab">Course Selections</a></li>
+  <li><a href="#stats" data-toggle="tab">View Student Stats</a></li>
   <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade active in" id="home">
         <br><br><br>
@@ -62,6 +63,18 @@
             {% endif %}
         </div>
       </div>
+    </div>
+    <div class="tab-pane fade in" id="stats">
+      <br><br><br>
+      <p>
+        <b>Overall Average:</b> {{student["overall_average"]}}<br>
+        <b>Department Averages:</b> <br>
+        {% for i in dept %}
+          <b>{{i}} average:</b> {{student["department_averages"][i]["average"]}}<br>
+        {% endfor %}
+
+      </p>
+
     </div>
 </div>
 
