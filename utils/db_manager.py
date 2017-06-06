@@ -185,6 +185,7 @@ def add_students(f):
                 student['classes_taken'] = {}
                 student['department_averages'] = {}
                 depts = list_departments()
+                print "\n\n\nLISTING DEPTS\n\n\n", depts
                 for dept in depts:
                     student['classes_taken'][dept] = []
                     student['department_averages'][dept] = {"average": 0, "count": 0}
@@ -270,6 +271,7 @@ def recalculate_department_averages(student_id):
 #   or if a grade was changed
 def recalculate_department_average(student_id, department):
     student = get_student(student_id)
+#    print "dept avgs: ", student["department_averages"]
     if student == None:
         print "ERROR: no student with that ID"
         return
@@ -277,16 +279,16 @@ def recalculate_department_average(student_id, department):
     #print courses
     total = count = 0
     for course in courses:
-        if course["weight"]: #not 0
+        if get_weight(course["code"]): #not 0
             try:
                 total += int(course["mark"])
                 count += 1
             except:
                 pass
-            print total
-            print count
+#            print total
+#            print count
     avg = total * 1.0 / count if count != 0 else 0
-    #print "avg: ", avg
+ #   print "student_id: ", student_id, "avg: ", avg
     student["department_averages"][department]["average"] = avg
     student["department_averages"][department]["count"] = count
     db.students.update_one( {"id" : student_id},

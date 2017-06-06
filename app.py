@@ -348,8 +348,8 @@ def validateCSV():
                 if i >= len(l):
                     break
             ret.append(info)
-        #dept = db_manager.add_departments(ret)
-        #course = db_manager.add_courses(ret)
+        dept = db_manager.add_departments(ret)
+        course = db_manager.add_courses(ret)
         deptMsg = courseMsg = ""
         if dept:
             deptMsg = " Some departments failed to add."
