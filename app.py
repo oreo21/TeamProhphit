@@ -14,7 +14,8 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["jxu9@stuy.edu"]
+
+adminlist = ["jxu9@stuy.edu", "vmavromatis@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -189,7 +190,6 @@ def admin_home():
         session.pop('success')
 
     on = (db_manager.get_site_status()=='on')
-    print db_manager.get_APs()
 
     return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success, on=on)
 
@@ -348,14 +348,16 @@ def validateCSV():
                 if i >= len(l):
                     break
             ret.append(info)
-        dept = db_manager.add_departments(ret)
-        course = db_manager.add_courses(ret)
-        dept = course = ""
+        #dept = db_manager.add_departments(ret)
+        #course = db_manager.add_courses(ret)
+        deptMsg = courseMsg = ""
         if dept:
             deptMsg = " Some departments failed to add."
         if course:
             courseMsg = " Some courses faield to add."
-        session['success'] = "Courses uploaded succesfully!%s%s"%(deptMsg,courseMsg)
+        msg = "Courses uploaded succesfully!%s%s"%(deptMsg,courseMsg)
+        session['success'] = msg
+        print "success??"
         return ''
     #bad file
     except:

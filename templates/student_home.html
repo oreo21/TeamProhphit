@@ -13,7 +13,7 @@
         <!--NOTE: take APs out of list when selected-->
         <div class="row">
           <div class="col-md-6">
-            <div class="panel panel-danger">
+            <div class="panel panel-info">
               <div class="panel-heading">
                 <h3 class="panel-title">Students may apply for as many Advanced Placement courses as they are eligible for, as determined by the following criteria:<br></p></h3>
               </div>
@@ -27,20 +27,21 @@
               </div>
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="panel panel-info" id="selected">
+              <div class="panel-heading">
+                <h3 class="panel-title">APs Currently Selected</h3>
+              </div>
+              <div class="panel-body">
+                {%for i in selectedCourses%}
+                <p> {{i}} </p>
+                {%endfor%}
+              </a>
+              <p class="btn btn-info" id="but1">Choose New APs</p>
+              </div>
+            </div>
 
-          <div class="list-group col-md-6" id="selected">
-            <p  class="list-group-item active">
-              APs Currently Selected
-            </p>
-            {%for i in selectedCourses%}
-            <p class="list-group-item"> {{i}}
-            </p>
-            {%endfor%}
-          </a>
-          <p class="btn btn-info" id="but1">Choose New APs</p>
-        </div>
-
-          <div class"col-md-6" id="options">
+          <div id="options">
             <p>Please make your AP selections below. </p>
             <form action="/signup/" method="POST">
               {% for i in range(numAps) %}
@@ -54,6 +55,7 @@
             <p class="btn btn-info" id="but2">Cancel</p>
             </form>
           </div>
+        </div>
       </div>
     </div>
 </div>

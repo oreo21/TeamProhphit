@@ -162,6 +162,7 @@ def remove_stuyedu(s):
 def add_students(f):
     ret = False
     for class_record in f:
+        msg = "start"
         try:
             course_code = class_record["Course"]
             course_info = db.courses.find_one( {"code": course_code } )
@@ -170,9 +171,11 @@ def add_students(f):
                 add_unknown_course(course_code, class_record["Course Title"])
             student = db.students.find_one( {"id" : class_record["StudentID"]} )
             #if student not in database, set up a dictionary for all student info
+            msg = "block 1 finished"
 
             new = student == None
             if new:
+                msg = "start new student"
                 student = {}
                 student['id'] = class_record["StudentID"]
                 student['first_name'] = class_record["FirstName"]
@@ -192,8 +195,10 @@ def add_students(f):
                 student['selections'] = []
                 student['exceptions'] = []
                 student["extra"] = 0
+                msg = "end new student"
 
             if "Mark" in class_record: #class has grade means class is in the past
+                msg = "up to mark"
                 course_mark = class_record["Mark"]
                 student["classes_taken"][course_dept].append( {"code" : course_code, "mark" : course_mark})
                 if new:
@@ -203,8 +208,11 @@ def add_students(f):
                                             {"$set" :
                                              {"classes_taken" :
                                               student["classes_taken"]}})
+                msg = "before dept avg"
                 recalculate_department_average(student["id"], course_dept)
+                msg = "after dept, before overall"
                 recalculate_overall_average(student["id"])
+                msg = "after overall"
             else: #class has no grade means class is current
                 student["classes_taking"].append(course_code)
                 if new:
@@ -215,6 +223,9 @@ def add_students(f):
                                              {"classes_taken" :
                                               student["classes_taken"]}})
         except:
+            print "---start---"
+            print msg
+            print "---end---"
             ret = True
     return ret
 
@@ -263,7 +274,7 @@ def recalculate_department_average(student_id, department):
         print "ERROR: no student with that ID"
         return
     courses = student["classes_taken"][department]
-    print courses
+    #print courses
     total = count = 0
     for course in courses:
         if course["weight"]: #not 0
@@ -275,7 +286,7 @@ def recalculate_department_average(student_id, department):
             print total
             print count
     avg = total * 1.0 / count if count != 0 else 0
-    print "avg: ", avg
+    #print "avg: ", avg
     student["department_averages"][department]["average"] = avg
     student["department_averages"][department]["count"] = count
     db.students.update_one( {"id" : student_id},
@@ -292,7 +303,7 @@ def recalculate_department_average(student_id, department):
 def recalculate_overall_average(student_id):
     student = get_student(student_id)
     dept_avgs = student["department_averages"]
-    print dept_avgs
+    #print dept_avgs
     summ = 0
     count = 0
     for dept in dept_avgs:
