@@ -62,6 +62,7 @@ def is_AP(code):
 # returns: none
 # initializes courses collection
 def add_courses(f):
+    ret = False
     for elem in f:
         try:
             course = {}
@@ -82,13 +83,15 @@ def add_courses(f):
             db.courses.insert_one(course)
             #things go wrong sometimes (empty entries)
         except:
-            pass
+            ret = True
+    return ret
 
 # args: file obj of csv containing course info
 # returns: none
 # initializes departments collection to hold lists of courses per dept
 def add_departments(f):
     db.departments.insert_one({"name" : "Unknown", "courses" : []})
+    ret = False
     for elem in f:
         try:
             code = elem["CourseCode"]
@@ -112,7 +115,8 @@ def add_departments(f):
                 )
             #things go wrong sometimes (empty entries)
         except:
-            print elem
+            ret = True
+    return ret
 
 
 
@@ -156,6 +160,7 @@ def remove_stuyedu(s):
 #             * Mark (Grade in the course)
 # return: none
 def add_students(f):
+    ret = False
     for class_record in f:
         try:
             course_code = class_record["Course"]
@@ -163,7 +168,6 @@ def add_students(f):
             course_dept = course_info["department"] if course_info != None else "Unknown"
             if course_dept == "Unknown":
                 add_unknown_course(course_code, class_record["Course Title"])
-
             student = db.students.find_one( {"id" : class_record["StudentID"]} )
             #if student not in database, set up a dictionary for all student info
 
@@ -210,8 +214,8 @@ def add_students(f):
                                              {"classes_taken" :
                                               student["classes_taken"]}})
         except:
-            #things go wrong sometimes (empty entries)
-            pass
+            ret = True
+    return ret
 
 def get_id(email):
     user = remove_stuyedu(email)
