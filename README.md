@@ -31,7 +31,7 @@ To download these dependencies,
 1. Upload the Courses file which is the master list of all courses. See courses.csv for the expected format.
 2. Upload the Student Transcripts file, which contains all the students and their class grades. See student_transcripts.csv for the expected format.
 3. If a warning regarding uncategorized courses appears, click on the warning to fix these issues.
-4. Turn on the site.
+4. Turn on the site to allow students to select courses.
 
 ### Admin functionality:
 * Modify course information, including pre-requisite courses/grades
