@@ -146,6 +146,12 @@ def student_home():
         return redirect(url_for('home'))
 
     num = 5
+    print session["student"]
+    osis = db_manager.get_id(session["student"])
+    print osis
+    #student = db_manager.get_student(db_manager.get_id())
+    #print student
+    #overallavg = student["overall_average"]
     aps = ['one','two','three','four','five']
     selectedCourses = ['this one','that one','the other one']
     #student = db_manager.get_student(db_manager.get_id(session["student"]))
