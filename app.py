@@ -162,14 +162,16 @@ def student_home():
     return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses)
 
 #NOTE: should allow students to sign up for class
-@app.route('/signup/', methods=['POST'])
+@app.route('/signup/', methods=["POST"])
 def signup():
+    #print request.form["ap0"]
     session['signedUp'] = True
     signedup = []
     osis = db_manager.get_id(session["student"])
-    print request.form["ap1"]
-    for item in request.form:
-        print "this is an item" + str(item)
+    for i in request.form:
+        signedup.append(request.form[i])
+    # for item in request.form:
+    #     print "this is an item" + str(item)
     #code for getting the options
     # for i in range(10):
     #     index = "ap" + str(i)
@@ -177,7 +179,7 @@ def signup():
     #         print "hi"
     #         signedup.append(request.form[index])
 
-    #db_manager.edit_student(osis, "selections", signedup)
+    db_manager.edit_student(osis, "selections", signedup)
     return redirect(url_for('home'))
 
 #admin home

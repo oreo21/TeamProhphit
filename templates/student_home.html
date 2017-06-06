@@ -52,11 +52,11 @@
                       <p><select name="APS" class="ap">
                         <option disabled selected value> - * - select an option - * - </option>
                         {%for class in aps%}
-                          <option value="{{ "ap" ~ aps.index(class) }}">{{class}}</option>
+                          <option value="{{class}}">{{class}}</option>
                         {%endfor%}</select></p>
                     {%endfor%}
-                <input class="btn btn-info" type="submit" onsubmit="return confirm('Are you sure that you want to submit these courses?');">
-                <p class="btn btn-info" id="but2">Cancel</p>
+                    <input class="btn btn-info" type="submit" onclick="return confirm('Are you sure that you want to submit these courses?');">
+                    <p class="btn btn-info" id="but2">Cancel</p>
                 </form>
               </div>
             {% endif %}
