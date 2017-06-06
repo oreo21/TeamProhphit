@@ -504,3 +504,11 @@ def export():
     heading += ",".join( ["selection" + str(x + 1) for x in range(most_APs)] )
     ret = heading + "\n" + ret
     return ret
+
+def get_department_averages(student_id):
+    ret = {}
+    student = get_student(student_id)
+    dept_avgs = student["department_averages"]
+    for dept in dept_avgs:
+        ret[dept] = dept_avgs[dept]["average"]
+    return ret

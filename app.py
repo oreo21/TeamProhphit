@@ -159,7 +159,7 @@ def student_home():
     #get_applicable_APs(student_id)
     #student["id"] for osis
     aps = db_manager.get_applicable_APs(osis)
-    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses)
+    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses, myAvg = db_manager.get_department_averages(osis))
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=["POST"])
