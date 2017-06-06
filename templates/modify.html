@@ -37,9 +37,9 @@
         <h4>Prerequisite Courses:</h4><p class="btn btn-info" id="prereqBut">Show</p><br>
         <div id="prereqs">
           {%for course in courses%}
-
-          <input type="checkbox" name="prereq" value="{{course}}"> {{course}}<br>
-
+            {%for c in course%}
+              <input type="checkbox" name="prereq" value="{{c}}"> {{c}}<br>
+            {%endfor%}
           {%endfor%}
         </div>
         <input type="hidden" name="course" value="{{course}}">
