@@ -162,9 +162,12 @@ def student_signup():
         return redirect(url_for('home'))
 
     num = 5
-    student = db_manager.get_student(db_manager.get_id(session["student"]))
-    overallavg = student["overall_average"]
-
+    print session["student"]
+    osis = db_manager.get_id(session["student"])
+    print osis
+    #student = db_manager.get_student(db_manager.get_id())
+    #print student
+    #overallavg = student["overall_average"]
     #get_applicable_APs(student_id)
     #student["id"] for osis
     aps = db_manager.get_applicable_APs(student["id"])
