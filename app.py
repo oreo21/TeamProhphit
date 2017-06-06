@@ -365,7 +365,7 @@ def validateCSV():
             ret.append(info)
         db_manager.add_departments(ret)
         db_manager.add_courses(ret)
-        msg = "Courses uploaded succesfully!
+        msg = "Courses uploaded succesfully!"
         session['success'] = msg
         return ''
     #bad file
