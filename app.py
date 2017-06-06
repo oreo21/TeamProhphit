@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = ["jxu9@stuy.edu", "vmavromatis@stuy.edu"]
+adminlist = ["vmavromatis@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -49,9 +49,9 @@ def sample_info_route():
         response, content = http_auth.request('https://www.googleapis.com/oauth2/v1/userinfo?alt=json') # Issues a request to the google oauth api to get user information
 
         c = json.loads(content) # Load the response
-        for thing in c:
-            print "this is the key below"
-            print thing
+        # for thing in c:
+        #     print "this is the key below"
+        #     print thing
             # print
             # print "this is the value below"
             # print c[thing]
@@ -146,25 +146,38 @@ def student_home():
     if 'student' not in session:
         return redirect(url_for('home'))
 
-    num = 5
     print session["student"]
     osis = db_manager.get_id(session["student"])
-    print osis
-    #student = db_manager.get_student(db_manager.get_id(osis))
+
+    student = db_manager.get_student(osis)
+    num = db_manager.get_num_APs(osis)
     #print student
     #overallavg = student["overall_average"]
-    aps = ['one','two','three','four','five']
-    selectedCourses = ['this one','that one','the other one']
+    #aps = ['one','two','three','four','five']
+    selectedCourses = student["selections"]
     #student = db_manager.get_student(db_manager.get_id(session["student"]))
     #get_applicable_APs(student_id)
     #student["id"] for osis
-    #aps = db_manager.get_applicable_APs(student["id"])
+    aps = db_manager.get_applicable_APs(osis)
     return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])
 def signup():
     session['signedUp'] = True
+    signedup = []
+    osis = db_manager.get_id(session["student"])
+    print request.form["ap1"]
+    for item in request.form:
+        print "this is an item" + str(item)
+    #code for getting the options
+    # for i in range(10):
+    #     index = "ap" + str(i)
+    #     if request.form[index]:
+    #         print "hi"
+    #         signedup.append(request.form[index])
+
+    #db_manager.edit_student(osis, "selections", signedup)
     return redirect(url_for('home'))
 
 #admin home
@@ -206,7 +219,7 @@ def categorize():
 #categorize problematic courses
 @app.route('/categorizeForm/', methods=['POST'])
 def categorizeForm():
-    print request.form
+    #print request.form
     for course in request.form:
         db_manager.edit_course(course, "department", request.form[course])
     session['success'] = "Courses successfully categorized!"
