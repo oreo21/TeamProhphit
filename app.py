@@ -335,7 +335,7 @@ def modifyCourse():
         db_manager.edit_course(course, "grade_levels", cohort)
     if 'prereq' in request.form:
         prereqs = request.form["prereq"]
-        db_manager.edit_course(course, "prereq_courses", prereq)
+        db_manager.edit_course(course, "prereq_courses", prereqs)
 
     for i in request.form:
         if i in dept and request.form[i]:
