@@ -241,3 +241,7 @@ wrote code to generate list of AP slots
 amyX -- 2017-06-05 20:11
 wrote most of the rest of the code in order to get the appropriate data to transfer how to the student side of the website
 fixed cohorts from graduation year to entering year
+
+amyX -- 2017-06-05 22:12
+added back button for categorize
+testing code

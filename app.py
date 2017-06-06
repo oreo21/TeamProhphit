@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = []
+adminlist = ["jxu9@stuy.edu"]
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -149,7 +149,7 @@ def student_home():
     print session["student"]
     osis = db_manager.get_id(session["student"])
     print osis
-    #student = db_manager.get_student(db_manager.get_id())
+    #student = db_manager.get_student(db_manager.get_id(osis))
     #print student
     #overallavg = student["overall_average"]
     aps = ['one','two','three','four','five']
