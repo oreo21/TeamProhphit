@@ -253,3 +253,8 @@ amyX -- 2017-06-05 01:19
 finally got student course selections to work
 display of selected courses now work as well
 wrote code to modify students via admin search
+
+vannaM -- 2017-06-05 01:27
+uploading csvs finished
+frontend for students
+try and except error fixing, gen errors
