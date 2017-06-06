@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = ["jxu9@stuy.edu"]
+adminlist = []
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -153,7 +153,9 @@ def student_home():
     #get_applicable_APs(student_id)
     #student["id"] for osis
     aps = db_manager.get_applicable_APs(osis)
-    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses)
+    depts = db_manager.list_departments()
+    print depts
+    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses, student = student, depts=depts)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=["POST"])
