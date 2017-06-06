@@ -90,6 +90,11 @@ Course Sign-Up
         <div class="col-md-2">
         </div>
       </div>
+      <b>Overall Average:</b> {{student["overall_average"]}}<br>
+        {% for item in depts %}
+        &#09;<b>{{item}} Average:</b> {{ student["department_averages"][item]["average"] }}<br>
+        {% endfor %}
+>>>>>>> 4ffc9a15fba850147c9eea9874062f52964012f3
     </div>
   </div>
 
