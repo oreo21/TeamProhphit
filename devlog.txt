@@ -221,6 +221,10 @@ modify form issues fixed
 frontend for admin account creation + frontend validation w/ajax
 aesthetic, cleaning
 
+haleyZ -- 2017-06-01 21:15
+moved course and department initialization to db_manager to allow for admin upload of course file
+wrote function to export students' selections
+
 vannaM -- 2017-06-04 03:00
 created uploading of student transcripts + courses
 
@@ -233,6 +237,10 @@ vannaM -- 2017-06-04 21:38
 export feature
 jscript moved to separate files
 bug fixes + cleaning
+
+haleyZ -- 2017-06-05 13:40
+added code to get id from stuy.edu email, get email from id
+altered db schema to store stuy.edu email
 
 amyX -- 2017-06-05 14:06
 wrote python code to start connecting and displaying student end to the entire program
@@ -253,3 +261,13 @@ amyX -- 2017-06-05 01:19
 finally got student course selections to work
 display of selected courses now work as well
 wrote code to modify students via admin search
+
+vannaM -- 2017-06-05 01:27
+uploading csvs finished
+frontend for students
+try and except error fixing, gen errors
+
+haleyZ -- 2017-06-06 01:40
+debugged db_manager functions
+tested the site
+edited the readme
