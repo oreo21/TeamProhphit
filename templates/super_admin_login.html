@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block body %}
+<div class="bg"</div>
+  <div class="jumbotron">
+    <h1>Select your Courses with Stuy-le</h1>
+    <p>{site name} is designed to help you streamline your course selections process.</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 text-center">
+        <div class="box">
+          <div class="box-content">
+            <h1 class="tag-title">Super Admin Login</h1>
+            <hr />
+            <p class="intro">This site will allow you to add student cohorts, search up students, modify course prerequisite and grade requirements, and more. Programming stream-lined. In Stuy-le.</p>
+            <br /><br/>
+            <p><div class="well form-horizontal">
+              <fieldset>
+                <legend>Login</legend>
+                <form id="login" action="/auth-sal/" method="POST">
+                  <p>Password: <input type="text" name="password" id='pass' placeholder="Password"></p>
+		  {{ierror}}<br>
+                  <p class="btn btn-info" id="but" onclick="document.getElementById('login').submit()">Login</p>
+                </form>
+              </fieldset>
+            </div></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="box">
+          <div class="box-content">
+            <h1 class="tag-title">Questions/Problems?</h1>
+            <hr />
+            <p class="intro">If you have any questions about programming or conflicts please email programoffice@stuy.edu.</p>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -37,7 +37,7 @@
       </form>
     {%endif%}
       <ul class="nav navbar-nav navbar-right">
-        {% if session["student"] or session["admin"]%}<li><a href="/logout/">Logout</a></li>
+        {% if session["student"] or session["admin"] or session["super_admin"]%}<li><a href="/logout/">Logout</a></li>
         {%endif%}
       </ul>
     </div>

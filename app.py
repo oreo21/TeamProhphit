@@ -15,8 +15,6 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = ["hzeng@stuy.edu"]
-
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
@@ -58,7 +56,7 @@ def sample_info_route():
         # return c['email'] # Return the email
 
         if c["hd"] == "stuy.edu":
-            if c['email'] in adminlist:
+            if c['email'] in db_manager.get_admin_list():
                 session['admin'] = c["email"]
             else:
                 session['student'] = c["email"]
@@ -78,6 +76,33 @@ def home():
         on = (db_manager.get_site_status() == 'on')
         return render_template('student_login.html', on=on)
 
+@app.route('/sal')
+def superAdminLogin():
+    if 'admin' in session:
+        return redirect(url_for('admin_home'))
+    elif 'student' in session:
+        return redirect(url_for('student_home'))
+    return render_template('super_admin_login.html')
+
+@app.route('/auth-sal/', methods = ["POST"])
+def auth_superAdmin():
+    print "running"
+    print request.form
+    super_admin = db_manager.get_super_admin()
+    inputted_password = request.form['password']
+    if hashlib.sha512(inputted_password).hexdigest() == super_admin["password"]:
+        session["super_admin"] = "super_admin"
+        return redirect(url_for("superAdmin_home"))
+    else:
+        return render_template("super_admin_login.html", error="Incorrect Password")
+
+@app.route("/sa-home/")
+def superAdmin_home():
+    if not "super_admin" in session:
+        return redirect(url_for("home"))
+    return render_template("super_admin_home.html")
+
+
 #admin login
 @app.route('/admin-login/')
 def adminLogin():
@@ -91,6 +116,7 @@ def adminLogin():
 #checks if all your information checks out
 @app.route('/adddeptadmin/', methods=["POST"])
 def addadmin():
+    print "checking admin"
     if len(request.form['email1']) == 0:
         ret = "Please fill in e-mail."
     elif not request.form['email1'].endswith("@stuy.edu"):
@@ -128,6 +154,8 @@ def passCheck(password):
 
 @app.route('/logout/')
 def logout():
+    if 'super_admin' in session:
+        session.pop('super_admin')
     if 'admin' in session:
         session.pop('admin')
     if 'student' in session:
@@ -196,6 +224,8 @@ def admin_home():
 
     on = (db_manager.get_site_status()=='on')
 
+    print getdept
+    
     return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success, on=on)
 
 #generate categorize form

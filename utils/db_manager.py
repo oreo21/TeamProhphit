@@ -459,6 +459,9 @@ def set_admin_list(lis):
 def get_admin_list():
     return db.admins.find_one({"name" : "other"})["emails"]
 
+def get_super_admin():
+    return db.admins.find_one({"name" : "super_admin"})
+
 def remove_student(student_id):
     db.students.delete_many({"id" : student_id})
 

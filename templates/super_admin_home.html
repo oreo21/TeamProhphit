@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+
+{%block title%}
+ Super Admin Home
+{%endblock%}
+
+<script src="/static/super_admin_home.js"></script>
+
+{%block body%}
+<div class="well form-horizontal">
+  <fieldset>
+    <legend>Add Admin</legend>
+    <form action="/adddeptadmin/" method="POST">
+      <p>Email: <input type="text" name="email" id='email1' placeholder="E-mail"></p>
+      <p>Confirm Email: <input type="text" name="checkEmail" id='email2' placeholder="Reenter E-mail"></p>
+      <div id="error"></div>
+      <p class="btn btn-info" id="but" onsubmit="return confirm('Are you sure that you want to add this administrator?');">Add</p>
+    </form>
+  </fieldset>
+</div>
+
+{%endblock%}
+
