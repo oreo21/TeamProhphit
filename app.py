@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 app.config.update(dict( # Make sure the secret key is set for use of the session variable
     SECRET_KEY = 'secret'
     ))
-adminlist = ["vmavromatis@stuy.edu"]
+adminlist = []
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -142,22 +142,6 @@ def logout():
 #student home
 @app.route('/student_home/')
 def student_home():
-    #NOTE: dummy variables for now
-    if 'student' not in session:
-        return redirect(url_for('oauth_testing'))
-
-    student = db_manager.get_student(db_manager.get_id(session["student"]))
-    print student
-    #aps = db_manager.get_applicable_APs(student["id"])
-    signedUp = False
-    if 'signedUp' in session:
-        signedUp = True
-        session.pop(['signedUp'])
-    return render_template('student_home.html', signedUp=signedUp, numAps = 0)
-
-#student sign up for APs
-@app.route('/student_signup/')
-def student_signup():
     if 'student' not in session:
         return redirect(url_for('home'))
 
@@ -168,10 +152,13 @@ def student_signup():
     #student = db_manager.get_student(db_manager.get_id())
     #print student
     #overallavg = student["overall_average"]
+    aps = ['one','two','three','four','five']
+    selectedCourses = ['this one','that one','the other one']
+    #student = db_manager.get_student(db_manager.get_id(session["student"]))
     #get_applicable_APs(student_id)
     #student["id"] for osis
-    aps = db_manager.get_applicable_APs(student["id"])
-    return render_template('student_signup.html', numAps = num, aps=aps)
+    #aps = db_manager.get_applicable_APs(student["id"])
+    return render_template('student_home.html', numAps = num, aps=aps, selectedCourses=selectedCourses)
 
 #NOTE: should allow students to sign up for class
 @app.route('/signup/', methods=['POST'])

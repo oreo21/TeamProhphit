@@ -1,4 +1,4 @@
-var ap = document.getElementsByClassName('ap');
+var ap, selected, options,but1;
 
 var clicked = function(event){
 
@@ -28,8 +28,30 @@ var clicked = function(event){
   event.target.old = event.target.value;
 }
 
+var viewSelected = function(){
+  //if viewing what you selected (not your options)
+  if (options.style.display == 'none'){
+    options.style.display = 'block';
+    selected.style.display = 'none';
+  }
+  else{
+    options.style.display = 'none';
+    selected.style.display = 'block';
+  }
+}
+
 window.onload = function(){
+  ap = document.getElementsByClassName('ap');
+  selected = document.getElementById('selected');
+  options = document.getElementById('options');
+  but1 = document.getElementById('but1');
+  but2 = document.getElementById('but2');
+
+  options.style.display = 'none';
+
   for (var i = 0; i < ap.length; i++){
     ap[i].addEventListener("change",clicked);
   };
+  but1.addEventListener('click',viewSelected);
+  but2.addEventListener('click',viewSelected);
 };
