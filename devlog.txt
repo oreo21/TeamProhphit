@@ -257,12 +257,12 @@ testing code
 amyX -- 2017-06-05 23:51
 got get student selected aps to work
 
-amyX -- 2017-06-05 01:19
+amyX -- 2017-06-06 01:19
 finally got student course selections to work
 display of selected courses now work as well
 wrote code to modify students via admin search
 
-vannaM -- 2017-06-05 01:27
+vannaM -- 2017-06-06 01:27
 uploading csvs finished
 frontend for students
 try and except error fixing, gen errors
@@ -271,3 +271,6 @@ haleyZ -- 2017-06-06 01:40
 debugged db_manager functions
 tested the site
 edited the readme
+
+amyX -- 2017-06-06 01:43
+changed checkmatch to add admin and removed useless passwords field
