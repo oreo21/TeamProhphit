@@ -22,7 +22,7 @@ Search Results
     </div>
     <div class="well" style='font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;'>
       <form action='/modify_student/' class="form-horizontal" method="POST">
-
+        <input type="hidden" name="osis" value = "{{osis}}">
         <p>Cohort: <input type="text" name="cohort" value="{{student['cohort']}}"></p>
         <p>Student Selections: <br>
           {%for i in student['selections']%}

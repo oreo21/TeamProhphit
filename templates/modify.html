@@ -21,9 +21,10 @@
     <form action='/modifyCourse/' class="form-horizontal" method="POST">
       <fieldset>
         <legend>Modify Requirements:</legend>
-        <input type="hidden" name="course" value="{{course_info["name"]}}">
-        <p>Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100" value={{course_info['prereq_overall_average']}}></p>
-        <p>Minimum Departmental Average <input type="number" name="minDept" min="0" max="100" value={{course_info['prereq_department_average']}}></p>
+        <input type="hidden" name="course" value="{{course_info["name"]}}"><!--course name-->
+        <input type="hidden" name="course" value="{{course}}"> <!--course code-->
+        <p>Minimum Overall GPA <input type="number" name="minGPA" min="0" max="100"></p>
+        <p>Minimum Departmental Average <input type="number" name="minDept" min="0" max="100"></p>
         <p>Choose Average for Different Department:</p><p class="btn btn-info" id="showDepts">Show</p>
         <div id="theDepts">
           {%for i in depts%}
@@ -32,17 +33,16 @@
         </div>
         <h4>Cohort Requirement:</h4>
           {%for cohort in cohorts%}
-          <input type="checkbox" name="cohort" value="{{cohort}}">{{cohort}}<br>
+          <input type="checkbox" name="cohort">{{cohort}}<br>
           {%endfor%}
         <h4>Prerequisite Courses:</h4><p class="btn btn-info" id="prereqBut">Show</p><br>
         <div id="prereqs">
           {%for course in courses%}
 
-          <input type="checkbox" name="prereq" value="{{course}}"> {{course}}<br>
+          <input type="checkbox" name="prereq"> {{course}}<br>
 
           {%endfor%}
         </div>
-        <input type="hidden" name="course" value="{{course}}">
         <p><input type="submit" value="Submit" class="btn btn-info" onsubmit="return confirm('Are you sure that you want to modify this course?');"></p>
       </form>
     </fieldset>

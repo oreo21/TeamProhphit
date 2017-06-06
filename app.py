@@ -168,15 +168,6 @@ def signup():
     for i in request.form:
         signedup.append(request.form[i])
 
-    # for item in request.form:
-    #     print "this is an item" + str(item)
-    #code for getting the options
-    # for i in range(10):
-    #     index = "ap" + str(i)
-    #     if request.form[index]:
-    #         print "hi"
-    #         signedup.append(request.form[index])
-    print signedup
     db_manager.edit_student(osis, "selections", signedup)
     print db_manager.get_student(osis)["selections"]
     return redirect(url_for('home'))
@@ -262,23 +253,28 @@ def search():
 #modify student
 @app.route("/modify_student/", methods = ['POST'])
 def modify_student():
-    osis = db_manager.get_id(session["student"])
+    osis = request.form["osis"]
     #cohort
     if 'cohort' in request.form:
         cohort = request.form['cohort']
+        db_manager.edit_student(osis, "cohort", cohort)
+        print cohort
     #selections; returns list
     if 'selections' in request.form:
         selections = request.form.getlist('selections')
+        db_manager.edit_student(osis, "selections", selections)
+        print selections
     #exceptions; returns list
     if 'exceptions' in request.form:
         exceptions = request.form.getlist('exceptions')
+        db_manager.edit_student(osis, "exceptions", exceptions)
+        print exceptions
     #number of aps
     if 'amount' in request.form:
         amount = request.form['amount'] #UNICORN
-    db_manager.edit_student(osis, "cohort", cohort)
-    db_manager.edit_student(osis, "selections", selections)
-    db_manager.edit_student(osis, "exceptions", exceptions)
-    #db_manager.edit_student(osis, "cohort", cohort)
+        db_manager.edit_student(osis, "extra", amount)
+        print amount
+
     session['success'] = "Student successfully modified!"
     return redirect(url_for('home'))
 
