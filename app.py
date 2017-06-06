@@ -15,7 +15,7 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
     SECRET_KEY = 'secret'
     ))
 
-adminlist = ["vmavromatis@stuy.edu"]
+adminlist = []
 
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
@@ -363,16 +363,10 @@ def validateCSV():
                 if i >= len(l):
                     break
             ret.append(info)
-        dept = db_manager.add_departments(ret)
-        course = db_manager.add_courses(ret)
-        deptMsg = courseMsg = ""
-        if dept:
-            deptMsg = " Some departments failed to add."
-        if course:
-            courseMsg = " Some courses faield to add."
-        msg = "Courses uploaded succesfully!%s%s"%(deptMsg,courseMsg)
+        db_manager.add_departments(ret)
+        db_manager.add_courses(ret)
+        msg = "Courses uploaded succesfully!
         session['success'] = msg
-        print "success??"
         return ''
     #bad file
     except:
@@ -402,10 +396,7 @@ def validateTranscript():
                 if i >= len(l):
                     break
             ret.append(info)
-        fail = db_manager.add_students(ret)
-        failMsg = ""
-        if fail > 0:
-            failMsg = "Some transcripts failed to add!"
+        db_manager.add_students(ret)
         session['success'] = "Transcripts uploaded succesfully! %s"%failMsg
         return ''
     #bad file

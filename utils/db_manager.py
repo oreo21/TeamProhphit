@@ -54,7 +54,7 @@ def is_cs_course(code):
 # args: course code
 # return: true if course is an AP, false if not
 def is_AP(code):
-    if(code[-1] == "X"):
+    if(code[5] == "X"):
         return 1
     return 0
 
@@ -62,7 +62,6 @@ def is_AP(code):
 # returns: none
 # initializes courses collection
 def add_courses(f):
-    ret = False
     for elem in f:
         try:
             course = {}
@@ -83,15 +82,13 @@ def add_courses(f):
             db.courses.insert_one(course)
             #things go wrong sometimes (empty entries)
         except:
-            ret = True
-    return ret
+            pass
 
 # args: file obj of csv containing course info
 # returns: none
 # initializes departments collection to hold lists of courses per dept
 def add_departments(f):
     db.departments.insert_one({"name" : "Unknown", "courses" : []})
-    ret = False
     for elem in f:
         try:
             code = elem["CourseCode"]
@@ -115,7 +112,7 @@ def add_departments(f):
                 )
             #things go wrong sometimes (empty entries)
         except:
-            ret = True
+            pass
     return ret
 
 
@@ -160,7 +157,6 @@ def remove_stuyedu(s):
 #             * Mark (Grade in the course)
 # return: none
 def add_students(f):
-    ret = False
     for class_record in f:
         msg = "start"
         try:
@@ -224,11 +220,7 @@ def add_students(f):
                                              {"classes_taken" :
                                               student["classes_taken"]}})
         except:
-            print "---start---"
-            print msg
-            print "---end---"
-            ret = True
-    return ret
+            pass
 
 def get_id(email):
     user = remove_stuyedu(email)
