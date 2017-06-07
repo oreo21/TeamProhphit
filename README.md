@@ -7,9 +7,9 @@ Mr. Brown // Software Development Period 8 // Spring 2017
 * Amy Xu
 
 ### About
-As requeted by the Programming Office, the Course Selection site allows for students to select AP courses. Administrators have control over pre-requisites for each AP class, including overall average, departmental averages, grade level, and classes previously taken. A students' options are filtered to only include APs that they qualify for. Administrators have the ability to close and open the course selection site, so they can decide what window the students have to make their choices. Once the course selection period is over, the students' selections can be exported to a CSV so the Programming Office can go through the list and approve students.
+As requested by the Programming Office, the Course Selection site allows for students to select AP courses. Administrators have control over pre-requisites for each AP class, including overall average, departmental averages, grade level, and classes previously taken. A students' options are filtered to only include APs that they qualify for. Administrators have the ability to close and open the course selection site, so they can decide what window the students have to make their choices. Once the course selection period is over, the students' selections can be exported to a CSV so the Programming Office can go through the list and approve students.
 
-This site is an improvement on the Programming Office's current method of AP course selection (Google forms) because it prevents students from signing up for classes they cannot take. 
+This site is an improvement on the Programming Office's current method of AP course selection (Google Forms) as it prevents students from signing up for classes they cannot take. 
 
 ### Dependencies:
 * Flask
