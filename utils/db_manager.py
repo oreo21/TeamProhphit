@@ -462,6 +462,10 @@ def get_admin_list():
 def get_super_admin():
     return db.admins.find_one({"name" : "super_admin"})
 
+def set_super_admin_password(pw):
+    db.admins.update_one({"name" : "super_admin"},
+                         {"$set" : {"password" : pw}})
+
 def remove_student(student_id):
     db.students.delete_many({"id" : student_id})
 
