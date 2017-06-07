@@ -279,3 +279,8 @@ vannaM -- 2017-06-06 22:45
 prereq hiding/aesthetic, functionality, displaying
 super admin account frontend, add other admins frontend, change pass frontend
 bug fixes, cleaning
+
+haleyZ -- 2017-06-07 01:00
+super admin templates, routing, and db storing admins
+bug fixes for storing admins
+robustified course adding so courses/transcripts can be uploaded either order
