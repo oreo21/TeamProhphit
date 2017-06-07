@@ -72,11 +72,13 @@ def home():
         return redirect(url_for('admin_home'))
     elif 'student' in session:
         return redirect(url_for('student_home'))
+    elif 'super_admin' in session:
+        return redirect(url_for('superAdmin_home'))
     else:
         on = (db_manager.get_site_status() == 'on')
         return render_template('student_login.html', on=on)
 
-@app.route('/sal')
+@app.route('/superman/')
 def superAdminLogin():
     if 'admin' in session:
         return redirect(url_for('admin_home'))
@@ -116,7 +118,6 @@ def adminLogin():
 #checks if all your information checks out
 @app.route('/adddeptadmin/', methods=["POST"])
 def addadmin():
-    print "checking admin"
     if len(request.form['email1']) == 0:
         ret = "Please fill in e-mail."
     elif not request.form['email1'].endswith("@stuy.edu"):

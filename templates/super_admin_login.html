@@ -8,7 +8,7 @@ Home Page
 <div class="bg"</div>
   <div class="jumbotron">
     <h1>Select your Courses with Stuy-le</h1>
-    <p>{site name} is designed to help you streamline your course selections process.</p>
+    <p>Course Selector is designed to help you streamline your course selections process.</p>
   </div>
 
   <div class="container">
@@ -24,7 +24,7 @@ Home Page
               <fieldset>
                 <legend>Login</legend>
                 <form id="login" action="/auth-sal/" method="POST">
-                  <p>Password: <input type="text" name="password" id='pass' placeholder="Password"></p>
+                  <p>Password: <input type="password" name="password" id='pass' placeholder="Password"></p>
 		  {{ierror}}<br>
                   <p class="btn btn-info" id="but" onclick="document.getElementById('login').submit()">Login</p>
                 </form>
