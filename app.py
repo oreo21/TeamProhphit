@@ -56,7 +56,7 @@ def sample_info_route():
         # return c['email'] # Return the email
 
         if c["hd"] == "stuy.edu":
-            if c['email'] in db_manager.get_admin_list():
+            if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
                 session['admin'] = c["email"]
             else:
                 session['student'] = c["email"]
@@ -102,8 +102,18 @@ def auth_superAdmin():
 def superAdmin_home():
     if not "super_admin" in session:
         return redirect(url_for("home"))
-    return render_template("super_admin_home.html")
+    success = ""
+    if 'success' in session:
+        success = session['success']
+        session.pop('success')
+    return render_template("super_admin_home.html",success=success)
 
+@app.route('/addsuccess/')
+def addsuccess():
+    if not "super_admin" in session:
+        return redirect(url_for("home"))
+    session['success'] = "Successfully added administrator!"
+    return redirect(url_for('superAdmin_home'))
 
 #admin login
 @app.route('/admin-login/')
@@ -128,7 +138,10 @@ def addadmin():
         ret = ''
         email = request.form["email1"]
         #p = hashlib.sha512(request.form["pass1"])
-        db_manager.set_admin_list(db_manager.get_admin_list().append(email)) #UNICORN (idk if this work)
+        if db_manager.get_admin_list():
+            db_manager.set_admin_list(db_manager.get_admin_list().append(email)) #UNICORN (idk if this work)
+        else:
+            db_manager.set_admin_list([email])
         session['success'] = "Admin successfully added."
     return ret
 

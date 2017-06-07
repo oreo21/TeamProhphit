@@ -17,7 +17,7 @@ def init_admin():
     super_admin['name'] = "super_admin"
     super_admin['password'] = hashlib.sha512("password").hexdigest()
     db.admins.insert_one(super_admin)
-    other_admins = {"name" : "other", "emails": ["vmavromatis@stuy.edu"]}
+    other_admins = {"name" : "other", "emails": [""]}
     db.admins.insert_one(other_admins)
 
 def init_state():

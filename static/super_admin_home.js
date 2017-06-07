@@ -11,7 +11,7 @@ var validation = function(){
         error.innerHTML = data;
       }
       else{
-        window.location = '/';
+        window.location = '/addsuccess/';
       }
     }
   });
