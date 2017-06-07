@@ -22,7 +22,7 @@
   {%endif%}
   <ul class="nav nav-pills">
     <li class="active"><a href="#mod" data-toggle="tab">Modify Courses</a></li>
-    <li><a href="#rmv" data-toggle="tab">Remove Students</a></li>
+    <li><a href="#rmv" data-toggle="tab">Remove</a></li>
     <li><a href="#add" data-toggle="tab">Add</a></li>
     <li><a href="#settings" data-toggle="tab">Settings</a></li>
     <div id="myTabContent" class="tab-content">
@@ -81,7 +81,7 @@
                 <form action="/rm_courses/" method="POST" class="form-horizontal"  onsubmit="return confirm('Are you sure that you want to remove this course? This action cannot be undone.');">
                   {%for course in courses%}
                   <!--pass course name into remove function-->
-                  <p><input type="checkbox" name="course" value ="{{course}}">{{course}}: {{ myfxn(course)["name"] }}</p>
+                  <p><input type="checkbox" name="{{course}}">{{course}}: {{ myfxn(course)["name"] }}</p>
 
                   {%endfor%}
                 <p><input type="submit" value="Submit" class="btn btn-info"></p>

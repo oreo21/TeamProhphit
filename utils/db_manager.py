@@ -470,7 +470,8 @@ def remove_cohort(year):
 
 def remove_course(code):
     db.students.delete_many({"code" : code})
-    
+    db.courses.delete_many({"code":code})
+
 def get_site_status():
     res = db.state.find_one({})
     return res["on"]

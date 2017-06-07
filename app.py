@@ -225,7 +225,7 @@ def admin_home():
     on = (db_manager.get_site_status()=='on')
 
     print getdept
-    
+
     return render_template('admin_home.html', courses= courses, login=True, depts=getdept, cohorts=cohorts, myfxn=db_manager.get_course, problems=problems, success=success, on=on)
 
 #generate categorize form
@@ -312,22 +312,24 @@ def modify_student():
 #delete students
 @app.route("/delete_student/", methods = ['POST'])
 def delete_student(): #UNICORN
-
+    db_manager.remove_student(request.form['osis'])
+    session['success'] = "%s successfully removed."%str(request.form['osis'])
     return redirect(url_for('home'))
 
 #remove courses
 @app.route('/rm_courses/', methods=["POST"])
 def rm_course():
     #returns list
-    courses = request.form.getlist('course')
-    #NOTE: function to remove course
-    session['succes'] = "Course removed." #UNICORN
+    for i in request.form:
+        db_manager.remove_course(i)
+    session['succes'] = "Courses removed." #UNICORN
     return redirect(url_for('home'))
 
 #remove cohort
 @app.route('/rm_cohort/', methods=["POST"])
 def rm_cohort():
     cohort = request.form['cohort'] #UNICORN
+    db_manager.remove_cohort(cohort)
     session['success'] = "Cohort %s successfully deleted!"%cohort
     return redirect(url_for('home'))
 
