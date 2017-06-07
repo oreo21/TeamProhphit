@@ -485,6 +485,11 @@ def drop_db():
 def drop_students():
     db.students.drop()
 
+def clear_db():
+    db.students.drop()
+    db.courses.drop()
+    db.departments.drop()
+    
 def reset_db():
     drop_db()
     initialize()

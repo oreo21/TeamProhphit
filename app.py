@@ -271,7 +271,7 @@ def settings():
         db_manager.set_site_status('on')
         session['success'] = 'Site turned on successfully'
     elif 'clear_db' in request.form:
-        db_manager.reset_db()
+        db_manager.clear_db()
         session['success'] = 'DB Cleared'
     elif 'clear_students' in request.form:
         db_manager.drop_students()
