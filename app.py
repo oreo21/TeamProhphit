@@ -345,7 +345,7 @@ def modify_student():
     if 'extra' in request.form:
         extra = request.form['extra'] #UNICORN
         if extra.isdigit():
-            db_manager.edit_student(osis, "extra", amount)
+            db_manager.edit_student(osis, "extra", extra)
 
     session['success'] = "Student successfully modified!"
     return redirect(url_for('home'))
