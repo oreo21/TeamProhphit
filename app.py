@@ -88,8 +88,6 @@ def superAdminLogin():
 
 @app.route('/auth-sal/', methods = ["POST"])
 def auth_superAdmin():
-    print "running"
-    print request.form
     super_admin = db_manager.get_super_admin()
     inputted_password = request.form['password']
     if hashlib.sha512(inputted_password).hexdigest() == super_admin["password"]:
@@ -141,13 +139,13 @@ def addadmin():
         if db_manager.get_admin_list():
             db_manager.set_admin_list(db_manager.get_admin_list().append(email)) #UNICORN (idk if this work)
         else:
-            db_manager.set_admin_list([email])
+            l = []
+            db_manager.set_admin_list(l.append(email))
         session['success'] = "Admin successfully added."
     return ret
 
 @app.route('/changePass/', methods=['POST'])
 def changePass():
-    print request.form
     if len(request.form['pass']) == 0:
         return "Please enter password."
     if len(request.form['pass2']) == 0:
@@ -156,7 +154,7 @@ def changePass():
         return "Passwords do not match."
     if not passCheck(request.form['pass']):
         return "Please choose a stronger password. Passwords must be at least 8 characters, and contain one uppercase letter, one lowercase letter, and one number."
-    db_manager.set_super_admin_password(request.form['pass'])
+    db_manager.set_super_admin_password(hashlib.sha512(request.form['pass']).hexdigest())
     session['success'] = "Password changed successfully."
     return ''
 
