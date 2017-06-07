@@ -29,6 +29,7 @@ def oauth_testing():
         auth_code = request.args.get('code')
         credentials = flow.step2_exchange(auth_code) # This is step two authentication to get the code and store the credentials in a credentials object
         session['credentials'] = credentials.to_json() # Converts the credentials to json and stores it in the session variable
+        # session["logintype"] = request.form["submit"]
         return redirect(url_for('sample_info_route'))
 
 #oauth stuff
@@ -54,17 +55,31 @@ def sample_info_route():
             # print "this is the value below"
             # print c[thing]
         # return c['email'] # Return the email
-
+        #print session["logintype"]
         if c["hd"] == "stuy.edu":
-            if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
-                session['admin'] = c["email"]
+            if "logintype" in session:
+                if db_manager.get_admin_list() and c["email"] in db_manager.get_admin_list():
+                    return redirect(url_for("home"))
+                else:
+                    session['student'] = c["email"]
             else:
-                session['student'] = c["email"]
+                if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
+                    session["admin"] = c["email"]
             return redirect("/")
+
+            # if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
+            #     session['admin'] = c["email"]
+            # else:
+            #     session['student'] = c["email"]
+            # return redirect("/")
+
         else:
             return redirect(url_for("/"), message="please login with your stuy.edu email")
 
-
+@app.route('/slogin/', methods = ["POST"])
+def slogin():
+    session["logintype"] = "student"
+    return redirect(url_for('oauth_testing'))
 #home; redirects where you should be
 @app.route('/')
 def home():
@@ -76,7 +91,7 @@ def home():
         return redirect(url_for('superAdmin_home'))
     else:
         on = (db_manager.get_site_status() == 'on')
-        return render_template('student_login.html', on=on)
+        return render_template('student_login.html', on=on, isStudent = True)
 
 @app.route('/superman/')
 def superAdminLogin():
@@ -185,6 +200,7 @@ def logout():
         session.pop('admin')
     if 'student' in session:
         session.pop('student')
+        session.pop('logintype')
     return redirect(url_for('home'))
 
 #student home
