@@ -57,14 +57,26 @@ Modify Courses
   <div class="col-md-6">
     <h3>Current Prerequisite Requirements:</h3>
     <p>
-      Prerequisites: <br/><ul>
-        {%for data in course_info["prereq_courses"]%}
-        <li>{{data}}</li>
-        {%endfor%}</ul>
-        <br/>
-        Needed Overall Average: {{course_info["prereq_overall_average"]}}<br/>
-        Needed Department Average: {{course_info["prereq_department_average"]}}<br/>
-      </p>
+      <div class="panel panel-default">
+        <div class="panel-heading">Prerequisites: </div>
+        <div class="panel-body">
+          {%for data in course_info["prereq_courses"]%}
+          <p>{{data}}</p>
+          {%endfor%}
+        </div>
+      </div>
+        <div class="well">Needed Overall Average: {{course_info["prereq_overall_average"]}}</div>
+        <div class="well">Needed Department Average: {{course_info["prereq_department_average"]}}</div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Needed averages for:</div>
+          <div class="panel-body">
+            {%for field in course_info['prereq_department_averages']%}
+              {%for dept in field%}
+                <p>{{dept}} : {{field[dept]}}</p>
+              {%endfor%}
+            {%endfor%}
+          </div>
+        </div>
     </div>
   </div>
 

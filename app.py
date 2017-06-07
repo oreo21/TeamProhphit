@@ -374,7 +374,7 @@ def mod(course):
     depts = db_manager.list_departments()
     for dept in depts:
         clist[dept]=db_manager.get_department_courses(dept)
-    print clist
+    print course_info
     return render_template('modify.html',course=str(course),courses=clist,course_info = course_info, special=True, cohorts=cohorts, depts=depts)
 
 #does actual editing of course
@@ -405,16 +405,15 @@ def modifyCourse():
             if i:
                 prereqlist.append(i)
         db_manager.edit_course(course, "prereq_courses", prereqlist)
-    #db_manager.edit_course(course, "prereq_courses", otherDeptList)
 
-    deptlist = {}
+    deptlist = []
     for i in request.form:
         if i in dept and request.form[i]:
             #i is dept, request.form[i] is grade
-            #does nothing, but makes print look cleaner
-            deptlist[i] = request.form[i]
+            #bc of weird storage format
+            deptlist.append({i:request.form[i]})
             #db_manager.edit_course(course, "prereq_department_averages", minDept)
-    print deptlist
+    db_manager.edit_course(course,"prereq_department_averages",deptlist)
     session['success'] = "Courses modified successfully!"
     return redirect(url_for('home'))
 
