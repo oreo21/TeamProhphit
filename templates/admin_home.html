@@ -82,7 +82,6 @@
                   {%for course in courses%}
                   <!--pass course name into remove function-->
                   <p><input type="checkbox" name="{{course}}">{{course}}: {{ myfxn(course)["name"] }}</p>
-
                   {%endfor%}
                 <p><input type="submit" value="Submit" class="btn btn-info"></p>
               </form>

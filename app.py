@@ -377,18 +377,29 @@ def modifyCourse():
         minDept = request.form["minDept"]
         db_manager.edit_course(course, "prereq_department_averages", minDept)
     if 'cohort' in request.form:
-        cohort = request.form["cohort"]
-        db_manager.edit_course(course, "grade_levels", cohort)
+        cohort = request.form.getlist("cohort")
+        cohortlist = []
+        for i in cohort:
+            if i:
+                cohortlist.append(i)
+        db_manager.edit_course(course, "grade_levels", cohortlist)
     if 'prereq' in request.form:
-        prereqs = request.form["prereq"]
-        db_manager.edit_course(course, "prereq_courses", prereqs)
+        prereqs = request.form.getlist("prereq")
+        prereqlist = []
+        for i in prereqs:
+            if i:
+                prereqlist.append(i)
+        db_manager.edit_course(course, "prereq_courses", prereqlist)
+    #db_manager.edit_course(course, "prereq_courses", otherDeptList)
 
+    deptlist = {}
     for i in request.form:
         if i in dept and request.form[i]:
-            #i is the department, request.form[i] is the grade
-            print i + " : " + request.form[i]
+            #i is dept, request.form[i] is grade
+            #does nothing, but makes print look cleaner
+            deptlist[i] = request.form[i]
             #db_manager.edit_course(course, "prereq_department_averages", minDept)
-
+    print deptlist
     session['success'] = "Courses modified successfully!"
     return redirect(url_for('home'))
 
