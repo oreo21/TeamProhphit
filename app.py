@@ -472,7 +472,7 @@ def validateTranscript():
         #return file
         ret = []
         #split file by lines
-        data = fil.split('\r\n')
+        data = fil.split('\n')
         #get headers
         headers = []
         for i in data[0].split(','):
@@ -487,6 +487,7 @@ def validateTranscript():
                 if i >= len(l):
                     break
             ret.append(info)
+        print ret
         db_manager.add_students(ret)
         session['success'] = "Transcripts uploaded succesfully!"
         return ''
