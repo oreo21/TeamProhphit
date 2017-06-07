@@ -136,11 +136,9 @@ def addadmin():
         ret = ''
         email = request.form["email1"]
         #p = hashlib.sha512(request.form["pass1"])
-        if db_manager.get_admin_list():
-            db_manager.set_admin_list(db_manager.get_admin_list().append(email)) #UNICORN (idk if this work)
-        else:
-            l = []
-            db_manager.set_admin_list(l.append(email))
+        lis = db_manager.get_admin_list()
+        lis.append(email)
+        db_manager.set_admin_list(lis)
         session['success'] = "Admin successfully added."
     return ret
 
