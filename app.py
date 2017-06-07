@@ -156,6 +156,7 @@ def changePass():
         return "Passwords do not match."
     if not passCheck(request.form['pass']):
         return "Please choose a stronger password. Passwords must be at least 8 characters, and contain one uppercase letter, one lowercase letter, and one number."
+    db_manager.set_super_admin_password(request.form['pass'])
     session['success'] = "Password changed successfully."
     return ''
 
