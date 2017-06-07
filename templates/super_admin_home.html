@@ -22,24 +22,58 @@ Super Admin Home
   <div class="row">
       <div class="alert alert-dismissible alert-danger" id="error"></div>
   </div>
-  <div class="row">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-8">
-      <div class="well form-horizontal">
-        <fieldset>
-          <legend>Add Admin</legend>
-          <form method="POST">
-            <p>Email: <input type="text" name="email" id='email1' placeholder="E-mail"></p>
-            <p>Confirm Email: <input type="text" name="checkEmail" id='email2' placeholder="Reenter E-mail"></p>
-            <p class="btn btn-info" id="butt">Add</p>
-          </form>
-        </fieldset>
+  <ul class="nav nav-pills">
+    <li class="active"><a href="#home" data-toggle="tab">Add Admins</a></li>
+    <li><a href="#pass" data-toggle="tab">Change Password</a></li>
+
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade active in" id="home">
+        <br><br><br>
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8">
+            <div class="well form-horizontal">
+              <fieldset>
+                <legend>Add Admin</legend>
+                <form method="POST">
+                  <p>Email: <input type="text" name="email" id='email1' placeholder="E-mail"></p>
+                  <p>Confirm Email: <input type="text" name="checkEmail" id='email2' placeholder="Reenter E-mail"></p>
+                  <p class="btn btn-info" id="butt">Add</p>
+                </form>
+              </fieldset>
+            </div>
+          </div>
+          <div class="col-md-2">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="pass">
+        <br><br><br>
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8">
+            <div class="alert alert-dismissible alert-danger" id="passError">
+            </div>
+            <div class="well form-horizontal">
+              <fieldset>
+                <legend>Change Password</legend>
+                <form method="POST">
+                  <p>Password: <input type="password" name="pass" id="pass1" placeholder="Password"> </p>
+                  <p>Confirm Password: <input type="password" name="pass2" id='pass2' placeholder="Reenter Password"></p>
+                  <p class="btn btn-info" id="passBut">Change Password</p>
+                </form>
+              </fieldset>
+            </div>
+          </div>
+          <div class="col-md-2">
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-2">
-    </div>
-  </div>
+
 
 <script src="/static/super_admin_home.js"></script>
 

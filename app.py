@@ -145,6 +145,20 @@ def addadmin():
         session['success'] = "Admin successfully added."
     return ret
 
+@app.route('/changePass/', methods=['POST'])
+def changePass():
+    print request.form
+    if len(request.form['pass']) == 0:
+        return "Please enter password."
+    if len(request.form['pass2']) == 0:
+        return "Please confirm password."
+    if request.form['pass'] != request.form['pass2']:
+        return "Passwords do not match."
+    if not passCheck(request.form['pass']):
+        return "Please choose a stronger password. Passwords must be at least 8 characters, and contain one uppercase letter, one lowercase letter, and one number."
+    session['success'] = "Password changed successfully."
+    return ''
+
 #checks if your password is good
 def passCheck(password):
     #length
