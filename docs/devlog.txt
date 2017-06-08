@@ -287,3 +287,7 @@ robustified course adding so courses/transcripts can be uploaded either order
 
 amyX -- 2017-06-07 02:41
 wrote code to block admin login via student login page
+
+haleyZ -- 2017-06-08 16:05
+added fix to app.py for line endings
+prepared for deployment
