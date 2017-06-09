@@ -470,6 +470,7 @@ def validateCSV():
 def validateTranscript():
     try:#read file
         fil = request.files['f'].read()
+        fil.replace("\r\n", "\n")
         #return file
         ret = []
         #split file by lines
