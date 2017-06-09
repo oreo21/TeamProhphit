@@ -56,7 +56,7 @@ def sample_info_route():
             # print c[thing]
         # return c['email'] # Return the email
         #print session["logintype"]
-        if c["hd"] == "stuy.edu":
+        if c["hd"] and c["hd"] == "stuy.edu":
             if "logintype" in session:
                 if db_manager.get_admin_list() and c["email"] in db_manager.get_admin_list():
                     return redirect(url_for("home"))
