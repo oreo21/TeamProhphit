@@ -56,6 +56,8 @@ def sample_info_route():
             # print c[thing]
         # return c['email'] # Return the email
         #print session["logintype"]
+        if "hd" not in c:
+            return redirect(url_for("home"))
         if c["hd"] == "stuy.edu":
             if "logintype" in session:
                 if db_manager.get_admin_list() and c["email"] in db_manager.get_admin_list():
@@ -80,6 +82,7 @@ def sample_info_route():
 def slogin():
     session["logintype"] = "student"
     return redirect(url_for('oauth_testing'))
+
 #home; redirects where you should be
 @app.route('/')
 def home():
@@ -93,12 +96,18 @@ def home():
         on = (db_manager.get_site_status() == 'on')
         return render_template('student_login.html', on=on, isStudent = True)
 
+@app.route("/redirectToSuperman/", methods=['POST'])
+def redirectToSuperman():
+    print "start"
+    if 'click' in request.form:
+        session['super'] = True
+        return "yes"
+    return "no"
+
 @app.route('/superman/')
 def superAdminLogin():
-    if 'admin' in session:
-        return redirect(url_for('admin_home'))
-    elif 'student' in session:
-        return redirect(url_for('student_home'))
+    if 'super' not in session:
+        return redirect(url_for('home'))
     return render_template('super_admin_login.html')
 
 @app.route('/auth-sal/', methods = ["POST"])

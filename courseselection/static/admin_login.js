@@ -2,7 +2,16 @@ var click;
 
 var secretPath = function(){
   if (click == 5){
-    window.location = "/superman/";
+    $.ajax({
+      url: '/redirectToSuperman/',
+      type: 'POST',
+      data: {'click':true},
+      success: function(data){
+        if (data == 'yes'){
+          window.location = "/superman/";
+        }
+      }
+    });
   }
   else{
     click++;
