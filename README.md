@@ -32,7 +32,7 @@ To download these dependencies,
 2. Upload the Student Transcripts file, which contains all the students and their class grades. See student_transcripts.csv for the expected format.
 3. If a warning regarding uncategorized courses appears, click on the warning to fix these issues.
 4. Turn on the site to allow students to select courses.
-
+NOTE: The clients secret file should be placed in the root of the directory.
 ### Admin functionality:
 * Modify course information, including pre-requisite courses/grades
 * Modify student information
