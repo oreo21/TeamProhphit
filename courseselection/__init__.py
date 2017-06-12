@@ -59,15 +59,15 @@ def sample_info_route():
             # print c[thing]
         # return c['email'] # Return the email
         #print session["logintype"]
-        if c["hd"] and c["hd"] == "stuy.edu":
+        if "hd" in c and c["hd"] == "stuy.edu":
             if "logintype" in session:
                 if db_manager.get_admin_list() and c["email"] in db_manager.get_admin_list():
                     return redirect(url_for("home"))
                 else:
                     session['student'] = c["email"]
-            else:
-                if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
-                    session["admin"] = c["email"]
+            # else:
+            #     if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
+            #         session["admin"] = c["email"]
             return redirect("/")
 
             # if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
@@ -77,6 +77,8 @@ def sample_info_route():
             # return redirect("/")
 
         else:
+            if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
+                session["admin"] = c["email"]
             return redirect(url_for("/"), message="please login with your stuy.edu email")
 
 @app.route('/slogin/', methods = ["POST"])
@@ -227,7 +229,7 @@ def student_home():
         session.pop('student')
         return redirect(url_for('home'))
 #ADD ERROR MESSAGE SAY STUDENT NOT FOUND IF ERROR CONTACT PROGRAMMING
-    
+
     num = db_manager.get_num_APs(osis)
     #print student
     #overallavg = student["overall_average"]
