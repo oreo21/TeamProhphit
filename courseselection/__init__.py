@@ -156,8 +156,8 @@ def adminLogin():
 def addadmin():
     if len(request.form['email1']) == 0:
         ret = "Please fill in e-mail."
-    elif not request.form['email1'].endswith("@stuy.edu"):
-        ret = "Please use your stuy.edu e-mail."
+#    elif not request.form['email1'].endswith("@stuy.edu"):
+#        ret = "Please use your stuy.edu e-mail."
     elif request.form['email1'] != request.form['email2']:
         ret = "E-mails don't match."
     else:
