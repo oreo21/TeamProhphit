@@ -18,7 +18,10 @@ app.config.update(dict( # Make sure the secret key is set for use of the session
 #oauth login
 @app.route('/login/', methods = ['POST', 'GET'])
 def oauth_testing():
-    flow = flow_from_clientsecrets(os.path.dirname('client_secrets.json'),
+    path = os.path.dirname(__file__) or '.'
+    path += "/"
+    path += "client_secrets.json"
+    flow = flow_from_clientsecrets(path,
                                    scope = ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
                                    redirect_uri = url_for('oauth_testing', _external = True))
 
