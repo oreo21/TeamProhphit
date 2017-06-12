@@ -19,13 +19,15 @@ This site is an improvement on the Programming Office's current method of AP cou
 To download these dependencies, 
 ```$ pip install <dependency>```
 
+The API keys for Google Oauth are stored in client_secrets.json. This file should be placed in the top level of the repo.
+
 ### Running locally:
-* Clone the repo
-* On the top level of the repo, run the database initializer
+1. Clone the repo
+2. On the top level of the repo, run the database initializer
 ```$ python utils/db_builder.py```
-* Run the Flask app
+3. Run the Flask app
 ```$ python app.py```
-* In a web broswer, go to localhost:5000
+4. In a web broswer, go to localhost:5000
 
 ### ADMINS: Setting up the site 
 1. Upload the Courses file which is the master list of all courses. See courses.csv for the expected format.
@@ -33,7 +35,6 @@ To download these dependencies,
 3. If a warning regarding uncategorized courses appears, click on the warning to fix these issues.
 4. Turn on the site to allow students to select courses.
 
-NOTE: The clients secret file should be placed in the root of the directory.
 ### Admin functionality:
 * Modify course information, including pre-requisite courses/grades
 * Modify student information
