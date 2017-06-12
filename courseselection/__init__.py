@@ -223,6 +223,11 @@ def student_home():
     osis = db_manager.get_id(session["student"])
 
     student = db_manager.get_student(osis)
+    if student == None:
+        session.pop('student')
+        return redirect(url_for('home'))
+#ADD ERROR MESSAGE SAY STUDENT NOT FOUND IF ERROR CONTACT PROGRAMMING
+    
     num = db_manager.get_num_APs(osis)
     #print student
     #overallavg = student["overall_average"]
