@@ -292,5 +292,12 @@ haleyZ -- 2017-06-08 16:05
 added fix to app.py for line endings
 prepared for deployment
 
+haleyZ -- 2017-06-09 15:26
+tried to fix oauth issue
+
 amyX -- 2017-06-12 02:10
 allowed for non stuy.edu admin accounts in app.py
+
+haleyZ -- 2017-06-12 02:18
+fixed student login error when student DNE
+removed code preventing non stuy.edu admins
