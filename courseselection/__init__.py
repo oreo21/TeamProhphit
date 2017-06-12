@@ -65,9 +65,9 @@ def sample_info_route():
                     return redirect(url_for("home"))
                 else:
                     session['student'] = c["email"]
-            # else:
-            #     if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
-            #         session["admin"] = c["email"]
+            else:
+                if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
+                    session["admin"] = c["email"]
             return redirect("/")
 
             # if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
