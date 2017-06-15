@@ -80,7 +80,7 @@ def sample_info_route():
             if db_manager.get_admin_list() and c['email'] in db_manager.get_admin_list():
                 session["admin"] = c["email"]
                 return redirect("/")
-            return redirect(url_for("/"), message="please login with your stuy.edu email")
+            return redirect("/")
 
 @app.route('/slogin/', methods = ["POST"])
 def slogin():
